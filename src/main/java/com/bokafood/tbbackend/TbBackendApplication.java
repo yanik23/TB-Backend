@@ -25,7 +25,9 @@ public class TbBackendApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		Client[] clients = new Client[] {
-			new Client("Boka Food", "Avenue de la Gombe", 11, 1012, "Lausannne")
+			new Client("Boka Fitness", "Avenue de Flon", 11, 1012, "Lausannne"),
+			new Client("Planet Fitness", "Avenue de Wallstreet", 12, 1013, "Lausannne"),
+			new Client("Pompiers de Morges", "Avenue de la Gare", 13, 1014, "Morges")
 		};
 
 		for(Client client: clients) {
