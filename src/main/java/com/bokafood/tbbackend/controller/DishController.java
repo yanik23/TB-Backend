@@ -2,6 +2,7 @@ package com.bokafood.tbbackend.controller;
 
 import com.bokafood.tbbackend.entity.Dish;
 import com.bokafood.tbbackend.service.DishService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,12 +29,12 @@ public class DishController {
     }
 
     @PostMapping
-    public ResponseEntity<Dish> addDish(Dish dish) {
+    public ResponseEntity<Dish> addDish(@Valid @RequestBody Dish dish) {
         return new ResponseEntity<>(dishService.addDish(dish), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Dish> updateDish(@PathVariable Long id, Dish dish) {
+    public ResponseEntity<Dish> updateDish(@PathVariable Long id, @Valid @RequestBody Dish dish) {
         return new ResponseEntity<>(dishService.updateDish(id, dish), HttpStatus.OK);
     }
 
