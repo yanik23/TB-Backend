@@ -8,20 +8,13 @@ import com.bokafood.tbbackend.exception.EntityNotFoundException;
 import com.bokafood.tbbackend.exception.ErrorResponse;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver;
 import jakarta.validation.ConstraintViolationException;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
-
-
-
 
 
 @ControllerAdvice
@@ -58,11 +51,4 @@ public class ApplicationExceptionHandler extends ExceptionHandlerExceptionResolv
         return new ResponseEntity<>(new ErrorResponse(errors), HttpStatus.BAD_REQUEST);
     }
 
-    /*@ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<String> handleConstraintViolationException(ConstraintViolationException ex) {
-        String errorMessage = ex.getMessage()
-                .substring(ex.getMessage().indexOf("Detail:"));
-
-        return ResponseEntity.badRequest().body(errorMessage);
-    }*/
 }

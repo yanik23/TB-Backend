@@ -1,5 +1,12 @@
 package com.bokafood.tbbackend.entity;
 
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+
 public class Ingredient {
     private enum IngredientType {MEAT, STARCH, VEGETABLE, FRUIT, GRAIN, SPICE, SAUCE, OTHER}
 

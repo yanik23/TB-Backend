@@ -3,7 +3,6 @@ package com.bokafood.tbbackend.service;
 import com.bokafood.tbbackend.entity.Client;
 import com.bokafood.tbbackend.exception.EntityNotFoundException;
 import com.bokafood.tbbackend.repository.ClientRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +24,6 @@ public class ClientServiceImpl implements ClientService {
         public Client getClientById(Long id) {
             Optional<Client> client = clientRepository.findById(id);
             if(client.isPresent()) {
-                System.out.println("==== Client exists ====");
                 return client.get();
             } else {
                 throw new EntityNotFoundException(id, Client.class);
