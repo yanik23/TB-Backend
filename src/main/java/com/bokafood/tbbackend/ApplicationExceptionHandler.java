@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.bokafood.tbbackend.exception.EntityNotFoundException;
 import com.bokafood.tbbackend.exception.ErrorResponse;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 
@@ -28,7 +28,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class ApplicationExceptionHandler extends ExceptionHandlerExceptionResolver {
 
     @ExceptionHandler({EntityNotFoundException.class})
-    public ResponseEntity<Object> handleResourceNotFoundException(RuntimeException ex) {
+    public ResponseEntity<Object> handleResourceNotFoundException(EntityNotFoundException ex) {
         ErrorResponse errorResponse = new ErrorResponse(Arrays.asList(ex.getMessage()));
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
@@ -50,12 +50,13 @@ public class ApplicationExceptionHandler extends ExceptionHandlerExceptionResolv
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
-    /*@ExceptionHandler(MethodArgumentNotValidException.class)
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex) {
         List<String> errors = new ArrayList<>();
         ex.getBindingResult().getAllErrors().forEach((error) -> errors.add(error.getDefaultMessage()));
+        //ErrorResponse error = new ErrorResponse(Arrays.asList("Constraint Violation: we cannot process your request."));
         return new ResponseEntity<>(new ErrorResponse(errors), HttpStatus.BAD_REQUEST);
-    }*/
+    }
 
     /*@ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<String> handleConstraintViolationException(ConstraintViolationException ex) {
