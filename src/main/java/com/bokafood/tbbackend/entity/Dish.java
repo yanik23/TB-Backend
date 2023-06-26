@@ -1,172 +1,95 @@
 package com.bokafood.tbbackend.entity;
 
+
+import jakarta.persistence.*;
+import lombok.*;
+
+@Getter
+@Setter
+@RequiredArgsConstructor
+@NoArgsConstructor
+
+@Entity
+@Table(name = "dish")
 public class Dish {
     enum DishType {MEAT, VEGETARIAN, VEGAN}
     enum DishSize {FIT, GAIN}
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NonNull
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
+    @NonNull
+    @Column(name = "description")
     private String description;
+    @NonNull
+    @Column(name = "type", nullable = false)
     private DishType currentType;
+    @NonNull
+    @Column(name = "size", nullable = false)
     private DishSize currentSize;
+    @NonNull
+    @Column(name = "price", nullable = false)
     private double price;
-    private double isAvailable;
+    @NonNull
+    @Column(name = "isAvailable", nullable = false)
+    private boolean isAvailable;
+    @NonNull
+    @Column(name = "calories")
     private double calories;
+    @NonNull
+    @Column(name = "fats")
     private double fats;
+    @NonNull
+    @Column(name = "saturatedFats")
     private double saturatedFats;
+    @NonNull
+    @Column(name = "sodium")
     private double sodium;
+    @NonNull
+    @Column(name = "carbohydrates")
     private double carbohydrates;
+    @NonNull
+    @Column(name = "fibers")
     private double fibers;
+    @NonNull
+    @Column(name = "sugars")
     private double sugars;
+    @NonNull
+    @Column(name = "proteins")
     private double proteins;
+    @NonNull
+    @Column(name = "calcium")
     private double calcium;
+    @NonNull
+    @Column(name = "iron")
     private double iron;
+    @NonNull
+    @Column(name = "potassium")
     private double potassium;
 
-    public Dish() {
+
+    public void update(Dish dish) {
+        this.setName(dish.getName());
+        this.setDescription(dish.getDescription());
+        this.setCurrentType(dish.getCurrentType());
+        this.setCurrentSize(dish.getCurrentSize());
+        this.setPrice(dish.getPrice());
+        this.setAvailable(dish.isAvailable());
+        this.setCalories(dish.getCalories());
+        this.setFats(dish.getFats());
+        this.setSaturatedFats(dish.getSaturatedFats());
+        this.setSodium(dish.getSodium());
+        this.setCarbohydrates(dish.getCarbohydrates());
+        this.setFibers(dish.getFibers());
+        this.setSugars(dish.getSugars());
+        this.setProteins(dish.getProteins());
+        this.setCalcium(dish.getCalcium());
+        this.setIron(dish.getIron());
+        this.setPotassium(dish.getPotassium());
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public DishType getCurrentType() {
-        return currentType;
-    }
-
-    public void setCurrentType(DishType currentType) {
-        this.currentType = currentType;
-    }
-
-    public DishSize getCurrentSize() {
-        return currentSize;
-    }
-
-    public void setCurrentSize(DishSize currentSize) {
-        this.currentSize = currentSize;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public double getIsAvailable() {
-        return isAvailable;
-    }
-
-    public void setIsAvailable(double isAvailable) {
-        this.isAvailable = isAvailable;
-    }
-
-    public double getCalories() {
-        return calories;
-    }
-
-    public void setCalories(double calories) {
-        this.calories = calories;
-    }
-
-    public double getFats() {
-        return fats;
-    }
-
-    public void setFats(double fats) {
-        this.fats = fats;
-    }
-
-    public double getSaturatedFats() {
-        return saturatedFats;
-    }
-
-    public void setSaturatedFats(double saturatedFats) {
-        this.saturatedFats = saturatedFats;
-    }
-
-    public double getSodium() {
-        return sodium;
-    }
-
-    public void setSodium(double sodium) {
-        this.sodium = sodium;
-    }
-
-    public double getCarbohydrates() {
-        return carbohydrates;
-    }
-
-    public void setCarbohydrates(double carbohydrates) {
-        this.carbohydrates = carbohydrates;
-    }
-
-    public double getFibers() {
-        return fibers;
-    }
-
-    public void setFibers(double fibers) {
-        this.fibers = fibers;
-    }
-
-    public double getSugars() {
-        return sugars;
-    }
-
-    public void setSugars(double sugars) {
-        this.sugars = sugars;
-    }
-
-    public double getProteins() {
-        return proteins;
-    }
-
-    public void setProteins(double proteins) {
-        this.proteins = proteins;
-    }
-
-    public double getCalcium() {
-        return calcium;
-    }
-
-    public void setCalcium(double calcium) {
-        this.calcium = calcium;
-    }
-
-    public double getIron() {
-        return iron;
-    }
-
-    public void setIron(double iron) {
-        this.iron = iron;
-    }
-
-    public double getPotassium() {
-        return potassium;
-    }
-
-    public void setPotassium(double potassium) {
-        this.potassium = potassium;
-    }
 }
