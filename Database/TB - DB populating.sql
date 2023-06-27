@@ -1,0 +1,3 @@
+INSERT INTO CLIENT ("name", address_name, address_number, zip_code, city) VALUES ('Boka Fitness', 'Avenue de Flon', 11, 1012, 'Lausannne');
+INSERT INTO CLIENT ("name", address_name, address_number, zip_code, city) VALUES ('Planet Fitness', 'Avenue de Wallstreet', 12, 1013, 'Lausannne');
+INSERT INTO CLIENT ("name", address_name, address_number, zip_code, city) VALUES ('Pompiers de Morges', 'Avenue de la Gare', 13, 1014, 'Morges');

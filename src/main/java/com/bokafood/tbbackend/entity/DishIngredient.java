@@ -4,6 +4,8 @@ package com.bokafood.tbbackend.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @RequiredArgsConstructor
@@ -13,21 +15,28 @@ import lombok.*;
 @Table(name = "dish_ingredient")
 public class DishIngredient {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    /*@Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name ="id")
+    private Long id;*/
+
+    @EmbeddedId
+    private DishIngredientId id;
 
     @ManyToOne
-    @JoinColumn(name = "dish_id", nullable = false)
+    @MapsId("idDish")
+    @JoinColumn(name = "iddish", nullable = false)
     private Dish dish;
 
+
     @ManyToOne
-    @JoinColumn(name = "ingredient_id", nullable = false)
+    @MapsId("idIngredient")
+    @JoinColumn(name = "idingredient", nullable = false)
     private Ingredient ingredient;
 
     @NonNull
     @Column(name = "weight")
-    private double weight;
+    private BigDecimal weight;
 
 
     public void update(DishIngredient updatedDishIngredient) {

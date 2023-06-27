@@ -1,10 +1,7 @@
 package com.bokafood.tbbackend.entity;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
 
@@ -20,7 +17,10 @@ public class User {
     private enum Role {ADMIN, USER}
 
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name ="id")
+    private Long id;
+
     @Email
     @Column(name = "email", nullable = false, unique = true)
     private String email;
@@ -31,7 +31,8 @@ public class User {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
     @NonNull
-    @Column(name = "role", nullable = false)
+    @Column(name = "currentrole", nullable = false)
+    @Enumerated(EnumType.STRING)
     private Role role;
 
 

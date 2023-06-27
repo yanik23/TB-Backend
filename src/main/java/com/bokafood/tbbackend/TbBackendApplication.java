@@ -1,7 +1,6 @@
 package com.bokafood.tbbackend;
 
-import com.bokafood.tbbackend.entity.Client;
-import com.bokafood.tbbackend.entity.Delivery;
+import com.bokafood.tbbackend.entity.*;
 import com.bokafood.tbbackend.repository.ClientRepository;
 import com.bokafood.tbbackend.repository.DeliveryRepository;
 import lombok.AllArgsConstructor;
@@ -30,9 +29,25 @@ public class TbBackendApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		Client client1 = new Client("Boka Fitness", "Avenue de Flon", 11, 1012, "Lausannne");
+		/*Client client1 = new Client("Boka Fitness", "Avenue de Flon", 11, 1012, "Lausannne");
 		Client client2 = new Client("Planet Fitness", "Avenue de Wallstreet", 12, 1013, "Lausannne");
 		Client client3 = new Client("Pompiers de Morges", "Avenue de la Gare", 13, 1014, "Morges");
+
+		Ingredient ingredient1 = new Ingredient("Tomate", Ingredient.IngredientType.FRUIT, "tomate grappe", "Aligro");
+		Ingredient ingredient2 = new Ingredient("Pomme", Ingredient.IngredientType.FRUIT, "pomme rouge", "Aligro");
+		Ingredient ingredient3 = new Ingredient("Poire", Ingredient.IngredientType.FRUIT, "poire verte", "Migros");
+		Ingredient ingredient4 = new Ingredient("Banane", Ingredient.IngredientType.FRUIT, "", "");
+		Ingredient ingredient5 = new Ingredient("Mozzarella", Ingredient.IngredientType.OTHER, "", "");
+
+		Dish dish1 = new Dish("Salade de tomate", "Salade de tomate avec mozzarella",
+				Dish.DishType.VEGETARIAN, Dish.DishSize.FIT, 10.0, true, 150,
+				0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
+		Dish dish2 = new Dish("Salade de pomme", "Salade de pomme avec mozzarella",
+				Dish.DishType.VEGETARIAN, Dish.DishSize.FIT, 12, true,
+				120, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
+
 		// TODO Auto-generated method stub
 		Client[] clients = new Client[] {
 			client1,
@@ -52,7 +67,7 @@ public class TbBackendApplication implements CommandLineRunner {
 
 		for(Delivery delivery: deliveries) {
 			deliveryRepository.save(delivery);
-		}
+		}*/
 
 	}
 

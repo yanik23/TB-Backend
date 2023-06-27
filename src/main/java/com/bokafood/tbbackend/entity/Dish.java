@@ -4,6 +4,9 @@ package com.bokafood.tbbackend.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 @Getter
 @Setter
 @RequiredArgsConstructor
@@ -12,12 +15,13 @@ import lombok.*;
 @Entity
 @Table(name = "dish")
 public class Dish {
-    enum DishType {MEAT, VEGETARIAN, VEGAN}
-    enum DishSize {FIT, GAIN}
+    public enum DishType {MEAT, VEGETARIAN, VEGAN}
+    public enum DishSize {FIT, GAIN}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name ="id")
+    private Long id;
 
     @NonNull
     @Column(name = "name", nullable = false, unique = true)
@@ -26,51 +30,61 @@ public class Dish {
     @Column(name = "description")
     private String description;
     @NonNull
-    @Column(name = "type", nullable = false)
+    @Column(name = "currenttype", nullable = false)
+    @Enumerated(EnumType.STRING)
     private DishType currentType;
     @NonNull
-    @Column(name = "size", nullable = false)
+    @Column(name = "currentsize", nullable = false)
+    @Enumerated(EnumType.STRING)
     private DishSize currentSize;
     @NonNull
     @Column(name = "price", nullable = false)
-    private double price;
+    private BigDecimal price;
     @NonNull
-    @Column(name = "isAvailable", nullable = false)
+    @Column(name = "isavailable", nullable = false)
     private boolean isAvailable;
     @NonNull
     @Column(name = "calories")
-    private double calories;
+    private int calories;
     @NonNull
-    @Column(name = "fats")
-    private double fats;
+    @Column(name = "fats", precision = 10, scale = 2)
+    private BigDecimal fats;
     @NonNull
-    @Column(name = "saturatedFats")
-    private double saturatedFats;
+    @Column(name = "saturatedfats", precision = 10, scale = 2)
+    private BigDecimal saturatedFats;
     @NonNull
-    @Column(name = "sodium")
-    private double sodium;
+    @Column(name = "sodium", precision = 10, scale = 2)
+    private BigDecimal sodium;
     @NonNull
-    @Column(name = "carbohydrates")
-    private double carbohydrates;
+    @Column(name = "carbohydrates", precision = 10, scale = 2)
+    private BigDecimal carbohydrates;
     @NonNull
-    @Column(name = "fibers")
-    private double fibers;
+    @Column(name = "fibers", precision = 10, scale = 2)
+    private BigDecimal fibers;
     @NonNull
-    @Column(name = "sugars")
-    private double sugars;
+    @Column(name = "sugars", precision = 10, scale = 2)
+    private BigDecimal sugars;
     @NonNull
-    @Column(name = "proteins")
-    private double proteins;
+    @Column(name = "proteins", precision = 10, scale = 2)
+    private BigDecimal proteins;
     @NonNull
-    @Column(name = "calcium")
-    private double calcium;
+    @Column(name = "calcium", precision = 10, scale = 2)
+    private BigDecimal calcium;
     @NonNull
-    @Column(name = "iron")
-    private double iron;
+    @Column(name = "iron", precision = 10, scale = 2)
+    private BigDecimal iron;
     @NonNull
-    @Column(name = "potassium")
-    private double potassium;
+    @Column(name = "potassium", precision = 10, scale = 2)
+    private BigDecimal potassium;
 
+
+    //@OneToMany(mappedBy = "dish", cascade = CascadeType.ALL)
+    //private List<DeliveryDish> deliveryDishes;
+    @OneToMany(mappedBy = "dish")
+    private List<DeliveryDish> deliveryDishes;
+
+    @OneToMany(mappedBy = "dish")
+    private List<DishIngredient> dishIngredients;
 
     public void update(Dish dish) {
         this.setName(dish.getName());

@@ -13,25 +13,26 @@ import lombok.*;
 @Table(name = "delivery_dish")
 public class DeliveryDish {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @EmbeddedId
+    private DeliveryDishId id;
+
+
+    @NonNull
+    @Column(name = "quantityremained", nullable = false)
+    private int quantityRemained;
+    @NonNull
+    @Column(name = "quantitydelivered", nullable = false)
+    private int quantityDelivered;
 
     @ManyToOne
-    @JoinColumn(name = "delivery_id", nullable = false)
+    @MapsId("idDelivery")
+    @JoinColumn(name = "iddelivery", nullable = false)
     private Delivery delivery;
 
     @ManyToOne
-    @JoinColumn(name = "dish_id", nullable = false)
+    @MapsId("idDish")
+    @JoinColumn(name = "iddish", nullable = false)
     private Dish dish;
-
-
-    @NonNull
-    @Column(name = "quantityRemained", nullable = false)
-    private int quantityRemained;
-    @NonNull
-    @Column(name = "quantityDelivered", nullable = false)
-    private int quantityDelivered;
 
 
     public void update(DeliveryDish updatedDeliveryDish) {

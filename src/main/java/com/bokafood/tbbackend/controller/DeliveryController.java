@@ -44,4 +44,10 @@ public class DeliveryController {
         deliveryService.deleteDelivery(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("/client/{id}")
+    public ResponseEntity<List<Delivery>> getDeliveriesByClientId(@PathVariable Long id) {
+        return new ResponseEntity<>(deliveryService.getDeliveriesByClientId(id), HttpStatus.OK);
+    }
 }
+

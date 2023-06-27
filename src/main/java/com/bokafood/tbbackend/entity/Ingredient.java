@@ -4,6 +4,8 @@ package com.bokafood.tbbackend.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @RequiredArgsConstructor
@@ -12,17 +14,19 @@ import lombok.*;
 @Entity
 @Table(name = "ingredient")
 public class Ingredient {
-    private enum IngredientType {MEAT, STARCH, VEGETABLE, FRUIT, GRAIN, SPICE, SAUCE, OTHER}
+    public enum IngredientType {MEAT, STARCH, VEGETABLE, FRUIT, GRAIN, SPICE, SAUCE, OTHER}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name ="id")
+    private Long id;
 
     @NonNull
     @Column(name = "name", nullable = false, unique = true)
     private String name;
     @NonNull
-    @Column(name = "type", nullable = false)
+    @Column(name = "currenttype", nullable = false)
+    @Enumerated(EnumType.STRING)
     private IngredientType currentType;
     @NonNull
     @Column(name = "description")
@@ -31,6 +35,9 @@ public class Ingredient {
     @Column(name = "supplier")
     private String supplier;
 
+
+    @OneToMany(mappedBy = "ingredient")
+    private List<DishIngredient> dishIngredients;
 
     public void update(Ingredient ingredient) {
         this.setName(ingredient.getName());

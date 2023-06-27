@@ -1,12 +1,15 @@
 package com.bokafood.tbbackend.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.format.annotation.NumberFormat;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -30,24 +33,29 @@ public class Client {
 
     @NotBlank(message = "Address name can't be blank")
     @NonNull
-    @Column(name = "addressName", nullable = false)
+    @Column(name = "addressname", nullable = false)
     private String addressName;
 
 
     @NonNull
-    @Column(name = "addressNumber", nullable = false)
+    @Column(name = "addressnumber", nullable = false)
     private int addressNumber;
 
 
     @NumberFormat(style = NumberFormat.Style.NUMBER)
     @NonNull
-    @Column(name = "zipCode", nullable = false)
+    @Column(name = "zipcode", nullable = false)
     private int zipCode;
 
     @NotBlank(message = "City can't be blank")
     @NonNull
     @Column(name = "city", nullable = false)
     private String city;
+
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private List<Delivery> deliveries;
 
 
     public void update(Client client) {

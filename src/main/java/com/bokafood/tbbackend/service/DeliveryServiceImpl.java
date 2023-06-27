@@ -47,4 +47,9 @@ public class DeliveryServiceImpl implements DeliveryService {
     public void deleteDelivery(Long id) {
         deliveryRepository.deleteById(id);
     }
+
+    @Override
+    public List<Delivery> getDeliveriesByClientId(Long id) {
+        return deliveryRepository.findAllByClientId(id);
+    }
 }

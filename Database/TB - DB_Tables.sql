@@ -4,88 +4,90 @@
 
 DROP TABLE IF EXISTS Client CASCADE;	
 CREATE TABLE Client(
-	id  SMALLSERIAL,
-	nom VARCHAR(15) NOT NULL,
-	nomRue VARCHAR(50) NOT NULL,
-	numRue INTEGER NOT NULL,
-	codePostal INTEGER NOT NULL,
-	localite VARCHAR(50) NOT NULL,
+	id  BIGSERIAL,
+	"name" VARCHAR(50) NOT NULL UNIQUE,
+	addressName VARCHAR(50) NOT NULL,
+	addressNumber INTEGER NOT NULL,
+	zipCode INTEGER NOT NULL,
+	city VARCHAR(50) NOT NULL,
 	
 	CONSTRAINT PK_Client PRIMARY KEY (id)
 );
 
 DROP TYPE IF EXISTS roleUtilisateur CASCADE;
-CREATE TYPE roleUtilisateur AS ENUM('admin', 'employe');
-DROP TABLE IF EXISTS Utilisateur CASCADE;
-CREATE TABLE Utilisateur(
-	id SMALLSERIAL,
-	nom VARCHAR(50) NOT NULL,
+CREATE TYPE roleUtilisateur AS ENUM('ADMIN', 'EMPLOYE');
+DROP TABLE IF EXISTS "User" CASCADE;
+CREATE TABLE "User"(
+	id BIGSERIAL,
+	email VARCHAR(50) NOT NULL,
+	password VARCHAR(50) NOT NULL,
+	name VARCHAR(50) NOT NULL,
 	uuid VARCHAR(50) NOT NULL,
 	current_roleUtilisateur roleUtilisateur NOT NULL,
 	
-	CONSTRAINT PK_Utilisateur PRIMARY KEY (id)
+	CONSTRAINT PK_User PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS Livraison CASCADE;
-CREATE TABLE Livraison(
-	id SERIAL,
-	idClient SMALLSERIAL,
-	idUtilisateur SMALLSERIAL,
-	dateLivraison DATE NOT NULL,
-	detailLivraison VARCHAR(50),
+DROP TABLE IF EXISTS Delivery CASCADE;
+CREATE TABLE Delivery(
+	id BIGSERIAL,
+	idClient BIGSERIAL,
+	idUser BIGSERIAL,
+	deliveryDate DATE NOT NULL,
+	details VARCHAR(50),
 	
-	CONSTRAINT PK_Livraison PRIMARY KEY (id)
+	CONSTRAINT PK_Delivery PRIMARY KEY (id)
 	
 );
 
 
 DROP TYPE IF EXISTS typePlat CASCADE;
-CREATE TYPE typePlat AS ENUM('av', 'sv', 'vg');
+CREATE TYPE typePlat AS ENUM('MEAT', 'VEGETARIAN', 'VEGAN');
 DROP TYPE IF EXISTS taille CASCADE;
-CREATE TYPE taille AS ENUM('fit', 'gain');
-DROP TABLE IF EXISTS Plat CASCADE;
-CREATE TABLE Plat(
-	id SERIAL,
-	nom VARCHAR(50) NOT NULL,
+CREATE TYPE taille AS ENUM('FIT', 'GAIN');
+DROP TABLE IF EXISTS Dish CASCADE;
+CREATE TABLE Dish(
+	id BIGSERIAL,
+	name VARCHAR(50) NOT NULL,
 	description VARCHAR(100),
-	current_typePlat typePlat NOT NULL,
-	current_taille taille NOT NULL,
-	prixDeVente NUMERIC(10, 2) NOT NULL,
-	disponibilite BOOLEAN NOT NULL,
-	calorie INTEGER NOT NULL,
-	graisseTotale NUMERIC(10, 2),
-	grasSature NUMERIC(10, 2),
+	currentType typePlat NOT NULL,
+	currentSize taille NOT NULL,
+	price NUMERIC(10, 2) NOT NULL,
+	isAvailable BOOLEAN NOT NULL,
+	calories INTEGER NOT NULL,
+	fats NUMERIC(10, 2),
+	saturatedFats NUMERIC(10, 2),
 	sodium NUMERIC(10, 2),
-	glucide NUMERIC(10, 2),
-	fibreAlimentaire NUMERIC(10, 2),
-	sucre NUMERIC(10, 2),
-	proteine NUMERIC(10, 2),
+	carbohydrates NUMERIC(10, 2),
+	fibers NUMERIC(10, 2),
+	sugars NUMERIC(10, 2),
+	proteins NUMERIC(10, 2),
 	calcium NUMERIC(10, 2),
-	fer NUMERIC(10, 2),
+	iron NUMERIC(10, 2),
 	potassium NUMERIC(10, 2),
 	
-	CONSTRAINT PK_Plat PRIMARY KEY (id)
+	CONSTRAINT PK_Dish PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS Livraison_Plat CASCADE;
-CREATE TABLE Livraison_Plat(
-	idLivraison SERIAL,
-	idPlat SERIAL,
-	quantiteRestante INTEGER NOT NULL,
-	quantiteLivre INTEGER NOT NULL,
+DROP TABLE IF EXISTS Delivery_Dish CASCADE;
+CREATE TABLE Delivery_Dish(
+	idDelivery BIGSERIAL,
+	idDish BIGSERIAL,
+	quantityRemained INTEGER NOT NULL,
+	quantityDelivered INTEGER NOT NULL,
 	
-	CONSTRAINT PK_Livraison_Plat PRIMARY KEY (idLivraison,idPlat)
+	CONSTRAINT PK_Delivery_Dish PRIMARY KEY (idDelivery,idDish)
 );
 
 DROP TYPE IF EXISTS typeIngredient CASCADE;
-CREATE TYPE typeIngredient AS ENUM ('epice', 'viande', 'poisson', 'feculent', 'legume', 'fruit', 'autre');
+CREATE TYPE typeIngredient AS ENUM ('MEAT', 'STARCH', 'VEGETBALES', 'FRUIT', 'GRAIN', 'SPRICE', 'SAUCE', 'OTHER');
 DROP TABLE IF EXISTS Ingredient CASCADE;
 CREATE TABLE Ingredient(
-	id SERIAL,
-	nom VARCHAR(50) NOT NULL,
-	current_type typeIngredient NOT NULL,
+	id BIGSERIAL,
+	name VARCHAR(50) NOT NULL,
+	currentType typeIngredient NOT NULL,
 	description VARCHAR(100),
-	fournisseur VARCHAR(50),
+	supplier VARCHAR(50),
 	
 	CONSTRAINT PK_Ingredient PRIMARY KEY (id)
 	
@@ -93,26 +95,26 @@ CREATE TABLE Ingredient(
 
 
 
-DROP TABLE IF EXISTS Plat_Ingredient CASCADE;
-CREATE TABLE Plat_Ingredient(
-	idPlat SERIAL,
-	idIngredient SERIAL,
-	poids NUMERIC(10, 2),
+DROP TABLE IF EXISTS Dish_Ingredient CASCADE;
+CREATE TABLE Dish_Ingredient(
+	idDish BIGSERIAL,
+	idIngredient BIGSERIAL,
+	weight NUMERIC(10, 2),
 	
-	CONSTRAINT PK_Plat_Ingredient PRIMARY KEY (IdPlat, idIngredient)
+	CONSTRAINT PK_Dish_Ingredient PRIMARY KEY (IdDish, idIngredient)
 );
 
-ALTER TABLE Livraison ADD CONSTRAINT FK_Livraison_idClient FOREIGN KEY(idClient) REFERENCES Client(id)
+ALTER TABLE Delivery ADD CONSTRAINT FK_Delivery_idClient FOREIGN KEY(idClient) REFERENCES Client(id)
 	ON UPDATE CASCADE;
-ALTER TABLE Livraison ADD CONSTRAINT FK_Livraison_idUtilisateur FOREIGN KEY(idUtilisateur) REFERENCES Utilisateur(id)
+ALTER TABLE Delivery ADD CONSTRAINT FK_Delivery_idUser FOREIGN KEY(idUser) REFERENCES "User"(id)
 	ON UPDATE CASCADE;
-ALTER TABLE Livraison_Plat ADD CONSTRAINT FK_Livraison_idLivraison FOREIGN KEY(idLivraison) REFERENCES Livraison(id)
+ALTER TABLE Delivery_Dish ADD CONSTRAINT FK_Delivery_idDelivery FOREIGN KEY(idDelivery) REFERENCES Delivery(id)
 	ON UPDATE CASCADE;
-ALTER TABLE	Livraison_Plat ADD CONSTRAINT FK_Livraison_idPlat FOREIGN KEY(idPlat) REFERENCES Plat(id)
+ALTER TABLE	Delivery_Dish ADD CONSTRAINT FK_Delivery_idDish FOREIGN KEY(idDish) REFERENCES Dish(id)
 	ON UPDATE CASCADE;
-ALTER TABLE Plat_Ingredient ADD CONSTRAINT FK_Plat_Ingredient_idPlat FOREIGN KEY(idPlat) REFERENCES Plat(id)
+ALTER TABLE Dish_Ingredient ADD CONSTRAINT FK_Dish_Ingredient_idDish FOREIGN KEY(idDish) REFERENCES Dish(id)
 	ON UPDATE CASCADE;
-ALTER TABLE Plat_Ingredient ADD CONSTRAINT FK_Plat_Ingredient_idIngredient FOREIGN KEY(idIngredient) REFERENCES Ingredient(id)
+ALTER TABLE Dish_Ingredient ADD CONSTRAINT FK_Dish_Ingredient_idIngredient FOREIGN KEY(idIngredient) REFERENCES Ingredient(id)
 
 
 
