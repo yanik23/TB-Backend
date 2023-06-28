@@ -1,5 +1,6 @@
 package com.bokafood.tbbackend.controller;
 
+import com.bokafood.tbbackend.dto.DishWithIngredientsDTO;
 import com.bokafood.tbbackend.entity.Dish;
 import com.bokafood.tbbackend.service.DishService;
 import jakarta.validation.Valid;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/dishes")
@@ -45,8 +47,13 @@ public class DishController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/{id}/ingredients")
-    public ResponseEntity<Collection> getDishByIdWithIngredients(@PathVariable Long id) {
+    /*@GetMapping("/{id}/ingredients")
+    public ResponseEntity<List<DishWithIngredientsDTO>> getDishByIdWithIngredients(@PathVariable Long id) {
         return new ResponseEntity<>(dishService.getDishByIdWithIngredients(id), HttpStatus.OK);
+    }*/
+
+    @GetMapping("/min")
+    public ResponseEntity<List<DishWithIngredientsDTO>> getMinimumDish() {
+        return new ResponseEntity<>(dishService.getMinDish(), HttpStatus.OK);
     }
 }

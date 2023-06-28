@@ -1,6 +1,7 @@
 package com.bokafood.tbbackend.service;
 
 
+import com.bokafood.tbbackend.dto.DishWithIngredientsDTO;
 import com.bokafood.tbbackend.entity.Dish;
 import com.bokafood.tbbackend.exception.EntityNotFoundException;
 import com.bokafood.tbbackend.repository.DishRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -50,9 +52,14 @@ public class DishServiceImpl implements DishService {
     }
 
 
-    @Override
-    public List<Collection> getDishByIdWithIngredients(Long id) {
+    /*@Override
+    public List<DishWithIngredientsDTO> getDishByIdWithIngredients(Long id) {
         return dishRepository.findDishByIdWithIngredients(id);
+    }*/
+
+    @Override
+    public List<DishWithIngredientsDTO> getMinDish() {
+        return dishRepository.findMin();
     }
 
 
