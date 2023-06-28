@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -42,5 +43,10 @@ public class DishController {
     public ResponseEntity<HttpStatus> deleteDish(@PathVariable Long id) {
         dishService.deleteDish(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/{id}/ingredients")
+    public ResponseEntity<Collection> getDishByIdWithIngredients(@PathVariable Long id) {
+        return new ResponseEntity<>(dishService.getDishByIdWithIngredients(id), HttpStatus.OK);
     }
 }

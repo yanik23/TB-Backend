@@ -7,6 +7,7 @@ import com.bokafood.tbbackend.repository.DishRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,5 +48,12 @@ public class DishServiceImpl implements DishService {
     public void deleteDish(Long id) {
         dishRepository.deleteById(id);
     }
+
+
+    @Override
+    public List<Collection> getDishByIdWithIngredients(Long id) {
+        return dishRepository.findDishByIdWithIngredients(id);
+    }
+
 
 }

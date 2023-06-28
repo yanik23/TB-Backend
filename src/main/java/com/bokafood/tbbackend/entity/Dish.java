@@ -1,6 +1,8 @@
 package com.bokafood.tbbackend.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -80,10 +82,14 @@ public class Dish {
 
     //@OneToMany(mappedBy = "dish", cascade = CascadeType.ALL)
     //private List<DeliveryDish> deliveryDishes;
-    @OneToMany(mappedBy = "dish")
+    //@JsonIgnore
+    @OneToMany(mappedBy = "dish", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<DeliveryDish> deliveryDishes;
 
-    @OneToMany(mappedBy = "dish")
+    //@JsonIgnore
+    @OneToMany(mappedBy = "dish", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<DishIngredient> dishIngredients;
 
     public void update(Dish dish) {

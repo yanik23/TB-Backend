@@ -1,6 +1,8 @@
 package com.bokafood.tbbackend.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,17 +17,13 @@ import java.math.BigDecimal;
 @Table(name = "dish_ingredient")
 public class DishIngredient {
 
-    /*@Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name ="id")
-    private Long id;*/
-
     @EmbeddedId
     private DishIngredientId id;
 
     @ManyToOne
     @MapsId("idDish")
     @JoinColumn(name = "iddish", nullable = false)
+    @JsonBackReference
     private Dish dish;
 
 

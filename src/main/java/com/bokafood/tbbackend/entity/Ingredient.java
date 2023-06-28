@@ -1,6 +1,8 @@
 package com.bokafood.tbbackend.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,7 +16,7 @@ import java.util.List;
 @Entity
 @Table(name = "ingredient")
 public class Ingredient {
-    public enum IngredientType {MEAT, STARCH, VEGETABLE, FRUIT, GRAIN, SPICE, SAUCE, OTHER}
+    public enum IngredientType {MEAT, FISH, STARCH, VEGETABLE, FRUIT, GRAIN, SPICE, SAUCE, OTHER}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +24,7 @@ public class Ingredient {
     private Long id;
 
     @NonNull
-    @Column(name = "name", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String name;
     @NonNull
     @Column(name = "currenttype", nullable = false)
@@ -32,11 +34,13 @@ public class Ingredient {
     @Column(name = "description")
     private String description;
     @NonNull
-    @Column(name = "supplier")
+    //@Column(name = "supplier")
     private String supplier;
 
 
+    @JsonIgnore
     @OneToMany(mappedBy = "ingredient")
+    @JsonBackReference
     private List<DishIngredient> dishIngredients;
 
     public void update(Ingredient ingredient) {

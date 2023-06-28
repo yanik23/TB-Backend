@@ -16,14 +16,14 @@ CREATE TABLE Client(
 
 DROP TYPE IF EXISTS roleUtilisateur CASCADE;
 CREATE TYPE roleUtilisateur AS ENUM('ADMIN', 'EMPLOYE');
-DROP TABLE IF EXISTS "User" CASCADE;
-CREATE TABLE "User"(
+DROP TABLE IF EXISTS "user" CASCADE;
+CREATE TABLE "user"(
 	id BIGSERIAL,
 	email VARCHAR(50) NOT NULL,
 	password VARCHAR(50) NOT NULL,
 	name VARCHAR(50) NOT NULL,
 	uuid VARCHAR(50) NOT NULL,
-	current_roleUtilisateur roleUtilisateur NOT NULL,
+	currentRole roleUtilisateur NOT NULL,
 	
 	CONSTRAINT PK_User PRIMARY KEY (id)
 );
@@ -80,13 +80,13 @@ CREATE TABLE Delivery_Dish(
 );
 
 DROP TYPE IF EXISTS typeIngredient CASCADE;
-CREATE TYPE typeIngredient AS ENUM ('MEAT', 'STARCH', 'VEGETBALES', 'FRUIT', 'GRAIN', 'SPRICE', 'SAUCE', 'OTHER');
+CREATE TYPE typeIngredient AS ENUM ('MEAT', 'FISH', 'STARCH', 'VEGETABLE', 'FRUIT', 'GRAIN', 'SPICE', 'SAUCE', 'OTHER');
 DROP TABLE IF EXISTS Ingredient CASCADE;
 CREATE TABLE Ingredient(
 	id BIGSERIAL,
 	name VARCHAR(50) NOT NULL,
 	currentType typeIngredient NOT NULL,
-	description VARCHAR(100),
+	description VARCHAR(255),
 	supplier VARCHAR(50),
 	
 	CONSTRAINT PK_Ingredient PRIMARY KEY (id)
@@ -104,9 +104,10 @@ CREATE TABLE Dish_Ingredient(
 	CONSTRAINT PK_Dish_Ingredient PRIMARY KEY (IdDish, idIngredient)
 );
 
+
 ALTER TABLE Delivery ADD CONSTRAINT FK_Delivery_idClient FOREIGN KEY(idClient) REFERENCES Client(id)
 	ON UPDATE CASCADE;
-ALTER TABLE Delivery ADD CONSTRAINT FK_Delivery_idUser FOREIGN KEY(idUser) REFERENCES "User"(id)
+ALTER TABLE Delivery ADD CONSTRAINT FK_Delivery_idUser FOREIGN KEY(idUser) REFERENCES "user"(id)
 	ON UPDATE CASCADE;
 ALTER TABLE Delivery_Dish ADD CONSTRAINT FK_Delivery_idDelivery FOREIGN KEY(idDelivery) REFERENCES Delivery(id)
 	ON UPDATE CASCADE;
@@ -115,6 +116,8 @@ ALTER TABLE	Delivery_Dish ADD CONSTRAINT FK_Delivery_idDish FOREIGN KEY(idDish) 
 ALTER TABLE Dish_Ingredient ADD CONSTRAINT FK_Dish_Ingredient_idDish FOREIGN KEY(idDish) REFERENCES Dish(id)
 	ON UPDATE CASCADE;
 ALTER TABLE Dish_Ingredient ADD CONSTRAINT FK_Dish_Ingredient_idIngredient FOREIGN KEY(idIngredient) REFERENCES Ingredient(id)
+
+
 
 
 
