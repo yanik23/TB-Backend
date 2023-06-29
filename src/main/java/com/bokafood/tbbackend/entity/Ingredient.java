@@ -38,7 +38,7 @@ public class Ingredient {
     private String supplier;
 
 
-    @JsonIgnore
+    //@JsonIgnore
     @OneToMany(mappedBy = "ingredient")
     @JsonBackReference
     private List<DishIngredient> dishIngredients;

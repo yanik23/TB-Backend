@@ -31,6 +31,7 @@ public class DeliveryDish {
 
     @ManyToOne
     @MapsId("idDish")
+
     @JoinColumn(name = "iddish", nullable = false)
     private Dish dish;
 

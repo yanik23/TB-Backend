@@ -1,5 +1,6 @@
 package com.bokafood.tbbackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -41,16 +42,16 @@ public class Delivery {
     private Client client;
 
 
-    @JsonIgnore
+    //@JsonIgnore
     @OneToMany(mappedBy = "delivery")
+    @JsonBackReference
     private List<DeliveryDish> deliveryDish;
-    /*@JsonIgnore
-    @ManyToMany
-    @JoinTable(
-            name = "delivery_dish",
-            joinColumns = @JoinColumn(name = "iddelivery"),
-            inverseJoinColumns = @JoinColumn(name = "iddish")
-    )*/
+
+
+    /*@ManyToOne
+    @JsonBackReference
+    @JoinColumn(name = "iduser", referencedColumnName = "id")
+    private User user;*/
 
 
 

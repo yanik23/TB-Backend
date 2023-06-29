@@ -22,7 +22,6 @@ CREATE TABLE "user"(
 	email VARCHAR(50) NOT NULL,
 	password VARCHAR(50) NOT NULL,
 	name VARCHAR(50) NOT NULL,
-	uuid VARCHAR(50) NOT NULL,
 	currentRole roleUtilisateur NOT NULL,
 	
 	CONSTRAINT PK_User PRIMARY KEY (id)

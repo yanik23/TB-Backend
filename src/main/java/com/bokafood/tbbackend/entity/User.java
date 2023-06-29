@@ -1,9 +1,13 @@
 package com.bokafood.tbbackend.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -35,5 +39,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+
+    /*@JsonIgnore
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Delivery> deliveries;*/
 
 }
