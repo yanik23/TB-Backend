@@ -45,11 +45,11 @@ public interface DishRepository extends CrudRepository<Dish, Long> {
             "LEFT JOIN d.dishIngredients di " +
             "LEFT JOIN di.ingredient i ")*/
 
-    @Query("SELECT new com.bokafood.tbbackend.dto.DishWithIngredientsDTO(d.name, d.price, d.calories, i.name, di.weight) " +
+    /*@Query("SELECT new com.bokafood.tbbackend.dto.DishWithIngredientsDTO(d.name, d.price, d.calories, i.name, di.weight) " +
             "FROM Dish d " +
             "LEFT JOIN d.dishIngredients di " +
             "LEFT JOIN di.ingredient i ")
-    List<DishWithIngredientsDTO> findMin();
+    List<Dish> findMin();*/
 
 
 }

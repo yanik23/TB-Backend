@@ -92,24 +92,6 @@ public class Dish {
     @JsonManagedReference
     private List<DishIngredient> dishIngredients;
 
-    public void update(Dish dish) {
-        this.setName(dish.getName());
-        this.setDescription(dish.getDescription());
-        this.setCurrentType(dish.getCurrentType());
-        this.setCurrentSize(dish.getCurrentSize());
-        this.setPrice(dish.getPrice());
-        this.setAvailable(dish.isAvailable());
-        this.setCalories(dish.getCalories());
-        this.setFats(dish.getFats());
-        this.setSaturatedFats(dish.getSaturatedFats());
-        this.setSodium(dish.getSodium());
-        this.setCarbohydrates(dish.getCarbohydrates());
-        this.setFibers(dish.getFibers());
-        this.setSugars(dish.getSugars());
-        this.setProteins(dish.getProteins());
-        this.setCalcium(dish.getCalcium());
-        this.setIron(dish.getIron());
-        this.setPotassium(dish.getPotassium());
-    }
+
 
 }

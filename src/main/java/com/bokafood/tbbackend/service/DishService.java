@@ -1,5 +1,6 @@
 package com.bokafood.tbbackend.service;
 
+import com.bokafood.tbbackend.dto.DishWithIngredientListDTO;
 import com.bokafood.tbbackend.dto.DishWithIngredientsDTO;
 import com.bokafood.tbbackend.entity.Dish;
 
@@ -14,6 +15,6 @@ public interface DishService {
     Dish updateDish(Long id, Dish updatedDish);
     void deleteDish(Long id);
 
-   // List<DishWithIngredientsDTO> getDishByIdWithIngredients(Long id);
-    List<DishWithIngredientsDTO> getMinDish();
+   // List<DishWithIngredientsListDTO> getDishByIdWithIngredients(Long id);
+    List<DishWithIngredientListDTO> getMinDish();
 }

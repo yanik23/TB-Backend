@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class DishServiceImpl implements DishService {
@@ -39,9 +40,9 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public Dish updateDish(Long id, Dish updatedDish) {
-        Dish dish = getDishById(id);
-        dish.update(updatedDish);
+    public Dish updateDish(Long id, Dish dish) {
+        Dish updatedDish = getDishById(id);
+        update(updatedDish,dish);
         return dishRepository.save(dish);
     }
 
@@ -57,7 +58,29 @@ public class DishServiceImpl implements DishService {
     }*/
 
     @Override
-    public List<DishWithIngredientsDTO> getMinDish() {
+    public List<DishWithIngredientListDTO> getMinDish() {
+        List<Dish> dishes = (List<Dish>) dishRepository.findAll();
+        List<DishWithIngredientListDTO> minDishInfos = dishes.stream().map((elem) -> {
+            DishWithIngredientListDTO minDishInfo = new DishWithIngredientListDTO();
+            minDishInfo.setDishname(elem.getName());
+            minDishInfo.setPrice(elem.getPrice());
+            minDishInfo.setCalories(elem.getCalories());
+            minDishInfo.setIngredients(elem.getDishIngredients().stream().map((elem1) -> {
+                IngredientDTO ingredientDTO = new IngredientDTO();
+                ingredientDTO.setIngredientName(elem1.getIngredient().getName());
+                ingredientDTO.setWeight(elem1.getWeight());
+                return ingredientDTO;
+            }).collect(Collectors.toList()));
+            return minDishInfo;
+        }).toList();
+        /*.forEachOrdered((minDishInfo) -> {
+            minDishInfos.add(minDishInfo);
+        });*/
+
+
+        return minDishInfos;
+
+
         /*List<DishWithIngredientsDTO> entites = dishRepository.findMin();
         List<IngredientDTO> ingredientDTOs = new ArrayList<>();
 
@@ -71,8 +94,27 @@ public class DishServiceImpl implements DishService {
         dishWithIngredientListDTO.setCalories(rawDishesAndIngredients.get(0).getCalories());
         dishWithIngredientListDTO.setIngredients(ingredientDTOs);*/
 
-        return dishRepository.findMin();
     }
 
+    private Dish update(Dish updatedDish, Dish dish) {
+        updatedDish.setName(dish.getName());
+        updatedDish.setDescription(dish.getDescription());
+        updatedDish.setCurrentType(dish.getCurrentType());
+        updatedDish.setCurrentSize(dish.getCurrentSize());
+        updatedDish.setPrice(dish.getPrice());
+        updatedDish.setAvailable(dish.isAvailable());
+        updatedDish.setCalories(dish.getCalories());
+        updatedDish.setFats(dish.getFats());
+        updatedDish.setSaturatedFats(dish.getSaturatedFats());
+        updatedDish.setSodium(dish.getSodium());
+        updatedDish.setCarbohydrates(dish.getCarbohydrates());
+        updatedDish.setFibers(dish.getFibers());
+        updatedDish.setSugars(dish.getSugars());
+        updatedDish.setProteins(dish.getProteins());
+        updatedDish.setCalcium(dish.getCalcium());
+        updatedDish.setIron(dish.getIron());
+        updatedDish.setPotassium(dish.getPotassium());
+        return updatedDish;
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.bokafood.tbbackend.controller;
 
+import com.bokafood.tbbackend.dto.DishWithIngredientListDTO;
 import com.bokafood.tbbackend.dto.DishWithIngredientsDTO;
 import com.bokafood.tbbackend.entity.Dish;
 import com.bokafood.tbbackend.service.DishService;
@@ -53,7 +54,7 @@ public class DishController {
     }*/
 
     @GetMapping("/min")
-    public ResponseEntity<List<DishWithIngredientsDTO>> getMinimumDish() {
+    public ResponseEntity<List<DishWithIngredientListDTO>> getMinimumDish() {
         return new ResponseEntity<>(dishService.getMinDish(), HttpStatus.OK);
     }
 }
