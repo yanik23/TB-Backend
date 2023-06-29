@@ -30,15 +30,27 @@ import java.util.Optional;
 @NamedNativeQuery(name = "Dish.findMin", query = "SELECT d.name AS dishname, d.price AS price FROM Dish d", resultSetMapping = "DishDetailsMapping")*/
 public interface DishRepository extends CrudRepository<Dish, Long> {
 
-    //@Query(nativeQuery = true, value = "SELECT d.name AS dishname, d.price AS price FROM Dish d")
-    //TypedQuery<DishWithIngredientsDTO> query = this.em.createNamedQuery("DishQuery", "DishDetailsMapping");
+    /*@Query("SELECT new com.bokafood.tbbackend.dto.DishWithIngredientsDTO(d.name, d.price, d.calories, i.name, di.weight) " +
+            "FROM Dish d " +
+            "LEFT JOIN d.dishIngredients di " +
+            "LEFT JOIN di.ingredient i ")
+    List<DishWithIngredientsDTO> findMin();*/
 
+
+
+
+    /*@Query("SELECT new com.bokafood.tbbackend.dto.DishWithIngredientListDTO(d.name, d.price, d.calories, " +
+            " new com.bokaFood.tbbackend.dto.IngredientDTO(i.name, di.weight)) " +
+            "FROM Dish d " +
+            "LEFT JOIN d.dishIngredients di " +
+            "LEFT JOIN di.ingredient i ")*/
 
     @Query("SELECT new com.bokafood.tbbackend.dto.DishWithIngredientsDTO(d.name, d.price, d.calories, i.name, di.weight) " +
             "FROM Dish d " +
             "LEFT JOIN d.dishIngredients di " +
             "LEFT JOIN di.ingredient i ")
     List<DishWithIngredientsDTO> findMin();
+
 
 }
 

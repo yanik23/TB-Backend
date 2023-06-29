@@ -1,17 +1,16 @@
 package com.bokafood.tbbackend.service;
 
 
+import com.bokafood.tbbackend.dto.DishWithIngredientListDTO;
 import com.bokafood.tbbackend.dto.DishWithIngredientsDTO;
+import com.bokafood.tbbackend.dto.IngredientDTO;
 import com.bokafood.tbbackend.entity.Dish;
 import com.bokafood.tbbackend.exception.EntityNotFoundException;
 import com.bokafood.tbbackend.repository.DishRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class DishServiceImpl implements DishService {
@@ -59,6 +58,19 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public List<DishWithIngredientsDTO> getMinDish() {
+        /*List<DishWithIngredientsDTO> entites = dishRepository.findMin();
+        List<IngredientDTO> ingredientDTOs = new ArrayList<>();
+
+        for(DishWithIngredientsDTO entity: entites) {
+            ingredientDTOs.add(new IngredientDTO(rawDishesAndIngredient.getName(), rawDishesAndIngredient.getWeight()));
+        }
+
+        DishWithIngredientListDTO dishWithIngredientListDTO = new DishWithIngredientListDTO();
+        dishWithIngredientListDTO.setDishname(rawDishesAndIngredients.get(0).getName());
+        dishWithIngredientListDTO.setPrice(rawDishesAndIngredients.get(0).getPrice());
+        dishWithIngredientListDTO.setCalories(rawDishesAndIngredients.get(0).getCalories());
+        dishWithIngredientListDTO.setIngredients(ingredientDTOs);*/
+
         return dishRepository.findMin();
     }
 

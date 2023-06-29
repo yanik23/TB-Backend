@@ -5,10 +5,10 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Getter
 @Setter
-//@AllArgsConstructor
 @NoArgsConstructor
 
 
@@ -18,7 +18,7 @@ public class DishWithIngredientsDTO {
     private int calories;
     private String name;
     private BigDecimal weight;
-    //d.calories, i.name, di.weight
+
 
 
     public DishWithIngredientsDTO(String dishname, BigDecimal price, int calories, String name, BigDecimal weight) {
@@ -27,5 +27,6 @@ public class DishWithIngredientsDTO {
         this.calories = calories;
         this.name = name;
         this.weight = weight;
+
     }
 }
