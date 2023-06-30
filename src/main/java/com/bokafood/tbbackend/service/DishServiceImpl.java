@@ -2,8 +2,7 @@ package com.bokafood.tbbackend.service;
 
 
 import com.bokafood.tbbackend.dto.DishWithIngredientListDTO;
-import com.bokafood.tbbackend.dto.DishWithIngredientsDTO;
-import com.bokafood.tbbackend.dto.IngredientDTO;
+import com.bokafood.tbbackend.dto.IngredientLessDTO;
 import com.bokafood.tbbackend.entity.Dish;
 import com.bokafood.tbbackend.exception.EntityNotFoundException;
 import com.bokafood.tbbackend.repository.DishRepository;
@@ -52,24 +51,19 @@ public class DishServiceImpl implements DishService {
     }
 
 
-    /*@Override
-    public List<DishWithIngredientsDTO> getDishByIdWithIngredients(Long id) {
-        return dishRepository.findDishByIdWithIngredients(id);
-    }*/
-
     @Override
     public List<DishWithIngredientListDTO> getMinDish() {
         List<Dish> dishes = (List<Dish>) dishRepository.findAll();
         List<DishWithIngredientListDTO> minDishInfos = dishes.stream().map((elem) -> {
             DishWithIngredientListDTO minDishInfo = new DishWithIngredientListDTO();
-            minDishInfo.setDishname(elem.getName());
+            minDishInfo.setDishName(elem.getName());
             minDishInfo.setPrice(elem.getPrice());
             minDishInfo.setCalories(elem.getCalories());
             minDishInfo.setIngredients(elem.getDishIngredients().stream().map((elem1) -> {
-                IngredientDTO ingredientDTO = new IngredientDTO();
-                ingredientDTO.setIngredientName(elem1.getIngredient().getName());
-                ingredientDTO.setWeight(elem1.getWeight());
-                return ingredientDTO;
+                IngredientLessDTO ingredientLessDTO = new IngredientLessDTO();
+                ingredientLessDTO.setIngredientName(elem1.getIngredient().getName());
+                ingredientLessDTO.setWeight(elem1.getWeight());
+                return ingredientLessDTO;
             }).collect(Collectors.toList()));
             return minDishInfo;
         }).toList();
@@ -78,6 +72,9 @@ public class DishServiceImpl implements DishService {
         });*/
         return minDishInfos;
     }
+
+
+
 
     private Dish update(Dish updatedDish, Dish dish) {
         updatedDish.setName(dish.getName());

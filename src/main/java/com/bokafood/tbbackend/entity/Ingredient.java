@@ -34,7 +34,7 @@ public class Ingredient {
     @Column(name = "description")
     private String description;
     @NonNull
-    //@Column(name = "supplier")
+    @Column(name = "supplier")
     private String supplier;
 
 

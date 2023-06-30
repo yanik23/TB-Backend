@@ -47,7 +47,7 @@ public class Delivery {
 
     //@JsonIgnore
     @OneToMany(mappedBy = "delivery", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    //@JsonManagedReference
+    @JsonManagedReference
     private List<DeliveryDish> deliveryDish;
 
 

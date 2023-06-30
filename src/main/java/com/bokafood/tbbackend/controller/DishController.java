@@ -1,7 +1,6 @@
 package com.bokafood.tbbackend.controller;
 
 import com.bokafood.tbbackend.dto.DishWithIngredientListDTO;
-import com.bokafood.tbbackend.dto.DishWithIngredientsDTO;
 import com.bokafood.tbbackend.entity.Dish;
 import com.bokafood.tbbackend.service.DishService;
 import jakarta.validation.Valid;
@@ -11,9 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/dishes")
