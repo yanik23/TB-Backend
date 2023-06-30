@@ -1,6 +1,7 @@
 package com.bokafood.tbbackend.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,12 +27,13 @@ public class DeliveryDish {
 
     @ManyToOne
     @MapsId("idDelivery")
+    @JsonBackReference
     @JoinColumn(name = "iddelivery", nullable = false)
     private Delivery delivery;
 
     @ManyToOne
     @MapsId("idDish")
-
+    @JsonBackReference
     @JoinColumn(name = "iddish", nullable = false)
     private Dish dish;
 

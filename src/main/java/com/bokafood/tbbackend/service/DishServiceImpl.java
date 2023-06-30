@@ -76,24 +76,7 @@ public class DishServiceImpl implements DishService {
         /*.forEachOrdered((minDishInfo) -> {
             minDishInfos.add(minDishInfo);
         });*/
-
-
         return minDishInfos;
-
-
-        /*List<DishWithIngredientsDTO> entites = dishRepository.findMin();
-        List<IngredientDTO> ingredientDTOs = new ArrayList<>();
-
-        for(DishWithIngredientsDTO entity: entites) {
-            ingredientDTOs.add(new IngredientDTO(rawDishesAndIngredient.getName(), rawDishesAndIngredient.getWeight()));
-        }
-
-        DishWithIngredientListDTO dishWithIngredientListDTO = new DishWithIngredientListDTO();
-        dishWithIngredientListDTO.setDishname(rawDishesAndIngredients.get(0).getName());
-        dishWithIngredientListDTO.setPrice(rawDishesAndIngredients.get(0).getPrice());
-        dishWithIngredientListDTO.setCalories(rawDishesAndIngredients.get(0).getCalories());
-        dishWithIngredientListDTO.setIngredients(ingredientDTOs);*/
-
     }
 
     private Dish update(Dish updatedDish, Dish dish) {

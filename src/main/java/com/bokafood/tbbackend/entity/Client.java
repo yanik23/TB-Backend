@@ -3,6 +3,7 @@ package com.bokafood.tbbackend.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -57,8 +58,14 @@ public class Client {
     //@JsonIgnore
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonManagedReference
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    //@OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Delivery> deliveries;
 
+   /* @JsonIgnore
+    public void setDeliveries(List<Delivery> deliveries) {
+        this.deliveries = deliveries;
+    }*/
 
     public void update(Client client) {
         this.setName(client.getName());

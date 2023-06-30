@@ -84,12 +84,12 @@ public class Dish {
     //private List<DeliveryDish> deliveryDishes;
     //@JsonIgnore
     @OneToMany(mappedBy = "dish", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonManagedReference
+    //@JsonManagedReference
     private List<DeliveryDish> deliveryDishes;
 
     //@JsonIgnore
     @OneToMany(mappedBy = "dish", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonManagedReference
+    //@JsonManagedReference
     private List<DishIngredient> dishIngredients;
 
 

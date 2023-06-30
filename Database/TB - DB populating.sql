@@ -1,5 +1,10 @@
 
 
+
+INSERT INTO "user" (email, password, name, currentrole) VALUES ('deluca@bokafood.com', 'admin', 'Luigi', 'ADMIN');
+INSERT INTO "user" (email, password, name, currentrole) VALUES ('yaya@mail.com', '1234', 'Yaya', 'EMPLOYEE');
+INSERT INTO "user" (email, password, name, currentrole) VALUES ('leogobelus@mail.com', 'ilovebannerlord', 'Leonardo', 'EMPLOYEE');
+
 INSERT INTO CLIENT (name, addressname, addressnumber, zipcode, city) VALUES ('Boka Fitness', 'Avenue de Flon', 11, 1012, 'Lausannne');
 INSERT INTO CLIENT (name, addressname, addressnumber, zipcode, city) VALUES ('Planet Fitness', 'Avenue de Wallstreet', 12, 1013, 'Lausannne');
 INSERT INTO CLIENT (name, addressname, addressnumber, zipcode, city) VALUES ('Pompiers de Morges', 'Avenue de la Gare', 13, 1014, 'Morges');
@@ -56,17 +61,18 @@ VALUES (5, 3, 300),  -- Salmon (300g)
        (5, 11, 10);   -- Garlic (10 g)
 	   
 	  
-INSERT INTO Delivery (idClient, idUser, deliveryDate, details) VALUES (1, 1, '2023-06-30', 'late delivery');
+/*INSERT INTO Delivery (idClient, idUser, deliveryDate, details) VALUES (1, 1, '2023-06-30', 'late delivery');
 INSERT INTO Delivery (idClient, idUser, deliveryDate, details) VALUES (1, 2, '2023-07-01', 'missed some plates');
 INSERT INTO Delivery (idClient, idUser, deliveryDate) VALUES (2, 1, '2023-07-02');
-INSERT INTO Delivery (idClient, idUser, deliveryDate, details) VALUES (2, 2, '2023-07-03', 'took too much plates');
+INSERT INTO Delivery (idClient, idUser, deliveryDate, details) VALUES (2, 2, '2023-07-03', 'took too much plates');*/
 
-INSERT INTO delivery_dish (iddelivery, iddish, quantityremained, quantitydelivered) VALUES (1,1, 3, 7);
-INSERT INTO delivery_dish (iddelivery, iddish, quantityremained, quantitydelivered) VALUES (1, 1, 3, 7);
+
+
+/*INSERT INTO delivery_dish (iddelivery, iddish, quantityremained, quantitydelivered) VALUES (1, 1, 3, 7);
 INSERT INTO delivery_dish (iddelivery, iddish, quantityremained, quantitydelivered) VALUES (1, 2, 0, 10);
 INSERT INTO delivery_dish (iddelivery, iddish, quantityremained, quantitydelivered) VALUES (2, 3, 5, 5);
 INSERT INTO delivery_dish (iddelivery, iddish, quantityremained, quantitydelivered) VALUES (2, 4, 2, 8);
 INSERT INTO delivery_dish (iddelivery, iddish, quantityremained, quantitydelivered) VALUES (3, 1, 10, 0);
 INSERT INTO delivery_dish (iddelivery, iddish, quantityremained, quantitydelivered) VALUES (3, 3, 4, 6);
 INSERT INTO delivery_dish (iddelivery, iddish, quantityremained, quantitydelivered) VALUES (4, 2, 0, 12);
-INSERT INTO delivery_dish (iddelivery, iddish, quantityremained, quantitydelivered) VALUES (4, 4, 6, 4);
+INSERT INTO delivery_dish (iddelivery, iddish, quantityremained, quantitydelivered) VALUES (4, 4, 6, 4);*/

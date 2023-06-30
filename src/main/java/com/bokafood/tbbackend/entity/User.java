@@ -1,13 +1,9 @@
 package com.bokafood.tbbackend.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
-
-import java.util.List;
 
 @Getter
 @Setter
@@ -18,7 +14,7 @@ import java.util.List;
 @Table(name = "user")
 public class User {
 
-    private enum Role {ADMIN, USER}
+    private enum Role {ADMIN, EMPLOYEE}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

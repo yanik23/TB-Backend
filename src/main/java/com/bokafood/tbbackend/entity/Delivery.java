@@ -3,6 +3,7 @@ package com.bokafood.tbbackend.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -36,15 +37,17 @@ public class Delivery {
     @Column(name = "details")
     private String details;
 
+    //@JsonIgnore
     @NonNull
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "idclient", referencedColumnName = "id")
     private Client client;
 
 
     //@JsonIgnore
-    @OneToMany(mappedBy = "delivery")
-    @JsonBackReference
+    @OneToMany(mappedBy = "delivery", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    //@JsonManagedReference
     private List<DeliveryDish> deliveryDish;
 
 
