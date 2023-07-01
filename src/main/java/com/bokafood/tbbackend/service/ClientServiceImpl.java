@@ -1,8 +1,10 @@
 package com.bokafood.tbbackend.service;
 
+import com.bokafood.tbbackend.dto.clients.ClientDTO;
 import com.bokafood.tbbackend.entity.Client;
 import com.bokafood.tbbackend.exception.EntityNotFoundException;
 import com.bokafood.tbbackend.repository.ClientRepository;
+import com.bokafood.tbbackend.utils.ClientMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,30 +18,34 @@ public class ClientServiceImpl implements ClientService {
         private ClientRepository clientRepository;
 
         @Override
-        public List<Client> getClients() {
-            return (List<Client>) clientRepository.findAll();
+        public List<ClientDTO> getClients() {
+            List<Client> clients = (List<Client>) clientRepository.findAll();
+            return clients.stream().map(ClientMapper::toDTO).toList();
         }
 
         @Override
-        public Client getClientById(Long id) {
+        public ClientDTO getClientById(Long id) {
             Optional<Client> client = clientRepository.findById(id);
             if(client.isPresent()) {
-                return client.get();
+                return ClientMapper.toDTO(client.get());
             } else {
                 throw new EntityNotFoundException(id, Client.class);
             }
         }
 
         @Override
-        public Client addClient(Client client) {
-            return clientRepository.save(client);
+        public ClientDTO addClient(ClientDTO clientDTO) {
+           Client client = ClientMapper.toEntity(clientDTO);
+           Client savedClient = clientRepository.save(client);
+           return ClientMapper.toDTO(savedClient);
         }
 
         @Override
-        public Client updateClient(Long id, Client updatedClient) {
-            Client client = getClientById(id);
-            client.update(updatedClient);
-            return clientRepository.save(client);
+        public ClientDTO updateClient(Long id, ClientDTO updatedClientDTO) {
+            Client client = ClientMapper.toEntity(getClientById(id));
+            update(client, updatedClientDTO);
+            Client savedClient = clientRepository.save(client);
+            return ClientMapper.toDTO(savedClient);
         }
 
         @Override
@@ -48,5 +54,21 @@ public class ClientServiceImpl implements ClientService {
         }
 
 
+        /*@Override
+        public ClientWithDeliveriesDTO getClientWithDeliveries(Long id) {
+            Client client = ClientMapper.toEntity(getClientById(id));
+            ClientWithDeliveriesDTO clientWithDeliveriesDTO = ClientWithDeliveriesDTO.builder()
+                    .client(ClientMapper.toDTO(client))
+                    .deliveries(client.getDeliveries().stream().map(DeliveryMapper::toDTO).toList())
+                    .build();
+            return clientWithDeliveriesDTO;
+        }*/
+        private void update(Client updatedClient, ClientDTO client) {
+            updatedClient.setName(client.getName());
+            updatedClient.setAddressName(client.getAddressName());
+            updatedClient.setAddressNumber(client.getAddressNumber());
+            updatedClient.setZipCode(client.getZipCode());
+            updatedClient.setCity(client.getCity());
+        }
 
 }

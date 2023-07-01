@@ -14,8 +14,9 @@ import java.util.List;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 
 @Entity
 @Table(name = "delivery")

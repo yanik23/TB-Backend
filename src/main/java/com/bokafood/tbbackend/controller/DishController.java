@@ -1,7 +1,8 @@
 package com.bokafood.tbbackend.controller;
 
-import com.bokafood.tbbackend.dto.DishWithIngredientListDTO;
-import com.bokafood.tbbackend.entity.Dish;
+import com.bokafood.tbbackend.dto.dishes.DishWithIngredientListDTO;
+import com.bokafood.tbbackend.dto.dishes.DishDTO;
+import com.bokafood.tbbackend.dto.dishes.DishLightDTO;
 import com.bokafood.tbbackend.service.DishService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,23 +21,23 @@ public class DishController {
     private DishService dishService;
 
     @GetMapping
-    public ResponseEntity<List<Dish>> getDishes() {
+    public ResponseEntity<List<DishLightDTO>> getDishes() {
         return new ResponseEntity<>(dishService.getDishes(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Dish> getDishById(@PathVariable Long id) {
+    public ResponseEntity<DishDTO> getDishById(@PathVariable Long id) {
         return new ResponseEntity<>(dishService.getDishById(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Dish> addDish(@Valid @RequestBody Dish dish) {
-        return new ResponseEntity<>(dishService.addDish(dish), HttpStatus.CREATED);
+    public ResponseEntity<DishDTO> addDish(@Valid @RequestBody DishDTO dishDTO) {
+        return new ResponseEntity<>(dishService.addDish(dishDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Dish> updateDish(@PathVariable Long id, @Valid @RequestBody Dish dish) {
-        return new ResponseEntity<>(dishService.updateDish(id, dish), HttpStatus.OK);
+    public ResponseEntity<DishDTO> updateDish(@PathVariable Long id, @Valid @RequestBody DishDTO dishDTO) {
+        return new ResponseEntity<>(dishService.updateDish(id, dishDTO), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
@@ -52,6 +53,7 @@ public class DishController {
 
     @GetMapping("/min")
     public ResponseEntity<List<DishWithIngredientListDTO>> getMinimumDish() {
-        return new ResponseEntity<>(dishService.getMinDish(), HttpStatus.OK);
+        return new ResponseEntity<>(dishService.getDishesWithIngredients(), HttpStatus.OK);
     }
+
 }

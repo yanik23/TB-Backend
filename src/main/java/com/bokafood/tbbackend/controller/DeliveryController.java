@@ -35,8 +35,8 @@ public class DeliveryController {
     }
 
     @PutMapping("/{id}")
-    public Delivery updateDelivery(@PathVariable Long id, @Valid @RequestBody Delivery updatedDelivery) {
-        return deliveryService.updateDelivery(id, updatedDelivery);
+    public ResponseEntity<Delivery> updateDelivery(@PathVariable Long id, @Valid @RequestBody Delivery updatedDelivery) {
+        return new ResponseEntity<>(deliveryService.updateDelivery(id, updatedDelivery), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

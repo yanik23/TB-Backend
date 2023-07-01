@@ -80,10 +80,11 @@ CREATE TABLE Delivery_Dish(
 
 DROP TYPE IF EXISTS typeIngredient CASCADE;
 CREATE TYPE typeIngredient AS ENUM ('MEAT', 'FISH', 'STARCH', 'VEGETABLE', 'FRUIT', 'GRAIN', 'SPICE', 'SAUCE', 'OTHER');
+CREATE CAST (varchar AS typeIngredient) WITH INOUT AS IMPLICIT;
 DROP TABLE IF EXISTS Ingredient CASCADE;
 CREATE TABLE Ingredient(
 	id BIGSERIAL,
-	name VARCHAR(50) NOT NULL,
+	name VARCHAR(50) NOT NULL UNIQUE,
 	currentType typeIngredient NOT NULL,
 	description VARCHAR(255),
 	supplier VARCHAR(50),

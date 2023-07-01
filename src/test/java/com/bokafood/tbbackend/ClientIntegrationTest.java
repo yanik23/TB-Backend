@@ -31,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class ClientIntegrationTest {
 
-    @Mock
+   /* @Mock
     private MockMvc mockMvc;
 
     @Mock

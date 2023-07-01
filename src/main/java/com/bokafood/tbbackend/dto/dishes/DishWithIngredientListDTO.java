@@ -1,9 +1,7 @@
-package com.bokafood.tbbackend.dto;
+package com.bokafood.tbbackend.dto.dishes;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.bokafood.tbbackend.dto.ingredients.IngredientLessDTO;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -12,6 +10,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 
 public class DishWithIngredientListDTO {
     private String dishName;

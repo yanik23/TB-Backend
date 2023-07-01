@@ -1,6 +1,7 @@
 package com.bokafood.tbbackend.controller;
 
 
+import com.bokafood.tbbackend.dto.ingredients.IngredientDTO;
 import com.bokafood.tbbackend.entity.Ingredient;
 import com.bokafood.tbbackend.service.IngredientService;
 import jakarta.validation.Valid;
@@ -9,35 +10,37 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
 @RequestMapping("/ingredients")
+@Validated
 public class IngredientController {
 
     @Autowired
     private IngredientService ingredientService;
 
     @GetMapping
-    public ResponseEntity<List<Ingredient>> getIngredients() {
+    public ResponseEntity<List<IngredientDTO>> getIngredients() {
         return new ResponseEntity<>(ingredientService.getIngredients(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Ingredient> getIngredientById(@PathVariable Long id) {
+    public ResponseEntity<IngredientDTO> getIngredientById(@PathVariable Long id) {
         return new ResponseEntity<>(ingredientService.getIngredientById(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Ingredient> addIngredient(@Valid @RequestBody Ingredient ingredient) {
-        return new ResponseEntity<>(ingredientService.addIngredient(ingredient), HttpStatus.CREATED);
+    public ResponseEntity<IngredientDTO> addIngredient(@Valid @RequestBody IngredientDTO ingredientDTO) {
+        return new ResponseEntity<>(ingredientService.addIngredient(ingredientDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Ingredient> updateIngredient(@PathVariable Long id, @Valid @RequestBody Ingredient ingredient) {
-        return new ResponseEntity<>(ingredientService.updateIngredient(id, ingredient), HttpStatus.OK);
+    public ResponseEntity<IngredientDTO> updateIngredient(@PathVariable Long id, @Valid @RequestBody IngredientDTO ingredientDTO) {
+        return new ResponseEntity<>(ingredientService.updateIngredient(id, ingredientDTO), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

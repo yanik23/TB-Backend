@@ -4,16 +4,18 @@ package com.bokafood.tbbackend.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.util.List;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor
-
+@Builder
 @Entity
+
 @Table(name = "ingredient")
 public class Ingredient {
     public enum IngredientType {MEAT, FISH, STARCH, VEGETABLE, FRUIT, GRAIN, SPICE, SAUCE, OTHER}
@@ -23,17 +25,20 @@ public class Ingredient {
     @Column(name ="id")
     private Long id;
 
+    @NotBlank(message = "Name can't be blank")
     @NonNull
-    @Column(nullable = false, unique = true)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
+
     @NonNull
     @Column(name = "currenttype", nullable = false)
     @Enumerated(EnumType.STRING)
     private IngredientType currentType;
-    @NonNull
+
+    //@NonNull
     @Column(name = "description")
     private String description;
-    @NonNull
+
     @Column(name = "supplier")
     private String supplier;
 

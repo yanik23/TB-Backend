@@ -9,7 +9,6 @@ INSERT INTO CLIENT (name, addressname, addressnumber, zipcode, city) VALUES ('Bo
 INSERT INTO CLIENT (name, addressname, addressnumber, zipcode, city) VALUES ('Planet Fitness', 'Avenue de Wallstreet', 12, 1013, 'Lausannne');
 INSERT INTO CLIENT (name, addressname, addressnumber, zipcode, city) VALUES ('Pompiers de Morges', 'Avenue de la Gare', 13, 1014, 'Morges');
 
-INSERT INTO INGREDIENT (name, currenttype, description) VALUES ('Chicken', 'MEAT', 'farming chicken that had a happy life');
 INSERT INTO INGREDIENT (name, currenttype, description, supplier) VALUES ('Chicken', 'MEAT', 'Farming chicken', 'La ferme des 4 lacs');
 INSERT INTO INGREDIENT (name, currenttype, description, supplier) VALUES ('Beef', 'MEAT', 'Grass-fed beef', 'Local Butcher Shop');
 INSERT INTO INGREDIENT (name, currenttype, description, supplier) VALUES ('Pork', 'MEAT', 'Heritage breed pork', 'Smith Family Farms');

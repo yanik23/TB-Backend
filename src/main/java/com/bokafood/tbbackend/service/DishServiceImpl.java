@@ -1,16 +1,16 @@
 package com.bokafood.tbbackend.service;
 
 
-import com.bokafood.tbbackend.dto.DishWithIngredientListDTO;
-import com.bokafood.tbbackend.dto.IngredientLessDTO;
+import com.bokafood.tbbackend.dto.dishes.DishDTO;
+import com.bokafood.tbbackend.dto.dishes.DishLightDTO;
+import com.bokafood.tbbackend.dto.dishes.DishWithIngredientListDTO;
 import com.bokafood.tbbackend.entity.Dish;
 import com.bokafood.tbbackend.exception.EntityNotFoundException;
 import com.bokafood.tbbackend.repository.DishRepository;
+import com.bokafood.tbbackend.utils.DishMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class DishServiceImpl implements DishService {
@@ -19,30 +19,34 @@ public class DishServiceImpl implements DishService {
     private DishRepository dishRepository;
 
     @Override
-    public List<Dish> getDishes() {
-        return (List<Dish>) dishRepository.findAll();
+    public List<DishLightDTO> getDishes() {
+        List<Dish> dishes = (List<Dish>) dishRepository.findAll();
+        return dishes.stream().map(DishMapper::toLightDTO).toList();
     }
 
     @Override
-    public Dish getDishById(Long id) {
+    public DishDTO getDishById(Long id) {
         Optional<Dish> dish = dishRepository.findById(id);
         if(dish.isPresent()) {
-            return dish.get();
+            return DishMapper.toDTO(dish.get());
         } else {
             throw new EntityNotFoundException(id, Dish.class);
         }
     }
 
     @Override
-    public Dish addDish(Dish dish) {
-        return dishRepository.save(dish);
+    public DishDTO addDish(DishDTO dishDTO) {
+        Dish dish = DishMapper.toDish(dishDTO);
+        Dish savedDish = dishRepository.save(dish);
+        return DishMapper.toDTO(savedDish);
     }
 
     @Override
-    public Dish updateDish(Long id, Dish dish) {
-        Dish updatedDish = getDishById(id);
-        update(updatedDish,dish);
-        return dishRepository.save(dish);
+    public DishDTO updateDish(Long id, DishDTO updatedDishDTO) {
+        Dish dish = DishMapper.toDish(getDishById(id));
+        update(dish, updatedDishDTO);
+        Dish savedDish = dishRepository.save(dish);
+        return DishMapper.toDTO(savedDish);
     }
 
     @Override
@@ -52,49 +56,33 @@ public class DishServiceImpl implements DishService {
 
 
     @Override
-    public List<DishWithIngredientListDTO> getMinDish() {
+    public List<DishWithIngredientListDTO> getDishesWithIngredients() {
         List<Dish> dishes = (List<Dish>) dishRepository.findAll();
-        List<DishWithIngredientListDTO> minDishInfos = dishes.stream().map((elem) -> {
-            DishWithIngredientListDTO minDishInfo = new DishWithIngredientListDTO();
-            minDishInfo.setDishName(elem.getName());
-            minDishInfo.setPrice(elem.getPrice());
-            minDishInfo.setCalories(elem.getCalories());
-            minDishInfo.setIngredients(elem.getDishIngredients().stream().map((elem1) -> {
-                IngredientLessDTO ingredientLessDTO = new IngredientLessDTO();
-                ingredientLessDTO.setIngredientName(elem1.getIngredient().getName());
-                ingredientLessDTO.setWeight(elem1.getWeight());
-                return ingredientLessDTO;
-            }).collect(Collectors.toList()));
-            return minDishInfo;
-        }).toList();
-        /*.forEachOrdered((minDishInfo) -> {
-            minDishInfos.add(minDishInfo);
-        });*/
-        return minDishInfos;
+        return dishes.stream().map(DishMapper::toDishWithIngredientListDTO).toList();
+    }
+
+
+    private void update(Dish dish, DishDTO updatedDishDTO) {
+        dish.setName(updatedDishDTO.getName());
+        dish.setDescription(updatedDishDTO.getDescription());
+        dish.setCurrentType(updatedDishDTO.getCurrentType());
+        dish.setCurrentSize(updatedDishDTO.getCurrentSize());
+        dish.setPrice(updatedDishDTO.getPrice());
+        dish.setAvailable(updatedDishDTO.isAvailable());
+        dish.setCalories(updatedDishDTO.getCalories());
+        dish.setFats(updatedDishDTO.getFats());
+        dish.setSaturatedFats(updatedDishDTO.getSaturatedFats());
+        dish.setSodium(updatedDishDTO.getSodium());
+        dish.setCarbohydrates(updatedDishDTO.getCarbohydrates());
+        dish.setFibers(updatedDishDTO.getFibers());
+        dish.setSugars(updatedDishDTO.getSugars());
+        dish.setProteins(updatedDishDTO.getProteins());
+        dish.setCalcium(updatedDishDTO.getCalcium());
+        dish.setIron(updatedDishDTO.getIron());
+        dish.setPotassium(updatedDishDTO.getPotassium());
     }
 
 
 
-
-    private Dish update(Dish updatedDish, Dish dish) {
-        updatedDish.setName(dish.getName());
-        updatedDish.setDescription(dish.getDescription());
-        updatedDish.setCurrentType(dish.getCurrentType());
-        updatedDish.setCurrentSize(dish.getCurrentSize());
-        updatedDish.setPrice(dish.getPrice());
-        updatedDish.setAvailable(dish.isAvailable());
-        updatedDish.setCalories(dish.getCalories());
-        updatedDish.setFats(dish.getFats());
-        updatedDish.setSaturatedFats(dish.getSaturatedFats());
-        updatedDish.setSodium(dish.getSodium());
-        updatedDish.setCarbohydrates(dish.getCarbohydrates());
-        updatedDish.setFibers(dish.getFibers());
-        updatedDish.setSugars(dish.getSugars());
-        updatedDish.setProteins(dish.getProteins());
-        updatedDish.setCalcium(dish.getCalcium());
-        updatedDish.setIron(dish.getIron());
-        updatedDish.setPotassium(dish.getPotassium());
-        return updatedDish;
-    }
 
 }
