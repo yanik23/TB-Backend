@@ -23,13 +23,17 @@ public class CustomAuthenticationManager implements AuthenticationManager {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        User user = userServiceImpl.getUserByName(authentication.getName());
+        User user = userServiceImpl.getUserByUsername(authentication.getName());
 
 
         if (!authentication.getCredentials().toString().equals(user.getPassword()) ||
-            !authentication.getName().equals(user.getName())) {
+            !authentication.getName().equals(user.getUsername())) {
             throw new BadCredentialsException("Wrong username or password");
         }
-        return new UsernamePasswordAuthenticationToken(authentication.getName(), user.getPassword());
+
+        System.out.println("user role " + authentication.getAuthorities());
+        System.out.println("user role " + user.getAuthorities());
+        System.out.println("user role " + user.getRole());
+        return new UsernamePasswordAuthenticationToken(authentication.getName(), user.getPassword(), user.getAuthorities());
     }
 }

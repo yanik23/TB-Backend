@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
 
     @Autowired
@@ -24,8 +24,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User getUserByName(String name) {
-        Optional<User> user = userRepository.findByName(name);
+    public User getUserByUsername(String name) {
+        Optional<User> user = userRepository.findByUsername(name);
         if(user.isPresent()){
            // return UserMapper.toDTO(user.get());
               return user.get();

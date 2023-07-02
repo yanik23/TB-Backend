@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.validation.annotation.Validated;
@@ -32,6 +33,7 @@ public class IngredientController {
     public ResponseEntity<IngredientDTO> getIngredientById(@PathVariable Long id) {
         return new ResponseEntity<>(ingredientService.getIngredientById(id), HttpStatus.OK);
     }
+
 
     @PostMapping
     public ResponseEntity<IngredientDTO> addIngredient(@Valid @RequestBody IngredientDTO ingredientDTO) {

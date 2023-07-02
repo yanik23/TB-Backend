@@ -5,5 +5,5 @@ import com.bokafood.tbbackend.entity.User;
 
 public interface UserService {
     UserDTO getUserById(Long id);
-    User getUserByName(String name);
+    User getUserByUsername(String name);
 }
