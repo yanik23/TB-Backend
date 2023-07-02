@@ -52,7 +52,7 @@ public class DishController {
     }*/
 
     @GetMapping("/min")
-    public ResponseEntity<List<DishWithIngredientListDTO>> getMinimumDish() {
+    public ResponseEntity<List<DishWithIngredientListDTO>> getDishesWithIngredients() {
         return new ResponseEntity<>(dishService.getDishesWithIngredients(), HttpStatus.OK);
     }
 

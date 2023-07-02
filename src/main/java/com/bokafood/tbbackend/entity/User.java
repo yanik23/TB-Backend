@@ -7,14 +7,15 @@ import lombok.*;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
-    private enum Role {ADMIN, EMPLOYEE}
+    public enum Role {ADMIN, EMPLOYEE}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

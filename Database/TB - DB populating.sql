@@ -1,9 +1,9 @@
 
 
 
-INSERT INTO "user" (email, password, name, currentrole) VALUES ('deluca@bokafood.com', 'admin', 'Luigi', 'ADMIN');
-INSERT INTO "user" (email, password, name, currentrole) VALUES ('yaya@mail.com', '1234', 'Yaya', 'EMPLOYEE');
-INSERT INTO "user" (email, password, name, currentrole) VALUES ('leogobelus@mail.com', 'ilovebannerlord', 'Leonardo', 'EMPLOYEE');
+INSERT INTO users (email, password, name, currentrole) VALUES ('deluca@bokafood.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'Luigi', 'ADMIN');
+INSERT INTO users (email, password, name, currentrole) VALUES ('yaya@mail.com', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', 'Yaya', 'ADMIN');
+INSERT INTO users (email, password, name, currentrole) VALUES ('leogobelus@mail.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Leonardo', 'EMPLOYEE');
 
 INSERT INTO CLIENT (name, addressname, addressnumber, zipcode, city) VALUES ('Boka Fitness', 'Avenue de Flon', 11, 1012, 'Lausannne');
 INSERT INTO CLIENT (name, addressname, addressnumber, zipcode, city) VALUES ('Planet Fitness', 'Avenue de Wallstreet', 12, 1013, 'Lausannne');

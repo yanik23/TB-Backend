@@ -19,10 +19,4 @@ public class DishWithIngredientListDTO {
 
     List<IngredientLessDTO> ingredients;
 
-    /*public DishWithIngredientListDTO(String dishname, BigDecimal price, int calories, List<IngredientLessDTO> ingredients) {
-        this.dishname = dishname;
-        this.price = price;
-        this.calories = calories;
-        this.ingredients = ingredients;
-    }*/
 }
