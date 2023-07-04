@@ -12,10 +12,13 @@ public class DishMapper {
 
     static public DishLightDTO toLightDTO(Dish dish) {
         return DishLightDTO.builder()
+                .id(dish.getId())
                 .dishName(dish.getName())
                 .price(dish.getPrice())
                 .dishSize(dish.getCurrentSize())
                 .dishType(dish.getCurrentType())
+                .calories(dish.getCalories())
+                .isAvailable(dish.isAvailable())
                 .build();
     }
 
@@ -25,6 +28,8 @@ public class DishMapper {
                 .price(dishLightDTO.getPrice())
                 .currentSize(dishLightDTO.getDishSize())
                 .currentType(dishLightDTO.getDishType())
+                .calories(dishLightDTO.getCalories())
+                .isAvailable(dishLightDTO.isAvailable())
                 .build();
     }
 

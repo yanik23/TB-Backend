@@ -31,9 +31,6 @@ public class CustomAuthenticationManager implements AuthenticationManager {
             throw new BadCredentialsException("Wrong username or password");
         }
 
-        System.out.println("user role " + authentication.getAuthorities());
-        System.out.println("user role " + user.getAuthorities());
-        System.out.println("user role " + user.getRole());
         return new UsernamePasswordAuthenticationToken(authentication.getName(), user.getPassword(), user.getAuthorities());
     }
 }

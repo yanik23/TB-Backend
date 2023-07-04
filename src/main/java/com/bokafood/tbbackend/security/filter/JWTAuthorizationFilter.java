@@ -55,17 +55,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
         String user = jwt.getSubject();
         List<String> roles = jwt.getClaim("roles").asList(String.class);
 
-
         System.out.println("===USER : " + user);
-
-
-        /*if(authorities != null && !authorities.isEmpty()) {
-            String[] roles = authorities.split(",");
-            for(String role : roles) {
-                grantedAuthorities.add((GrantedAuthority) () -> role);
-            }
-        }*/
-
 
         Collection<? extends GrantedAuthority> auths = Collections.singleton(new SimpleGrantedAuthority(roles.get(0)));
         Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, auths);//to set auth true with this constructor.

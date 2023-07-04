@@ -17,6 +17,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
+import java.sql.SQLOutput;
 
 
 @Configuration
@@ -29,7 +30,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         AuthenticationFilter authenticationFilter = new AuthenticationFilter(customAuthenticationManager);
         authenticationFilter.setFilterProcessesUrl("/login");
-
+        System.out.println("=====================================");
+        System.out.println("=========processed til here==========");
+        System.out.println("=====================================");
         http
                 .authorizeRequests(request -> request
                     .requestMatchers(HttpMethod.GET).authenticated()

@@ -33,7 +33,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {
             User user = new ObjectMapper().readValue(request.getInputStream(), User.class);
-            Authentication authentication = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(), user.getAuthorities());
+            Authentication authentication = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
             return customAuthenticationManager.authenticate(authentication);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -49,8 +49,13 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
+
+
+
         System.out.println("WOHHOHOHHOHOH, authentication successful");
 
+        System.out.println("request: " + request);
+        System.out.println("response: " + response);
         String token = JWT.create()
                 .withSubject(authResult.getName())
                 .withArrayClaim("roles", authResult.getAuthorities().stream().map(ga -> ga.getAuthority()).toArray(String[]::new))

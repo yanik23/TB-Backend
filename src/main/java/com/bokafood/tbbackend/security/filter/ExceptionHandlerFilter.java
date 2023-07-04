@@ -18,7 +18,7 @@ public class ExceptionHandlerFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
         } catch(EntityNotFoundException ex) {
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-            response.getWriter().write("USER NOT FOUND");
+            response.getWriter().write("username or password incorrect");
             response.getWriter().flush();
         } catch (JWTVerificationException ex){
             response.setStatus(HttpServletResponse.SC_FORBIDDEN);
