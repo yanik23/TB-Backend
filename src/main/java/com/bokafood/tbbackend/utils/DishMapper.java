@@ -101,7 +101,8 @@ public class DishMapper {
                 .potassium(dish.getPotassium())
 
                 .ingredients(dish.getDishIngredients().stream().map(ingredient -> IngredientLessDTO.builder()
-                        .ingredientName(ingredient.getIngredient().getName())
+                        .id(ingredient.getIngredient().getId())
+                        .name(ingredient.getIngredient().getName())
                         .weight(ingredient.getWeight())
                         .build()).collect(Collectors.toList()))
                 .build();

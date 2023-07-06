@@ -10,8 +10,9 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 
 @Entity
 @Table(name = "dish_ingredient")
@@ -30,6 +31,7 @@ public class DishIngredient {
     @ManyToOne
     @MapsId("idIngredient")
     @JoinColumn(name = "idingredient", nullable = false)
+    @JsonBackReference
     private Ingredient ingredient;
 
     @NonNull

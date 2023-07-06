@@ -15,7 +15,7 @@ public class ClientMapper {
             .build();
     }
 
-    static public Client toEntity(ClientDTO clientDTO) {
+    static public Client toClient(ClientDTO clientDTO) {
         return Client.builder()
             .id(clientDTO.getId())
             .name(clientDTO.getName())

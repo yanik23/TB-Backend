@@ -12,7 +12,8 @@ import java.math.BigDecimal;
 @Builder
 
 public class IngredientLessDTO {
-    private String ingredientName;
+    Long id;
+    private String name;
     private BigDecimal weight;
 
 

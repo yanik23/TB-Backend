@@ -1,8 +1,10 @@
 package com.bokafood.tbbackend.service;
 
+import com.bokafood.tbbackend.dto.dishesIngredientsDTO.DishIngredientDTO;
 import com.bokafood.tbbackend.entity.DishIngredient;
 import com.bokafood.tbbackend.exception.EntityNotFoundException;
 import com.bokafood.tbbackend.repository.DishIngredientRepository;
+import com.bokafood.tbbackend.utils.DishIngredientMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +33,10 @@ public class DishIngredientServiceImpl implements  DishIngredientService {
     }
 
     @Override
-    public DishIngredient addDishIngredient(DishIngredient dishIngredient) {
-        return dishIngredientRepository.save(dishIngredient);
+    public DishIngredientDTO addDishIngredient(DishIngredientDTO dishIngredientDTO) {
+        DishIngredient dishIngredient = DishIngredientMapper.toEntity(dishIngredientDTO);
+        DishIngredient savedDishIngredient = dishIngredientRepository.save(dishIngredient);
+        return DishIngredientMapper.toDTO(savedDishIngredient);
     }
 
     @Override

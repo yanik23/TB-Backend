@@ -1,6 +1,7 @@
 package com.bokafood.tbbackend.utils;
 
 import com.bokafood.tbbackend.dto.ingredients.IngredientDTO;
+import com.bokafood.tbbackend.dto.ingredients.IngredientLessDTO;
 import com.bokafood.tbbackend.entity.Ingredient;
 
 public class IngredientMapper {
@@ -23,4 +24,20 @@ public class IngredientMapper {
                 .supplier(ingredientDTO.getSupplier())
                 .build();
     }
+
+    public static IngredientLessDTO toLessDTO(Ingredient ingredient) {
+        return IngredientLessDTO.builder()
+                .id(ingredient.getId())
+                .name(ingredient.getName())
+                .build();
+    }
+
+
+    public static Ingredient toEntity(IngredientLessDTO ingredientLessDTO) {
+        return Ingredient.builder()
+                .name(ingredientLessDTO.getName())
+                .build();
+    }
+
+
 }

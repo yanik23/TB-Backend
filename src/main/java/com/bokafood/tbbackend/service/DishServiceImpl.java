@@ -4,12 +4,20 @@ package com.bokafood.tbbackend.service;
 import com.bokafood.tbbackend.dto.dishes.DishDTO;
 import com.bokafood.tbbackend.dto.dishes.DishLightDTO;
 import com.bokafood.tbbackend.dto.dishes.DishWithIngredientListDTO;
+import com.bokafood.tbbackend.dto.dishesIngredientsDTO.DishIngredientDTO;
+import com.bokafood.tbbackend.dto.ingredients.IngredientLessDTO;
 import com.bokafood.tbbackend.entity.Dish;
+import com.bokafood.tbbackend.entity.DishIngredient;
+import com.bokafood.tbbackend.entity.DishIngredientId;
+import com.bokafood.tbbackend.entity.Ingredient;
 import com.bokafood.tbbackend.exception.EntityNotFoundException;
 import com.bokafood.tbbackend.repository.DishRepository;
+import com.bokafood.tbbackend.utils.DishIngredientMapper;
 import com.bokafood.tbbackend.utils.DishMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
 import java.util.*;
 
 @Service
@@ -17,6 +25,9 @@ public class DishServiceImpl implements DishService {
 
     @Autowired
     private DishRepository dishRepository;
+
+    @Autowired
+    private DishIngredientService dishIngredientService;
 
     @Override
     public List<DishLightDTO> getDishes() {
@@ -43,8 +54,26 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public DishDTO addDish(DishWithIngredientListDTO dishDTO) {
+
+
         Dish dish = DishMapper.toDish(dishDTO);
         Dish savedDish = dishRepository.save(dish);
+
+       /* DishIngredientId diId = new DishIngredientId(savedDish.getId(), 11L);
+        //DishIngredient di = DishIngredientMapper.toEntity(new DishIngredientDTO(diId, savedDish.getId(), 11L, BigDecimal.valueOf(12)));
+        DishIngredientDTO di = new DishIngredientDTO(diId, savedDish.getId(), 11L, BigDecimal.valueOf(12));
+        DishIngredientDTO savedDi = dishIngredientService.addDishIngredient(di);*/
+
+        List<IngredientLessDTO> ingredients = dishDTO.getIngredients();
+
+        if(ingredients != null) {
+            for (IngredientLessDTO ingredient : ingredients) {
+                DishIngredientId dishIngredientId = new DishIngredientId(savedDish.getId(), ingredient.getId());
+                DishIngredientDTO dishIngredientDTO = new DishIngredientDTO(dishIngredientId, savedDish.getId(), ingredient.getId(), ingredient.getWeight());
+                DishIngredientDTO savedDishIngredientDTO = dishIngredientService.addDishIngredient(dishIngredientDTO);
+            }
+        }
+
         return DishMapper.toDTO(savedDish);
     }
 
