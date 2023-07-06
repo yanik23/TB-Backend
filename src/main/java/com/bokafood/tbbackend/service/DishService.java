@@ -9,7 +9,7 @@ import java.util.List;
 public interface DishService {
     List<DishLightDTO> getDishes();
     DishDTO getDishById(Long id);
-    DishDTO addDish(DishDTO dishDTO);
+    DishDTO addDish(DishWithIngredientListDTO dishDTO);
     DishDTO updateDish(Long id, DishDTO updatedDishDTO);
     void deleteDish(Long id);
 

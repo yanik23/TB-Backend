@@ -31,7 +31,7 @@ public class DishController {
     }
 
     @PostMapping
-    public ResponseEntity<DishDTO> addDish(@Valid @RequestBody DishDTO dishDTO) {
+    public ResponseEntity<DishDTO> addDish(@Valid @RequestBody DishWithIngredientListDTO dishDTO) {
         return new ResponseEntity<>(dishService.addDish(dishDTO), HttpStatus.CREATED);
     }
 
@@ -51,7 +51,7 @@ public class DishController {
         return new ResponseEntity<>(dishService.getDishByIdWithIngredients(id), HttpStatus.OK);
     }*/
 
-    @GetMapping("/min")
+    @GetMapping("/ingredients")
     public ResponseEntity<List<DishWithIngredientListDTO>> getDishesWithIngredients() {
         return new ResponseEntity<>(dishService.getDishesWithIngredients(), HttpStatus.OK);
     }

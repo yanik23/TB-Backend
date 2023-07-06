@@ -34,8 +34,15 @@ public class DishServiceImpl implements DishService {
         }
     }
 
-    @Override
+    /*@Override
     public DishDTO addDish(DishDTO dishDTO) {
+        Dish dish = DishMapper.toDish(dishDTO);
+        Dish savedDish = dishRepository.save(dish);
+        return DishMapper.toDTO(savedDish);
+    }*/
+
+    @Override
+    public DishDTO addDish(DishWithIngredientListDTO dishDTO) {
         Dish dish = DishMapper.toDish(dishDTO);
         Dish savedDish = dishRepository.save(dish);
         return DishMapper.toDTO(savedDish);

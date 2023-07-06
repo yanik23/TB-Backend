@@ -12,9 +12,9 @@ import java.math.BigDecimal;
 @Builder
 public class DishLightDTO {
     private Long id;
-    private String dishName;
-    private Dish.DishType dishType;
-    private Dish.DishSize dishSize;
+    private String name;
+    private Dish.DishType currentType;
+    private Dish.DishSize currentSize;
     private BigDecimal price;
     private int calories;
     private boolean isAvailable;

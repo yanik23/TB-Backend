@@ -1,9 +1,9 @@
 
 
 
-INSERT INTO users (email, password, name, currentrole) VALUES ('deluca@bokafood.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'Luigi', 'ADMIN');
-INSERT INTO users (email, password, name, currentrole) VALUES ('yaya@mail.com', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', 'Yaya', 'ADMIN');
-INSERT INTO users (email, password, name, currentrole) VALUES ('leogobelus@mail.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Leonardo', 'EMPLOYEE');
+INSERT INTO users (email, password, name, role) VALUES ('deluca@bokafood.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'Luigi', 'ADMIN');
+INSERT INTO users (email, password, name, role) VALUES ('yaya@mail.com', '123', 'Yaya', 'ADMIN');
+INSERT INTO users (email, password, name, role) VALUES ('leogobelus@mail.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Leonardo', 'EMPLOYEE');
 
 INSERT INTO CLIENT (name, addressname, addressnumber, zipcode, city) VALUES ('Boka Fitness', 'Avenue de Flon', 11, 1012, 'Lausannne');
 INSERT INTO CLIENT (name, addressname, addressnumber, zipcode, city) VALUES ('Planet Fitness', 'Avenue de Wallstreet', 12, 1013, 'Lausannne');
@@ -31,7 +31,7 @@ INSERT INTO INGREDIENT (name, currenttype, description, supplier) VALUES ('Zucch
 
 
 INSERT INTO DISH (name, description, currenttype, currentsize, price, isavailable, calories) VALUES ('Chicken Piri Piri', 'Chicken piri piri portugese style', 'MEAT', 'GAIN', 12.50, true, 850);
-INSERT INTO DISH (name, description, currenttype, currentsize, price, isavailable, calories) VALUES ('Chicken Piri Piri', 'Chicken piri piri Portuguese style', 'MEAT', 'FIT', 10.50, true, 650);
+INSERT INTO DISH (name, description, currenttype, currentsize, price, isavailable, calories, fats, saturatedfats, fibers, sugars, proteins) VALUES ('Chicken Piri Piri', 'Chicken piri piri Portuguese style', 'MEAT', 'FIT', 10.50, true, 650, 10.2, 8.7, 3.5, 8.6, 30);
 INSERT INTO DISH (name, description, currenttype, currentsize, price, isavailable, calories) VALUES ('Beef Stir-Fry', 'Tender beef slices with mixed vegetables, stir-fried in a savory sauce', 'MEAT', 'GAIN', 14.99, true, 720);
 INSERT INTO DISH (name, description, currenttype, currentsize, price, isavailable, calories) VALUES ('Pork Tenderloin with Apple Compote', 'Juicy pork tenderloin served with a sweet and tangy apple compote', 'MEAT', 'GAIN', 16.50, false, 620);
 INSERT INTO DISH (name, description, currenttype, currentsize, price, isavailable, calories) VALUES ('Grilled Salmon with Lemon Butter Sauce', 'Fresh grilled salmon fillet topped with a zesty lemon butter sauce', 'MEAT', 'GAIN', 18.99, true, 560);

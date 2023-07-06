@@ -13,10 +13,10 @@ public class DishMapper {
     static public DishLightDTO toLightDTO(Dish dish) {
         return DishLightDTO.builder()
                 .id(dish.getId())
-                .dishName(dish.getName())
+                .name(dish.getName())
                 .price(dish.getPrice())
-                .dishSize(dish.getCurrentSize())
-                .dishType(dish.getCurrentType())
+                .currentSize(dish.getCurrentSize())
+                .currentType(dish.getCurrentType())
                 .calories(dish.getCalories())
                 .isAvailable(dish.isAvailable())
                 .build();
@@ -24,10 +24,10 @@ public class DishMapper {
 
     static public Dish toDish(DishLightDTO dishLightDTO) {
         return Dish.builder()
-                .name(dishLightDTO.getDishName())
+                .name(dishLightDTO.getName())
                 .price(dishLightDTO.getPrice())
-                .currentSize(dishLightDTO.getDishSize())
-                .currentType(dishLightDTO.getDishType())
+                .currentSize(dishLightDTO.getCurrentSize())
+                .currentType(dishLightDTO.getCurrentType())
                 .calories(dishLightDTO.getCalories())
                 .isAvailable(dishLightDTO.isAvailable())
                 .build();
@@ -81,13 +81,51 @@ public class DishMapper {
 
     static public DishWithIngredientListDTO toDishWithIngredientListDTO(Dish dish) {
        return DishWithIngredientListDTO.builder()
-                .dishName(dish.getName())
+                .id(dish.getId())
+                .name(dish.getName())
+                .description(dish.getDescription())
+                .currentType(dish.getCurrentType())
+                .currentSize(dish.getCurrentSize())
                 .price(dish.getPrice())
+                .isAvailable(dish.isAvailable())
                 .calories(dish.getCalories())
+                .fats(dish.getFats())
+                .saturatedFats(dish.getSaturatedFats())
+                .sodium(dish.getSodium())
+                .carbohydrates(dish.getCarbohydrates())
+                .fibers(dish.getFibers())
+                .sugars(dish.getSugars())
+                .proteins(dish.getProteins())
+                .calcium(dish.getCalcium())
+                .iron(dish.getIron())
+                .potassium(dish.getPotassium())
+
                 .ingredients(dish.getDishIngredients().stream().map(ingredient -> IngredientLessDTO.builder()
                         .ingredientName(ingredient.getIngredient().getName())
                         .weight(ingredient.getWeight())
                         .build()).collect(Collectors.toList()))
+                .build();
+    }
+
+    static public Dish toDish(DishWithIngredientListDTO dishDTO) {
+        return Dish.builder()
+                .name(dishDTO.getName())
+                .description(dishDTO.getDescription())
+                .price(dishDTO.getPrice())
+                .currentSize(dishDTO.getCurrentSize())
+                .currentType(dishDTO.getCurrentType())
+                .isAvailable(dishDTO.isAvailable())
+                .calories(dishDTO.getCalories())
+                .fats(dishDTO.getFats())
+                .saturatedFats(dishDTO.getSaturatedFats())
+                .sodium(dishDTO.getSodium())
+                .carbohydrates(dishDTO.getCarbohydrates())
+                .fibers(dishDTO.getFibers())
+                .sugars(dishDTO.getSugars())
+                .proteins(dishDTO.getProteins())
+                .calcium(dishDTO.getCalcium())
+                .iron(dishDTO.getIron())
+                .potassium(dishDTO.getPotassium())
                 .build();
     }
 }
