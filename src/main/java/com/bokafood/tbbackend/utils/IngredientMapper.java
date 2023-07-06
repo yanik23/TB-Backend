@@ -16,7 +16,7 @@ public class IngredientMapper {
                 .build();
     }
 
-    public static Ingredient toEntity(IngredientDTO ingredientDTO) {
+    public static Ingredient toIngredient(IngredientDTO ingredientDTO) {
         return Ingredient.builder()
                 .name(ingredientDTO.getName())
                 .currentType(ingredientDTO.getCurrentType())
@@ -36,6 +36,16 @@ public class IngredientMapper {
     public static Ingredient toEntity(IngredientLessDTO ingredientLessDTO) {
         return Ingredient.builder()
                 .name(ingredientLessDTO.getName())
+                .build();
+    }
+
+    public static Ingredient toEntity(IngredientDTO ingredientDTO) {
+        return Ingredient.builder()
+                .id(ingredientDTO.getId())
+                .name(ingredientDTO.getName())
+                .currentType(ingredientDTO.getCurrentType())
+                .description(ingredientDTO.getDescription())
+                .supplier(ingredientDTO.getSupplier())
                 .build();
     }
 

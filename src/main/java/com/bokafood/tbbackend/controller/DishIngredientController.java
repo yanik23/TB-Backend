@@ -1,6 +1,7 @@
 package com.bokafood.tbbackend.controller;
 
 import com.bokafood.tbbackend.dto.dishesIngredientsDTO.DishIngredientDTO;
+import com.bokafood.tbbackend.dto.dishesIngredientsDTO.DishIngredientObjectDTO;
 import com.bokafood.tbbackend.entity.DishIngredient;
 import com.bokafood.tbbackend.service.DishIngredientService;
 import jakarta.validation.Valid;
@@ -31,8 +32,8 @@ public class DishIngredientController {
     }
 
     @PostMapping
-    public ResponseEntity<DishIngredientDTO> addDishIngredient(@Valid @RequestBody DishIngredientDTO dishIngredientDTO) {
-        return new ResponseEntity<>(dishIngredientService.addDishIngredient(dishIngredientDTO), org.springframework.http.HttpStatus.CREATED) ;
+    public ResponseEntity<DishIngredientDTO> addDishIngredient(@Valid @RequestBody DishIngredientObjectDTO dishIngredientObjectDTO) {
+        return new ResponseEntity<>(dishIngredientService.addDishIngredient(dishIngredientObjectDTO), org.springframework.http.HttpStatus.CREATED) ;
     }
 
     @PutMapping("/{id}")

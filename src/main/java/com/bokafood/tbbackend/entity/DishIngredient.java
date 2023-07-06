@@ -34,7 +34,6 @@ public class DishIngredient {
     @JsonBackReference
     private Ingredient ingredient;
 
-    @NonNull
     @Column(name = "weight")
     private BigDecimal weight;
 

@@ -1,6 +1,7 @@
 package com.bokafood.tbbackend.utils;
 
 import com.bokafood.tbbackend.dto.dishesIngredientsDTO.DishIngredientDTO;
+import com.bokafood.tbbackend.dto.dishesIngredientsDTO.DishIngredientObjectDTO;
 import com.bokafood.tbbackend.entity.DishIngredient;
 
 public class DishIngredientMapper {
@@ -20,6 +21,15 @@ public class DishIngredientMapper {
         entity.setId(dishIngredientDTO.getId());
         entity.getId().setIdDish(dishIngredientDTO.getIdDish());
         entity.getId().setIdIngredient(dishIngredientDTO.getIdIngredient());
+        entity.setWeight(dishIngredientDTO.getWeight());
+        return entity;
+    }
+
+    public static DishIngredient toEntity(DishIngredientObjectDTO dishIngredientDTO) {
+        DishIngredient entity = new DishIngredient();
+        entity.setId(dishIngredientDTO.getId());
+        entity.setDish(dishIngredientDTO.getDish());
+        entity.setIngredient(dishIngredientDTO.getIngredient());
         entity.setWeight(dishIngredientDTO.getWeight());
         return entity;
     }

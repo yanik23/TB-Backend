@@ -37,7 +37,7 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public IngredientDTO addIngredient(IngredientDTO ingredientDTO) {
-        Ingredient ingredient = IngredientMapper.toEntity(ingredientDTO);
+        Ingredient ingredient = IngredientMapper.toIngredient(ingredientDTO);
         Ingredient savedIngredient = ingredientRepository.save(ingredient);
         return IngredientMapper.toDTO(savedIngredient);
     }
@@ -45,7 +45,7 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public IngredientDTO updateIngredient(Long id, IngredientDTO updatedIngredientDTO) {
-        Ingredient ingredient = IngredientMapper.toEntity(getIngredientById(id));
+        Ingredient ingredient = IngredientMapper.toIngredient(getIngredientById(id));
         update(ingredient, updatedIngredientDTO);
         Ingredient savedIngredient =  ingredientRepository.save(ingredient);
         return IngredientMapper.toDTO(savedIngredient);
