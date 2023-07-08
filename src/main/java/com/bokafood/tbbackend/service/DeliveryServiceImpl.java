@@ -1,8 +1,11 @@
 package com.bokafood.tbbackend.service;
 
+import com.bokafood.tbbackend.dto.deliveries.DeliveryDTO;
+import com.bokafood.tbbackend.dto.deliveries.DeliveryWithDetailsDTO;
 import com.bokafood.tbbackend.entity.Delivery;
 import com.bokafood.tbbackend.exception.EntityNotFoundException;
 import com.bokafood.tbbackend.repository.DeliveryRepository;
+import com.bokafood.tbbackend.utils.DeliveryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,30 +20,34 @@ public class DeliveryServiceImpl implements DeliveryService {
     DeliveryRepository deliveryRepository;
 
     @Override
-    public List<Delivery> getDeliveries() {
-        return (List<Delivery>) deliveryRepository.findAll();
+    public List<DeliveryDTO> getDeliveries() {
+        List<Delivery> deliveries = (List<Delivery>) deliveryRepository.findAll();
+        return deliveries.stream().map(DeliveryMapper::toDTO).toList();
     }
 
     @Override
-    public Delivery getDeliveryById(Long id) {
+    public DeliveryWithDetailsDTO getDeliveryById(Long id) {
         Optional<Delivery> delivery = deliveryRepository.findById(id);
         if(delivery.isPresent()) {
-            return delivery.get();
+            DeliveryWithDetailsDTO deliveryWithDetailsDTO = DeliveryMapper.toDTOWithDetails(delivery.get());
+            return deliveryWithDetailsDTO;
         } else {
             throw new EntityNotFoundException(id, Delivery.class);
         }
     }
 
     @Override
-    public Delivery addDelivery(Delivery delivery) {
-        return deliveryRepository.save(delivery);
+    public DeliveryDTO addDelivery(DeliveryWithDetailsDTO deliveryWithDetailsDTO) {
+        //return deliveryRepository.save(delivery);
+        return null;
     }
 
     @Override
-    public Delivery updateDelivery(Long id, Delivery updatedDelivery) {
-        Delivery delivery = getDeliveryById(id);
+    public DeliveryDTO updateDelivery(Long id, DeliveryDTO updatedDeliveryDTO) {
+       /* Delivery delivery = getDeliveryById(id);
         delivery.update(updatedDelivery);
-        return deliveryRepository.save(delivery);
+        return deliveryRepository.save(delivery);*/
+        return null;
     }
 
     @Override
@@ -48,8 +55,8 @@ public class DeliveryServiceImpl implements DeliveryService {
         deliveryRepository.deleteById(id);
     }
 
-    @Override
+   /* @Override
     public List<Delivery> getDeliveriesByClientId(Long id) {
         return deliveryRepository.findAllByClientId(id);
-    }
+    }*/
 }

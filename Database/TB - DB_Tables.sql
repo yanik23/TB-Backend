@@ -123,6 +123,7 @@ ALTER TABLE Dish_Ingredient ADD CONSTRAINT FK_Dish_Ingredient_idDish FOREIGN KEY
 	ON DELETE CASCADE;
 ALTER TABLE Dish_Ingredient ADD CONSTRAINT FK_Dish_Ingredient_idIngredient FOREIGN KEY(idIngredient) REFERENCES Ingredient(id)
 	ON UPDATE CASCADE;
+	ON DELETE CASCADE;
 
 
 

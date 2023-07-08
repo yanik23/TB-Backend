@@ -1,6 +1,8 @@
 package com.bokafood.tbbackend.controller;
 
 
+import com.bokafood.tbbackend.dto.deliveries.DeliveryDTO;
+import com.bokafood.tbbackend.dto.deliveries.DeliveryWithDetailsDTO;
 import com.bokafood.tbbackend.entity.Delivery;
 import com.bokafood.tbbackend.service.DeliveryService;
 import jakarta.validation.Valid;
@@ -20,23 +22,23 @@ public class DeliveryController {
     private DeliveryService deliveryService;
 
     @GetMapping
-    public ResponseEntity<List<Delivery>> getDeliveries() {
+    public ResponseEntity<List<DeliveryDTO>> getDeliveries() {
         return new ResponseEntity<>(deliveryService.getDeliveries(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Delivery> getDeliveryById(@PathVariable Long id) {
+    public ResponseEntity<DeliveryWithDetailsDTO> getDeliveryById(@PathVariable Long id) {
         return new ResponseEntity<>(deliveryService.getDeliveryById(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Delivery> addDelivery(@Valid @RequestBody Delivery delivery) {
-        return new ResponseEntity<>(deliveryService.addDelivery(delivery), HttpStatus.CREATED);
+    public ResponseEntity<DeliveryDTO> addDelivery(@Valid @RequestBody DeliveryWithDetailsDTO deliveryWithDetailsDTO) {
+        return new ResponseEntity<>(deliveryService.addDelivery(deliveryWithDetailsDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Delivery> updateDelivery(@PathVariable Long id, @Valid @RequestBody Delivery updatedDelivery) {
-        return new ResponseEntity<>(deliveryService.updateDelivery(id, updatedDelivery), HttpStatus.OK);
+    public ResponseEntity<DeliveryDTO> updateDelivery(@PathVariable Long id, @Valid @RequestBody DeliveryDTO updatedDeliveryWithDetailsDTO) {
+        return new ResponseEntity<>(deliveryService.updateDelivery(id, updatedDeliveryWithDetailsDTO), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
@@ -45,9 +47,9 @@ public class DeliveryController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/client/{id}")
+    /*@GetMapping("/client/{id}")
     public ResponseEntity<List<Delivery>> getDeliveriesByClientId(@PathVariable Long id) {
         return new ResponseEntity<>(deliveryService.getDeliveriesByClientId(id), HttpStatus.OK);
-    }
+    }*/
 }
 

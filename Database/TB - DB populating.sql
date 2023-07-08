@@ -43,21 +43,21 @@ INSERT INTO DISH (name, description, currenttype, currentsize, price, isavailabl
 -- Chicken Piri Piri (Chicken, Lemons, Garlic)
 INSERT INTO dish_ingredient (idDish, idIngredient, weight)
 VALUES (1, 1, 500), -- Chicken (250g)
-       (1, 12, 2),  -- Lemons (2 units)
-       (1, 11, 10); -- Garlic (10 cloves)
+       (1, 14, 2),  -- Lemons (2 units)
+       (1, 12, 10); -- Garlic (10 cloves)
 
 -- Beef Stir-Fry (Beef, Bell Peppers, Carrots, Jasmine Rice)
 INSERT INTO dish_ingredient (idDish, idIngredient, weight)
 VALUES (2, 2, 400),  -- Beef (400g)
-       (2, 14, 2),   -- Bell Peppers (2 units)
-       (2, 8, 150),  -- Carrots (150g)
-       (2, 5, 200);  -- Jasmine Rice (200g)
+       (2, 16, 2),   -- Bell Peppers (2 units)
+       (2, 10, 150),  -- Carrots (150g)
+       (2, 7, 200);  -- Jasmine Rice (200g)
 
 -- Grilled Salmon with Lemon Butter Sauce (Salmon, Lemons, Garlic)
 INSERT INTO dish_ingredient (idDish, idIngredient, weight)
-VALUES (5, 3, 300),  -- Salmon (300g)
-       (5, 12, 5),   -- Lemons (5 g)
-       (5, 11, 10);   -- Garlic (10 g)
+VALUES (5, 4, 300),  -- Salmon (300g)
+       (5, 14, 5),   -- Lemons (5 g)
+       (5, 12, 10);   -- Garlic (10 g)
 	   
 	  
 INSERT INTO Delivery (idClient, idUser, deliveryDate, details) VALUES (1, 1, '2023-06-30', 'late delivery');

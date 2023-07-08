@@ -24,14 +24,14 @@ public class DishIngredient {
     @ManyToOne
     @MapsId("idDish")
     @JoinColumn(name = "iddish", nullable = false)
-    @JsonBackReference
+    @JsonBackReference(value="dish-ingredient")
     private Dish dish;
 
 
     @ManyToOne
     @MapsId("idIngredient")
     @JoinColumn(name = "idingredient", nullable = false)
-    @JsonBackReference
+    @JsonBackReference(value="ingredient-dish")
     private Ingredient ingredient;
 
     @Column(name = "weight")

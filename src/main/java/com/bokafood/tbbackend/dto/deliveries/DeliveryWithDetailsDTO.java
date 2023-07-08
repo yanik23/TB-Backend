@@ -1,5 +1,6 @@
 package com.bokafood.tbbackend.dto.deliveries;
 
+import com.bokafood.tbbackend.dto.dishes.DishForDeliveryDTO;
 import com.bokafood.tbbackend.dto.dishes.DishLightDTO;
 import lombok.*;
 
@@ -15,6 +16,8 @@ import java.util.List;
 public class DeliveryWithDetailsDTO {
     private Long id;
     private String userName;
+    private String clientName;
     private LocalDateTime deliveryDate;
-    private List<DishLightDTO> dishes;
+    private String details;
+    private List<DishForDeliveryDTO> dishes;
 }

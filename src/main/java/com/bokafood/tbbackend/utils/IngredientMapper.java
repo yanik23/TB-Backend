@@ -18,6 +18,7 @@ public class IngredientMapper {
 
     public static Ingredient toIngredient(IngredientDTO ingredientDTO) {
         return Ingredient.builder()
+                .id(ingredientDTO.getId())
                 .name(ingredientDTO.getName())
                 .currentType(ingredientDTO.getCurrentType())
                 .description(ingredientDTO.getDescription())

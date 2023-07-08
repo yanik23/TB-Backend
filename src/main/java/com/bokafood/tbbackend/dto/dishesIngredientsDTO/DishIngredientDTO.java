@@ -20,9 +20,4 @@ public class DishIngredientDTO {
     private Long idIngredient;
     private BigDecimal weight;
 
-    /*private DishIngredientId id;
-    private Dish dish;
-    private Ingredient ingredient;
-    private BigDecimal weight;*/
-
 }

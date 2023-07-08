@@ -60,15 +60,8 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public DishDTO addDish(DishWithIngredientListDTO dishDTO) {
-
-
         Dish dish = DishMapper.toDish(dishDTO);
         Dish savedDish = dishRepository.save(dish);
-
-       /* DishIngredientId diId = new DishIngredientId(savedDish.getId(), 11L);
-        //DishIngredient di = DishIngredientMapper.toEntity(new DishIngredientDTO(diId, savedDish.getId(), 11L, BigDecimal.valueOf(12)));
-        DishIngredientDTO di = new DishIngredientDTO(diId, savedDish.getId(), 11L, BigDecimal.valueOf(12));
-        DishIngredientDTO savedDi = dishIngredientService.addDishIngredient(di);*/
 
         List<IngredientLessDTO> ingredients = dishDTO.getIngredients();
 
@@ -78,18 +71,10 @@ public class DishServiceImpl implements DishService {
                 Ingredient ingredientEntity = IngredientMapper.toEntity(ingredientDTO);
 
                 DishIngredientId dishIngredientId = new DishIngredientId(savedDish.getId(), ingredient.getId());
-
                 DishIngredientObjectDTO dishIngredientObjectDTO = new DishIngredientObjectDTO(dishIngredientId, savedDish, ingredientEntity, ingredient.getWeight());
-
                 DishIngredientDTO savedDishIngredientDTO = dishIngredientService.addDishIngredient(dishIngredientObjectDTO);
-
-                System.out.println("=====================savedDishIngredientDTO: " + savedDishIngredientDTO);
-                /*DishIngredientId dishIngredientId = new DishIngredientId(savedDish.getId(), ingredient.getId());
-                DishIngredientDTO dishIngredientDTO = new DishIngredientDTO(dishIngredientId, savedDish.getId(), ingredient.getId(), ingredient.getWeight());
-                DishIngredientDTO savedDishIngredientDTO = dishIngredientService.addDishIngredient(dishIngredientDTO);*/
             }
         }
-
         return DishMapper.toDTO(savedDish);
     }
 

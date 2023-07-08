@@ -45,7 +45,6 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
             return;
         }
 
-
         String tokenStr = header.replace(SecurityConstants.BEARER, "");
 
         DecodedJWT jwt = JWT.require(Algorithm.HMAC512(SecurityConstants.SECRET_KEY))

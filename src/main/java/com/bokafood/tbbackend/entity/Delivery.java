@@ -41,27 +41,27 @@ public class Delivery {
     //@JsonIgnore
     @NonNull
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value = "client-delivery")
     @JoinColumn(name = "idclient", referencedColumnName = "id")
     private Client client;
 
 
     //@JsonIgnore
     @OneToMany(mappedBy = "delivery", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonManagedReference(value = "delivery-dish")
     private List<DeliveryDish> deliveryDish;
 
 
-    /*@ManyToOne
-    @JsonBackReference
+    @ManyToOne
+    @JsonBackReference(value = "user-delivery")
     @JoinColumn(name = "iduser", referencedColumnName = "id")
-    private User user;*/
+    private User user;
 
 
 
-    public void update(Delivery delivery) {
+    /*public void update(Delivery delivery) {
         this.setDeliveryDate(delivery.getDeliveryDate());
         this.setDetails(delivery.getDetails());
         this.setClient(delivery.getClient());
-    }
+    }*/
 }

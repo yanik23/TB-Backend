@@ -27,13 +27,13 @@ public class DeliveryDish {
 
     @ManyToOne
     @MapsId("idDelivery")
-    @JsonBackReference
+    @JsonBackReference(value="delivery-dish")
     @JoinColumn(name = "iddelivery", nullable = false)
     private Delivery delivery;
 
     @ManyToOne
     @MapsId("idDish")
-    @JsonBackReference
+    @JsonBackReference(value="dish-delivery")
     @JoinColumn(name = "iddish", nullable = false)
     private Dish dish;
 

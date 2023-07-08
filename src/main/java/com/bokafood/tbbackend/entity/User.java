@@ -1,6 +1,7 @@
 package com.bokafood.tbbackend.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
@@ -10,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Getter
 @Setter
@@ -68,9 +70,10 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-    /*@JsonIgnore
+
+
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private List<Delivery> deliveries;*/
+    @JsonManagedReference(value = "user-delivery")
+    private List<Delivery> deliveries;
 
 }

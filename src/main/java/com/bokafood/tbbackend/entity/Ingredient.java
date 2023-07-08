@@ -45,7 +45,7 @@ public class Ingredient {
 
     //@JsonIgnore
     @OneToMany(mappedBy = "ingredient")
-    @JsonBackReference
+    @JsonBackReference(value = "ingredient-dish")
     private List<DishIngredient> dishIngredients;
 
     public void update(Ingredient ingredient) {

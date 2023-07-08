@@ -58,7 +58,7 @@ public class Client {
 
     //@JsonIgnore
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonManagedReference(value = "client-delivery")
     //@JsonProperty(access = JsonProperty.Access.READ_ONLY)
     //@OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Delivery> deliveries;
