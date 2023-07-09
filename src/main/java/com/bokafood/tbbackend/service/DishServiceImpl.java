@@ -42,10 +42,11 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public DishDTO getDishById(Long id) {
+    public DishWithIngredientListDTO getDishById(Long id) {
         Optional<Dish> dish = dishRepository.findById(id);
         if(dish.isPresent()) {
-            return DishMapper.toDTO(dish.get());
+            DishWithIngredientListDTO dishWithIngredientListDTO = DishMapper.toDishWithIngredientListDTO(dish.get());
+            return dishWithIngredientListDTO;
         } else {
             throw new EntityNotFoundException(id, Dish.class);
         }

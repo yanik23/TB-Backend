@@ -26,7 +26,7 @@ public class DishController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DishDTO> getDishById(@PathVariable Long id) {
+    public ResponseEntity<DishWithIngredientListDTO> getDishById(@PathVariable Long id) {
         return new ResponseEntity<>(dishService.getDishById(id), HttpStatus.OK);
     }
 
