@@ -63,6 +63,18 @@ public class ClientServiceImpl implements ClientService {
                     .build();
             return clientWithDeliveriesDTO;
         }*/
+
+        @Override
+        public ClientDTO getClientByName(String name) {
+            Optional<Client> client = clientRepository.findByName(name);
+            if(client.isPresent()) {
+                return ClientMapper.toDTO(client.get());
+            } else {
+                throw new EntityNotFoundException(name, Client.class);
+            }
+        }
+
+
         private void update(Client updatedClient, ClientDTO client) {
             updatedClient.setName(client.getName());
             updatedClient.setAddressName(client.getAddressName());

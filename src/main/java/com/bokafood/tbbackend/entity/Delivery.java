@@ -39,7 +39,7 @@ public class Delivery {
     private String details;
 
     //@JsonIgnore
-    @NonNull
+    //@NonNull
     @ManyToOne
     @JsonBackReference(value = "client-delivery")
     @JoinColumn(name = "idclient", referencedColumnName = "id")

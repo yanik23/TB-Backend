@@ -2,10 +2,16 @@ package com.bokafood.tbbackend.service;
 
 import com.bokafood.tbbackend.dto.deliveries.DeliveryDTO;
 import com.bokafood.tbbackend.dto.deliveries.DeliveryWithDetailsDTO;
-import com.bokafood.tbbackend.entity.Delivery;
+import com.bokafood.tbbackend.dto.deliveriesDishes.DeliveryDishDTO;
+import com.bokafood.tbbackend.dto.dishes.DishDTO;
+import com.bokafood.tbbackend.dto.dishes.DishForDeliveryDTO;
+import com.bokafood.tbbackend.entity.*;
 import com.bokafood.tbbackend.exception.EntityNotFoundException;
 import com.bokafood.tbbackend.repository.DeliveryRepository;
+import com.bokafood.tbbackend.repository.UserRepository;
+import com.bokafood.tbbackend.utils.ClientMapper;
 import com.bokafood.tbbackend.utils.DeliveryMapper;
+import com.bokafood.tbbackend.utils.DishMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +24,18 @@ public class DeliveryServiceImpl implements DeliveryService {
 
     @Autowired
     DeliveryRepository deliveryRepository;
+
+    @Autowired
+    DishService dishService;
+
+    @Autowired
+    DeliveryDishService deliveryDishService;
+
+    @Autowired
+    ClientService clientService;
+
+    @Autowired
+    UserRepository userRepository;
 
     @Override
     public List<DeliveryDTO> getDeliveries() {
@@ -38,8 +56,34 @@ public class DeliveryServiceImpl implements DeliveryService {
 
     @Override
     public DeliveryDTO addDelivery(DeliveryWithDetailsDTO deliveryWithDetailsDTO) {
-        //return deliveryRepository.save(delivery);
-        return null;
+
+        Delivery delivery = DeliveryMapper.toDelivery(deliveryWithDetailsDTO);
+
+        Client client = ClientMapper.toClient(clientService.getClientByName(deliveryWithDetailsDTO.getClientName()));
+        delivery.setClient(client);
+
+        Optional<User> user = userRepository.findByUsername(deliveryWithDetailsDTO.getUserName());
+
+        if(user.isPresent()) {
+        	delivery.setUser(user.get());
+        } else {
+            System.out.println("================================ USER NOT FOUND ================================");
+        	throw new EntityNotFoundException(deliveryWithDetailsDTO.getUserName(), User.class);
+        }
+
+        Delivery savedDelivery = deliveryRepository.save(delivery);
+        List<DishForDeliveryDTO> dishes = deliveryWithDetailsDTO.getDishes();
+
+        if(dishes != null) {
+            for (DishForDeliveryDTO dish : dishes) {
+                Dish dishEntity = DishMapper.toDish(dishService.getDishById(dish.getId()));
+                DeliveryDishId deliveryDishId = new DeliveryDishId(savedDelivery.getId(), dish.getId());
+                DeliveryDish deliveryDish = new DeliveryDish(deliveryDishId, dish.getQuantityRemained(), dish.getQuantityDelivered(),  savedDelivery, dishEntity);
+                deliveryDishService.addDeliveryDish(deliveryDish);
+            }
+        }
+        return DeliveryMapper.toDTO(savedDelivery);
+
     }
 
     @Override

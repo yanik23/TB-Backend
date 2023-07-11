@@ -70,4 +70,15 @@ public class DeliveryMapper {
             .build();
     }*/
 
+
+    static public Delivery toDelivery(DeliveryWithDetailsDTO deliveryWithDetailsDTO) {
+        return Delivery.builder()
+            //.id(deliveryWithDetailsDTO.getId())
+            //.user(UserMapper.toEntity(deliveryWithDetailsDTO.getUser()))
+            //.client(ClientMapper.toEntity(deliveryWithDetailsDTO.getClient()))
+            .deliveryDate(deliveryWithDetailsDTO.getDeliveryDate())
+            .details(deliveryWithDetailsDTO.getDetails())
+            .build();
+    }
+
 }
