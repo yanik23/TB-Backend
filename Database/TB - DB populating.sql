@@ -30,7 +30,6 @@ INSERT INTO INGREDIENT (name, currenttype, description, supplier) VALUES ('Turme
 INSERT INTO INGREDIENT (name, currenttype, description, supplier) VALUES ('Zucchini', 'VEGETABLE', 'Summer squash with a mild flavor and tender texture, commonly used in salads, stir-fries, or as a vegetable substitute.', 'Local Organic Farms');
 
 
-INSERT INTO DISH (name, description, currenttype, currentsize, price, isavailable, calories) VALUES ('Chicken Piri Piri', 'Chicken piri piri portugese style', 'MEAT', 'GAIN', 12.50, true, 850);
 INSERT INTO DISH (name, description, currenttype, currentsize, price, isavailable, calories, fats, saturatedfats, fibers, sugars, proteins) VALUES ('Chicken Piri Piri', 'Chicken piri piri Portuguese style', 'MEAT', 'FIT', 10.50, true, 650, 10.2, 8.7, 3.5, 8.6, 30);
 INSERT INTO DISH (name, description, currenttype, currentsize, price, isavailable, calories) VALUES ('Beef Stir-Fry', 'Tender beef slices with mixed vegetables, stir-fried in a savory sauce', 'MEAT', 'GAIN', 14.99, true, 720);
 INSERT INTO DISH (name, description, currenttype, currentsize, price, isavailable, calories) VALUES ('Pork Tenderloin with Apple Compote', 'Juicy pork tenderloin served with a sweet and tangy apple compote', 'MEAT', 'GAIN', 16.50, false, 620);

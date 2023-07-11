@@ -21,14 +21,14 @@ public class DishIngredient {
     @EmbeddedId
     private DishIngredientId id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @MapsId("idDish")
     @JoinColumn(name = "iddish", nullable = false)
     @JsonBackReference(value="dish-ingredient")
     private Dish dish;
 
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @MapsId("idIngredient")
     @JoinColumn(name = "idingredient", nullable = false)
     @JsonBackReference(value="ingredient-dish")
@@ -38,10 +38,10 @@ public class DishIngredient {
     private BigDecimal weight;
 
 
-    public void update(DishIngredient updatedDishIngredient) {
+    /*public void update(DishIngredient updatedDishIngredient) {
         // TODO check if the affectation is correct
         this.dish = updatedDishIngredient.getDish();
         this.ingredient = updatedDishIngredient.getIngredient();
         this.weight = updatedDishIngredient.getWeight();
-    }
+    }*/
 }

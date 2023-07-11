@@ -25,13 +25,13 @@ public class DeliveryDish {
     @Column(name = "quantitydelivered", nullable = false)
     private int quantityDelivered;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @MapsId("idDelivery")
     @JsonBackReference(value="delivery-dish")
     @JoinColumn(name = "iddelivery", nullable = false)
     private Delivery delivery;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @MapsId("idDish")
     @JsonBackReference(value="dish-delivery")
     @JoinColumn(name = "iddish", nullable = false)

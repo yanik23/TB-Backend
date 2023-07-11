@@ -5,6 +5,9 @@ import com.bokafood.tbbackend.dto.dishes.DishDTO;
 import com.bokafood.tbbackend.dto.dishes.DishLightDTO;
 import com.bokafood.tbbackend.dto.dishes.DishWithIngredientListDTO;
 import com.bokafood.tbbackend.entity.Dish;
+import com.bokafood.tbbackend.entity.DishIngredient;
+import com.bokafood.tbbackend.entity.Ingredient;
+import com.bokafood.tbbackend.entity.DishIngredientId;
 
 import java.util.stream.Collectors;
 
@@ -128,5 +131,41 @@ public class DishMapper {
                 .iron(dishDTO.getIron())
                 .potassium(dishDTO.getPotassium())
                 .build();
+    }
+    static public Dish toDishWithId(DishWithIngredientListDTO dishDTO) {
+        return Dish.builder()
+                .id(dishDTO.getId())
+                .name(dishDTO.getName())
+                .description(dishDTO.getDescription())
+                .price(dishDTO.getPrice())
+                .currentSize(dishDTO.getCurrentSize())
+                .currentType(dishDTO.getCurrentType())
+                .isAvailable(dishDTO.isAvailable())
+                .calories(dishDTO.getCalories())
+                .fats(dishDTO.getFats())
+                .saturatedFats(dishDTO.getSaturatedFats())
+                .sodium(dishDTO.getSodium())
+                .carbohydrates(dishDTO.getCarbohydrates())
+                .fibers(dishDTO.getFibers())
+                .sugars(dishDTO.getSugars())
+                .proteins(dishDTO.getProteins())
+                .calcium(dishDTO.getCalcium())
+                .iron(dishDTO.getIron())
+                .potassium(dishDTO.getPotassium())
+
+                /*.dishIngredients(dishDTO.getIngredients().stream().map(ingredientLessDTO -> DishIngredient.builder()
+                        .id(new DishIngredientId(dishDTO.getId(), ingredientLessDTO.getId()))
+                        .dish(DishMapper.toDish(dishDTO))
+                        .ingredient(IngredientMapper.toEntity(ingredientLessDTO))
+                        .weight(ingredientLessDTO.getWeight())
+                        .build()).collect(Collectors.toList()))*/
+
+                /*.ingredients(dishDTO.getDishIngredients().stream().map(ingredient -> IngredientLessDTO.builder()
+                        .id(ingredient.getIngredient().getId())
+                        .name(ingredient.getIngredient().getName())
+                        .weight(ingredient.getWeight())
+                        .build()).collect(Collectors.toList()))*/
+                .build();
+
     }
 }

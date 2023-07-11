@@ -6,12 +6,15 @@ import com.bokafood.tbbackend.dto.dishesIngredientsDTO.DishIngredientObjectDTO;
 import com.bokafood.tbbackend.dto.ingredients.IngredientDTO;
 import com.bokafood.tbbackend.entity.Dish;
 import com.bokafood.tbbackend.entity.DishIngredient;
+import com.bokafood.tbbackend.entity.DishIngredientId;
 import com.bokafood.tbbackend.entity.Ingredient;
 import com.bokafood.tbbackend.exception.EntityNotFoundException;
 import com.bokafood.tbbackend.repository.DishIngredientRepository;
 import com.bokafood.tbbackend.utils.DishIngredientMapper;
 import com.bokafood.tbbackend.utils.DishMapper;
 import com.bokafood.tbbackend.utils.IngredientMapper;
+//import jakarta.transaction.Transactional;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,12 +39,13 @@ public class DishIngredientServiceImpl implements  DishIngredientService {
     }
 
     @Override
-    public DishIngredient getDishIngredientById(Long id) {
+    public DishIngredient getDishIngredientById(DishIngredientId id) {
         Optional<DishIngredient> dishIngredient = dishIngredientRepository.findById(id);
         if(dishIngredient.isPresent()) {
             return dishIngredient.get();
         } else {
-            throw new EntityNotFoundException(id, DishIngredient.class);
+            return null;
+            //throw new EntityNotFoundException(id.getIdDish(), id.getIdIngredient(), DishIngredient.class);
         }
     }
 
@@ -71,14 +75,39 @@ public class DishIngredientServiceImpl implements  DishIngredientService {
     }
 
     @Override
-    public DishIngredient updateDishIngredient(Long id, DishIngredient updatedDishIngredient) {
+    public DishIngredientDTO updateDishIngredient(DishIngredientId id, DishIngredientObjectDTO updatedDishIngredient) {
         DishIngredient dishIngredient = getDishIngredientById(id);
-        dishIngredient.update(updatedDishIngredient);
-        return dishIngredientRepository.save(dishIngredient);
+        update(dishIngredient, updatedDishIngredient);
+        DishIngredient savedDishIngredient = dishIngredientRepository.save(dishIngredient);
+        return DishIngredientMapper.toDTO(savedDishIngredient);
     }
 
     @Override
-    public void deleteDishIngredient(Long id) {
+    public void deleteDishIngredient(DishIngredientId id) {
         dishIngredientRepository.deleteById(id);
+    }
+
+
+
+    @Override
+    public void deleteAllByDishId(Long id) {
+        /*List<DishIngredient> dishIngredients = dishIngredientRepository.findAllByDishId(id);
+        for (DishIngredient dishIngredient : dishIngredients) {
+            dishIngredient.setDish(null); // Remove the association with the parent entity
+        }
+        dishIngredientRepository.deleteAll(dishIngredients);*/
+        dishIngredientRepository.deleteAllDishIngredientsByDishIdQuery(id);
+        //dishIngredientRepository.deleteAllDishIngredientsByDishId(id);
+    }
+
+    @Override
+    public List<DishIngredient> findAllByDishId(Long id) {
+        return dishIngredientRepository.findAllByDishId(id);
+    }
+
+    private void update(DishIngredient dishIngredient, DishIngredientObjectDTO dishIngredientObjectDTO) {
+        dishIngredient.setDish(dishIngredientObjectDTO.getDish());
+        dishIngredient.setIngredient(dishIngredientObjectDTO.getIngredient());
+        dishIngredient.setWeight(dishIngredientObjectDTO.getWeight());
     }
 }

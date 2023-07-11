@@ -36,7 +36,7 @@ public class DishController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<DishDTO> updateDish(@PathVariable Long id, @Valid @RequestBody DishDTO dishDTO) {
+    public ResponseEntity<DishDTO> updateDish(@PathVariable Long id, @Valid @RequestBody DishWithIngredientListDTO dishDTO) {
         return new ResponseEntity<>(dishService.updateDish(id, dishDTO), HttpStatus.OK);
     }
 

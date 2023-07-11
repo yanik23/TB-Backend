@@ -2,7 +2,9 @@ package com.bokafood.tbbackend.controller;
 
 import com.bokafood.tbbackend.dto.dishesIngredientsDTO.DishIngredientDTO;
 import com.bokafood.tbbackend.dto.dishesIngredientsDTO.DishIngredientObjectDTO;
+import com.bokafood.tbbackend.entity.Dish;
 import com.bokafood.tbbackend.entity.DishIngredient;
+import com.bokafood.tbbackend.entity.DishIngredientId;
 import com.bokafood.tbbackend.service.DishIngredientService;
 import jakarta.validation.Valid;
 import lombok.Builder;
@@ -27,7 +29,7 @@ public class DishIngredientController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DishIngredient> getDishIngredientById(@PathVariable Long id) {
+    public ResponseEntity<DishIngredient> getDishIngredientById(@PathVariable DishIngredientId id) {
         return new ResponseEntity<>(dishIngredientService.getDishIngredientById(id), org.springframework.http.HttpStatus.OK) ;
     }
 
@@ -37,12 +39,12 @@ public class DishIngredientController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<DishIngredient> updateDishIngredient(@PathVariable Long id, @Valid @RequestBody DishIngredient dishIngredient) {
+    public ResponseEntity<DishIngredientDTO> updateDishIngredient(@PathVariable DishIngredientId id, @Valid @RequestBody DishIngredientObjectDTO dishIngredient) {
         return new ResponseEntity<>(dishIngredientService.updateDishIngredient(id, dishIngredient), org.springframework.http.HttpStatus.OK) ;
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<org.springframework.http.HttpStatus> deleteDishIngredient(@PathVariable Long id) {
+    public ResponseEntity<org.springframework.http.HttpStatus> deleteDishIngredient(@PathVariable DishIngredientId id) {
         dishIngredientService.deleteDishIngredient(id);
         return new ResponseEntity<>(org.springframework.http.HttpStatus.NO_CONTENT) ;
     }
