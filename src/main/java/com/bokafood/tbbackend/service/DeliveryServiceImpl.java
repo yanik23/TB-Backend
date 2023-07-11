@@ -76,7 +76,7 @@ public class DeliveryServiceImpl implements DeliveryService {
 
         if(dishes != null) {
             for (DishForDeliveryDTO dish : dishes) {
-                Dish dishEntity = DishMapper.toDish(dishService.getDishById(dish.getId()));
+                Dish dishEntity = DishMapper.toDishWithId(dishService.getDishById(dish.getId()));
                 DeliveryDishId deliveryDishId = new DeliveryDishId(savedDelivery.getId(), dish.getId());
                 DeliveryDish deliveryDish = new DeliveryDish(deliveryDishId, dish.getQuantityRemained(), dish.getQuantityDelivered(),  savedDelivery, dishEntity);
                 deliveryDishService.addDeliveryDish(deliveryDish);

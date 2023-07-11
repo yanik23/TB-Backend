@@ -49,7 +49,7 @@ CREATE CAST (varchar AS taille) WITH INOUT AS IMPLICIT;
 DROP TABLE IF EXISTS Dish CASCADE;
 CREATE TABLE Dish(
 	id BIGSERIAL,
-	name VARCHAR(50) NOT NULL,
+	name VARCHAR(50) NOT NULL UNIQUE,
 	description VARCHAR(100),
 	currentType typePlat NOT NULL,
 	currentSize taille NOT NULL,

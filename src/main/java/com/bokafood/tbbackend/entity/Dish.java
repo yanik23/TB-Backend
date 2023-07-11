@@ -90,7 +90,7 @@ public class Dish {
     //@OneToMany(mappedBy = "dish", cascade = CascadeType.ALL)
     //private List<DeliveryDish> deliveryDishes;
     //@JsonIgnore
-    @OneToMany(mappedBy = "dish", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "dish") //fetch = FetchType.EAGER)//, cascade = CascadeType.ALL)
     @JsonManagedReference("dish-delivery")
     private List<DeliveryDish> deliveryDishes;
 
