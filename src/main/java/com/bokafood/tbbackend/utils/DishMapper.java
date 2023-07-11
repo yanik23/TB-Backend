@@ -153,18 +153,6 @@ public class DishMapper {
                 .iron(dishDTO.getIron())
                 .potassium(dishDTO.getPotassium())
 
-                /*.dishIngredients(dishDTO.getIngredients().stream().map(ingredientLessDTO -> DishIngredient.builder()
-                        .id(new DishIngredientId(dishDTO.getId(), ingredientLessDTO.getId()))
-                        .dish(DishMapper.toDish(dishDTO))
-                        .ingredient(IngredientMapper.toEntity(ingredientLessDTO))
-                        .weight(ingredientLessDTO.getWeight())
-                        .build()).collect(Collectors.toList()))*/
-
-                /*.ingredients(dishDTO.getDishIngredients().stream().map(ingredient -> IngredientLessDTO.builder()
-                        .id(ingredient.getIngredient().getId())
-                        .name(ingredient.getIngredient().getName())
-                        .weight(ingredient.getWeight())
-                        .build()).collect(Collectors.toList()))*/
                 .build();
 
     }

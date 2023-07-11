@@ -3,7 +3,7 @@
 
 INSERT INTO users (email, password, name, role) VALUES ('deluca@bokafood.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'Luigi', 'ADMIN');
 INSERT INTO users (email, password, name, role) VALUES ('yaya@mail.com', '123', 'Yaya', 'ADMIN');
-INSERT INTO users (email, password, name, role) VALUES ('leogobelus@mail.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Leonardo', 'EMPLOYEE');
+INSERT INTO users (email, password, name, role) VALUES ('leogobelus@mail.com', 'lol', 'Leo', 'EMPLOYEE');
 
 INSERT INTO CLIENT (name, addressname, addressnumber, zipcode, city) VALUES ('Boka Fitness', 'Avenue de Flon', 11, 1012, 'Lausannne');
 INSERT INTO CLIENT (name, addressname, addressnumber, zipcode, city) VALUES ('Planet Fitness', 'Avenue de Wallstreet', 12, 1013, 'Lausannne');

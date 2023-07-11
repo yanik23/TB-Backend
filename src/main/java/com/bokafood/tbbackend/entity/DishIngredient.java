@@ -37,11 +37,4 @@ public class DishIngredient {
     @Column(name = "weight")
     private BigDecimal weight;
 
-
-    /*public void update(DishIngredient updatedDishIngredient) {
-        // TODO check if the affectation is correct
-        this.dish = updatedDishIngredient.getDish();
-        this.ingredient = updatedDishIngredient.getIngredient();
-        this.weight = updatedDishIngredient.getWeight();
-    }*/
 }

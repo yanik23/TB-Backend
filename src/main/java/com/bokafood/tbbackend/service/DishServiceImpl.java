@@ -46,19 +46,12 @@ public class DishServiceImpl implements DishService {
     public DishWithIngredientListDTO getDishById(Long id) {
         Optional<Dish> dish = dishRepository.findById(id);
         if(dish.isPresent()) {
-            DishWithIngredientListDTO dishWithIngredientListDTO = DishMapper.toDishWithIngredientListDTO(dish.get());
-            return dishWithIngredientListDTO;
+            return DishMapper.toDishWithIngredientListDTO(dish.get());
         } else {
             throw new EntityNotFoundException(id, Dish.class);
         }
     }
 
-    /*@Override
-    public DishDTO addDish(DishDTO dishDTO) {
-        Dish dish = DishMapper.toDish(dishDTO);
-        Dish savedDish = dishRepository.save(dish);
-        return DishMapper.toDTO(savedDish);
-    }*/
 
     @Override
     public DishDTO addDish(DishWithIngredientListDTO dishDTO) {
@@ -103,119 +96,6 @@ public class DishServiceImpl implements DishService {
         return dishes.stream().map(DishMapper::toDishWithIngredientListDTO).toList();
     }
 
-
-    /*private void update(Dish dish, DishWithIngredientListDTO updatedDishDTO) {
-
-        dish.setName(updatedDishDTO.getName());
-        dish.setDescription(updatedDishDTO.getDescription());
-        dish.setCurrentType(updatedDishDTO.getCurrentType());
-        dish.setCurrentSize(updatedDishDTO.getCurrentSize());
-        dish.setPrice(updatedDishDTO.getPrice());
-        dish.setAvailable(updatedDishDTO.isAvailable());
-        dish.setCalories(updatedDishDTO.getCalories());
-        dish.setFats(updatedDishDTO.getFats());
-        dish.setSaturatedFats(updatedDishDTO.getSaturatedFats());
-        dish.setSodium(updatedDishDTO.getSodium());
-        dish.setCarbohydrates(updatedDishDTO.getCarbohydrates());
-        dish.setFibers(updatedDishDTO.getFibers());
-        dish.setSugars(updatedDishDTO.getSugars());
-        dish.setProteins(updatedDishDTO.getProteins());
-        dish.setCalcium(updatedDishDTO.getCalcium());
-        dish.setIron(updatedDishDTO.getIron());
-        dish.setPotassium(updatedDishDTO.getPotassium());
-
-        List<IngredientLessDTO> ingredients = updatedDishDTO.getIngredients();
-
-        dishIngredientService.deleteAllByDishId(dish.getId()); //empty the list of ingredients before adding the new ones.
-
-        List<DishIngredient> dishIngredients = new ArrayList<>();
-
-        if(ingredients != null) {
-            for (IngredientLessDTO ingredient : ingredients) {
-                IngredientDTO ingredientDTO = ingredientService.getIngredientById(ingredient.getId());
-                Ingredient ingredientEntity = IngredientMapper.toEntity(ingredientDTO);
-
-                DishIngredientId dishIngredientId = new DishIngredientId(dish.getId(), ingredient.getId());
-
-                DishIngredient dishIngredient = new DishIngredient(dishIngredientId, dish, ingredientEntity, ingredient.getWeight());
-                dishIngredients.add(dishIngredient);
-                //DishIngredientObjectDTO dishIngredientObjectDTO = new DishIngredientObjectDTO(dishIngredientId, dish, ingredientEntity, ingredient.getWeight());
-
-                //check if dishIngredient exists, it it does, update it, if not, create it
-                /*if(dishIngredientService.getDishIngredientById(dishIngredientId) == null) {
-                    DishIngredientDTO savedDishIngredientDTO = dishIngredientService.addDishIngredient(dishIngredientObjectDTO);
-                } else {
-                    DishIngredientDTO savedDishIngredientDTO = dishIngredientService.updateDishIngredient(dishIngredientId, dishIngredientObjectDTO);
-                }*/
-
-                //DishIngredientDTO savedDishIngredientDTO = dishIngredientService.updateDishIngredient(dishIngredientId, dishIngredientObjectDTO);
-           /* }
-            dish.setDishIngredients(dishIngredients);
-        }
-
-        //List<DishIngredient> = dishIngredientService.getDishIngredientsByDishId(dish.getId());
-    }*/
-
-    /*private void update(Dish dish, DishWithIngredientListDTO updatedDishDTO) {
-        // Update the dish properties
-        dish.setName(updatedDishDTO.getName());
-        dish.setDescription(updatedDishDTO.getDescription());
-        dish.setCurrentType(updatedDishDTO.getCurrentType());
-        dish.setCurrentSize(updatedDishDTO.getCurrentSize());
-        dish.setPrice(updatedDishDTO.getPrice());
-        dish.setAvailable(updatedDishDTO.isAvailable());
-        dish.setCalories(updatedDishDTO.getCalories());
-        dish.setFats(updatedDishDTO.getFats());
-        dish.setSaturatedFats(updatedDishDTO.getSaturatedFats());
-        dish.setSodium(updatedDishDTO.getSodium());
-        dish.setCarbohydrates(updatedDishDTO.getCarbohydrates());
-        dish.setFibers(updatedDishDTO.getFibers());
-        dish.setSugars(updatedDishDTO.getSugars());
-        dish.setProteins(updatedDishDTO.getProteins());
-        dish.setCalcium(updatedDishDTO.getCalcium());
-        dish.setIron(updatedDishDTO.getIron());
-        dish.setPotassium(updatedDishDTO.getPotassium());
-
-        List<IngredientLessDTO> updatedIngredients = updatedDishDTO.getIngredients();
-        List<DishIngredient> dishIngredients = new ArrayList<>();
-
-        if (updatedIngredients != null) {
-            // Retrieve the existing ingredients associated with the dish
-            List<DishIngredient> existingIngredients = dishIngredientService.findAllByDishId(dish.getId());//dish.getDishIngredients();
-
-            // Iterate through the updated ingredients
-            for (IngredientLessDTO ingredient : updatedIngredients) {
-                IngredientDTO ingredientDTO = ingredientService.getIngredientById(ingredient.getId());
-                Ingredient ingredientEntity = IngredientMapper.toEntity(ingredientDTO);
-
-                DishIngredientId dishIngredientId = new DishIngredientId(dish.getId(), ingredient.getId());
-
-                // Check if the ingredient already exists
-                DishIngredient existingIngredient = findExistingIngredient(existingIngredients, dishIngredientId);
-
-                if (existingIngredient != null) {
-                    // If the ingredient exists, add it to the new dishIngredients list
-                    dishIngredients.add(existingIngredient);
-                } else {
-                    // If the ingredient is new, create a new DishIngredient entity
-                    DishIngredient dishIngredient = new DishIngredient(dishIngredientId, dish, ingredientEntity, ingredient.getWeight());
-                    dishIngredients.add(dishIngredient);
-                }
-            }
-        }
-
-        // Set the new list of dish ingredients
-        dish.setDishIngredients(dishIngredients);
-    }
-
-    private DishIngredient findExistingIngredient(List<DishIngredient> existingIngredients, DishIngredientId dishIngredientId) {
-        for (DishIngredient existingIngredient : existingIngredients) {
-            if (existingIngredient.getId().equals(dishIngredientId)) {
-                return existingIngredient;
-            }
-        }
-        return null;
-    }*/
 
     private void update(Dish dish, DishWithIngredientListDTO updatedDishDTO) {
         // Update the dish properties

@@ -12,7 +12,8 @@ import java.util.List;
 
 @Repository
 public interface DishIngredientRepository extends CrudRepository<DishIngredient, DishIngredientId> {
-    void deleteAllDishIngredientsByDishId(Long id);
+
+
     List<DishIngredient> findAllByDishId(Long id);
 
     @Query("DELETE FROM DishIngredient di WHERE di.dish.id = ?1")
