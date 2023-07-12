@@ -10,7 +10,7 @@ public interface DeliveryService {
     List<DeliveryDTO> getDeliveries();
     DeliveryWithDetailsDTO getDeliveryById(Long id);
     DeliveryDTO addDelivery(DeliveryWithDetailsDTO deliveryWithDetailsDTO);
-    DeliveryDTO updateDelivery(Long id, DeliveryDTO updatedDeliveryWithDetailsDTO);
+    DeliveryDTO updateDelivery(Long id, DeliveryWithDetailsDTO updatedDeliveryWithDetailsDTO);
     void deleteDelivery(Long id);
 
     //List<Delivery> getDeliveriesByClientId(Long id);

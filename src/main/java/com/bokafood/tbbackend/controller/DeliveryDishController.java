@@ -2,6 +2,7 @@ package com.bokafood.tbbackend.controller;
 
 
 import com.bokafood.tbbackend.entity.DeliveryDish;
+import com.bokafood.tbbackend.entity.DeliveryDishId;
 import com.bokafood.tbbackend.service.DeliveryDishService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class DeliveryDishController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DeliveryDish> getDeliveryDishById(@PathVariable Long id) {
+    public ResponseEntity<DeliveryDish> getDeliveryDishById(@PathVariable DeliveryDishId id) {
         return new ResponseEntity<>(deliveryDishService.getDeliveryDishById(id), HttpStatus.OK);
     }
 
@@ -35,12 +36,12 @@ public class DeliveryDishController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<DeliveryDish> updateDeliveryDish(@PathVariable Long id, @Valid @RequestBody DeliveryDish deliveryDish) {
+    public ResponseEntity<DeliveryDish> updateDeliveryDish(@PathVariable DeliveryDishId id, @Valid @RequestBody DeliveryDish deliveryDish) {
         return new ResponseEntity<>(deliveryDishService.updateDeliveryDish(id, deliveryDish), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<HttpStatus> deleteDeliveryDish(@PathVariable Long id) {
+    public ResponseEntity<HttpStatus> deleteDeliveryDish(@PathVariable DeliveryDishId id) {
         deliveryDishService.deleteDeliveryDish(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

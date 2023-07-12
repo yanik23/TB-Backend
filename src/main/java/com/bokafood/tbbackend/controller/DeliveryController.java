@@ -37,7 +37,7 @@ public class DeliveryController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<DeliveryDTO> updateDelivery(@PathVariable Long id, @Valid @RequestBody DeliveryDTO updatedDeliveryWithDetailsDTO) {
+    public ResponseEntity<DeliveryDTO> updateDelivery(@PathVariable Long id, @Valid @RequestBody DeliveryWithDetailsDTO updatedDeliveryWithDetailsDTO) {
         return new ResponseEntity<>(deliveryService.updateDelivery(id, updatedDeliveryWithDetailsDTO), HttpStatus.OK);
     }
 

@@ -47,7 +47,7 @@ public class DeliveryMapper {
             .deliveryDate(delivery.getDeliveryDate())
             .details(delivery.getDetails())
 
-            .dishes(delivery.getDeliveryDish().stream().map(dish -> DishForDeliveryDTO.builder()
+            .dishes(delivery.getDeliveryDishes().stream().map(dish -> DishForDeliveryDTO.builder()
                         .id(dish.getDish().getId())
                         .name(dish.getDish().getName())
                         .price(dish.getDish().getPrice())
@@ -73,7 +73,7 @@ public class DeliveryMapper {
 
     static public Delivery toDelivery(DeliveryWithDetailsDTO deliveryWithDetailsDTO) {
         return Delivery.builder()
-            //.id(deliveryWithDetailsDTO.getId())
+            .id(deliveryWithDetailsDTO.getId())
             //.user(UserMapper.toEntity(deliveryWithDetailsDTO.getUser()))
             //.client(ClientMapper.toEntity(deliveryWithDetailsDTO.getClient()))
             .deliveryDate(deliveryWithDetailsDTO.getDeliveryDate())

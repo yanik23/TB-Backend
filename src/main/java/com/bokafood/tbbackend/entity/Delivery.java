@@ -33,8 +33,6 @@ public class Delivery {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private LocalDateTime deliveryDate;
 
-
-    @NonNull
     @Column(name = "details")
     private String details;
 
@@ -47,9 +45,9 @@ public class Delivery {
 
 
     //@JsonIgnore
-    @OneToMany(mappedBy = "delivery", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "delivery", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonManagedReference(value = "delivery-dish")
-    private List<DeliveryDish> deliveryDish;
+    private List<DeliveryDish> deliveryDishes;
 
 
     @ManyToOne

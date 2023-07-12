@@ -2,6 +2,7 @@ package com.bokafood.tbbackend.service;
 
 
 import com.bokafood.tbbackend.entity.DeliveryDish;
+import com.bokafood.tbbackend.entity.DeliveryDishId;
 import com.bokafood.tbbackend.exception.EntityNotFoundException;
 import com.bokafood.tbbackend.repository.DeliveryDishRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,12 @@ public class DeliveryDishServiceImpl implements DeliveryDishService {
     }
 
     @Override
-    public DeliveryDish getDeliveryDishById(Long id) {
+    public DeliveryDish getDeliveryDishById(DeliveryDishId id) {
         Optional<DeliveryDish> deliveryDish = deliveryDishRepository.findById(id);
         if(deliveryDish.isPresent()) {
             return deliveryDish.get();
         } else {
-            throw new EntityNotFoundException(id, DeliveryDish.class);
+            throw new EntityNotFoundException(id.getIdDish(), id.getIdDelivery(), DeliveryDish.class);
         }
     }
 
@@ -37,14 +38,19 @@ public class DeliveryDishServiceImpl implements DeliveryDishService {
     }
 
     @Override
-    public DeliveryDish updateDeliveryDish(Long id, DeliveryDish updatedDeliveryDish) {
+    public DeliveryDish updateDeliveryDish(DeliveryDishId id, DeliveryDish updatedDeliveryDish) {
         DeliveryDish deliveryDish = getDeliveryDishById(id);
         deliveryDish.update(updatedDeliveryDish);
         return deliveryDishRepository.save(deliveryDish);
     }
 
     @Override
-    public void deleteDeliveryDish(Long id) {
+    public void deleteDeliveryDish(DeliveryDishId id) {
         deliveryDishRepository.deleteById(id);
+    }
+
+    @Override
+    public List<DeliveryDish> findAllByDeliveryId(Long id) {
+        return deliveryDishRepository.findAllByDeliveryId(id);
     }
 }

@@ -1,5 +1,6 @@
 package com.bokafood.tbbackend.utils;
 
+import com.bokafood.tbbackend.dto.deliveries.DeliveryWithDetailsDTO;
 import com.bokafood.tbbackend.dto.deliveriesDishes.DeliveryDishDTO;
 import com.bokafood.tbbackend.dto.dishes.DishForDeliveryDTO;
 import com.bokafood.tbbackend.entity.DeliveryDish;
@@ -25,6 +26,16 @@ public class DeliveryDishMapper {
         entity.setQuantityDelivered(deliveryDishDTO.getQuantityDelivered());
         return entity;
     }
+
+    /*static public DeliveryDish toEntity(DeliveryWithDetailsDTO deliveryWithDetailsDTO) {
+        DeliveryDish entity = new DeliveryDish();
+        entity.setId(deliveryWithDetailsDTO.getId());
+        entity.setDelivery(deliveryWithDetailsDTO.getDelivery());
+        entity.setDish(deliveryWithDetailsDTO.getDish());
+        entity.setQuantityRemained(deliveryWithDetailsDTO.getQuantityRemained());
+        entity.setQuantityDelivered(deliveryWithDetailsDTO.getQuantityDelivered());
+        return entity;
+    }*/
 
     static public DishForDeliveryDTO toDishForDeliveryDTO(DeliveryDish deliveryDish) {
         DishForDeliveryDTO dto = new DishForDeliveryDTO();

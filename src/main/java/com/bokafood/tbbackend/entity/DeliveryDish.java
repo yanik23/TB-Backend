@@ -18,13 +18,6 @@ public class DeliveryDish {
     private DeliveryDishId id;
 
 
-    @NonNull
-    @Column(name = "quantityremained", nullable = false)
-    private int quantityRemained;
-    @NonNull
-    @Column(name = "quantitydelivered", nullable = false)
-    private int quantityDelivered;
-
     @ManyToOne(cascade = CascadeType.MERGE)
     @MapsId("idDelivery")
     @JsonBackReference(value="delivery-dish")
@@ -37,6 +30,12 @@ public class DeliveryDish {
     @JoinColumn(name = "iddish", nullable = false)
     private Dish dish;
 
+    @NonNull
+    @Column(name = "quantityremained", nullable = false)
+    private int quantityRemained;
+    @NonNull
+    @Column(name = "quantitydelivered", nullable = false)
+    private int quantityDelivered;
 
     public void update(DeliveryDish updatedDeliveryDish) {
         // TODO check if the affectation is correct
