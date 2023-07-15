@@ -10,6 +10,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -19,15 +20,21 @@ import org.springframework.stereotype.Component;
 public class CustomAuthenticationManager implements AuthenticationManager {
 
     private UserService userServiceImpl;
-    //private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    //private Argon2PasswordEncoder argon2PasswordEncoder;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         User user = userServiceImpl.getUserByUsername(authentication.getName());
 
 
-        if (!authentication.getCredentials().toString().equals(user.getPassword()) ||
+        /*if (!authentication.getCredentials().toString().equals(user.getPassword()) ||
             !authentication.getName().equals(user.getUsername())) {
+            throw new BadCredentialsException("Wrong username or password");
+        }*/
+        if (!bCryptPasswordEncoder.matches(authentication.getCredentials().toString(), user.getPassword()) ||
+                !authentication.getName().equals(user.getUsername())) {
             throw new BadCredentialsException("Wrong username or password");
         }
 

@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDateTime;
@@ -74,9 +75,19 @@ public class TbBackendApplication implements CommandLineRunner {
 
 	}
 
-	/*@Bean
+	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
+	}
+
+
+	/*@Bean
+	public Argon2PasswordEncoder argon2PasswordEncoder() {
+		return new Argon2PasswordEncoder(16, 32, 1, 60000, 10);
+
 	}*/
+
+	/*@Bean
+	public Argon2Par*/
 
 }

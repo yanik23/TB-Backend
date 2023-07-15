@@ -33,7 +33,7 @@ CREATE TABLE Delivery(
 	idClient BIGSERIAL,
 	idUser BIGSERIAL,
 	deliveryDate DATE NOT NULL,
-	details VARCHAR(50),
+	details VARCHAR(255),
 	
 	CONSTRAINT PK_Delivery PRIMARY KEY (id)
 	
@@ -50,7 +50,7 @@ DROP TABLE IF EXISTS Dish CASCADE;
 CREATE TABLE Dish(
 	id BIGSERIAL,
 	name VARCHAR(50) NOT NULL UNIQUE,
-	description VARCHAR(100),
+	description VARCHAR(255),
 	currentType typePlat NOT NULL,
 	currentSize taille NOT NULL,
 	price NUMERIC(10, 2) NOT NULL,
