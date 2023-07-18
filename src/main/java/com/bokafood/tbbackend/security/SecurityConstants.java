@@ -5,9 +5,11 @@ public class SecurityConstants {
     //public static final String SECRET_KEY = "MFswDQYJKoZIhvcNAQEBBQADSgAwRwJAbOXzZpPD6Ln0xeyzp+S02uReXlE3+jAm\n" +
             //"AmLMZlakdkWGxbh+51OTGpk0boN0L3w6nkVR3W7M4vvgW7Umm/OJ3wIDAQAB";
     //public static final int TOKEN_EXPIRATION = 7200000; // 7200000 milliseconds = 7200 seconds = 2 hours.
-    public static final int TOKEN_EXPIRATION = 600000; // 600000 milliseconds = 600 seconds = 10 minutes.
+    public static final int ACCESS_TOKEN_EXPIRATION = 60000; // 60000 milliseconds = 60 seconds = 1 minutes.
+    public static final int REFRESH_TOKEN_EXPIRATION = 600000; // 600000 milliseconds = 600 seconds = 10 minutes.
     public static final String BEARER = "Bearer "; // Authorization : "Bearer " + Token
     public static final String AUTHORIZATION = "Authorization"; // "Authorization" : Bearer Token
+    public static final String REFRESH = "Refresh"; // "refresh" : Token
     public static final String REGISTER_PATH = "/user/register"; // Public path that clients can use to register.
     public static final String AUTHORITIES = "authorities";
 }

@@ -1,7 +1,6 @@
 package com.bokafood.tbbackend.dto.statistics;
 
 import com.bokafood.tbbackend.entity.Dish;
-import jakarta.persistence.Entity;
 import lombok.*;
 
 
@@ -10,13 +9,13 @@ import lombok.*;
 //@AllArgsConstructor
 //@NoArgsConstructor
 @Builder
-public class QuantityDeliveredPerTypeDTO {
+public class TotalDeliveredPerTypeDTO {
 
     private Dish.DishType currentType;
     private Long quantityDelivered;
 
 
-    public QuantityDeliveredPerTypeDTO(Dish.DishType currentType, Long quantityDelivered) {
+    public TotalDeliveredPerTypeDTO(Dish.DishType currentType, Long quantityDelivered) {
         this.currentType = currentType;
         this.quantityDelivered = quantityDelivered;
     }

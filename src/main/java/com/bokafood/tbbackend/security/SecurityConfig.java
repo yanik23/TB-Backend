@@ -35,11 +35,13 @@ public class SecurityConfig {
         System.out.println("=====================================");
         http
                 .authorizeRequests(request -> request
-                    .requestMatchers(HttpMethod.GET).authenticated()
+                    //.requestMatchers(HttpMethod.GET).authenticated()
                     .requestMatchers(HttpMethod.POST).hasAuthority("ADMIN")
                     //.requestMatchers(HttpMethod.POST).authenticated()
                     .requestMatchers(HttpMethod.PUT).hasAuthority("ADMIN")
                     .requestMatchers(HttpMethod.DELETE).hasAuthority("ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/users/refresh-token").permitAll()
+                    .requestMatchers(HttpMethod.GET).authenticated()
 
                 )
                 .addFilterBefore(new ExceptionHandlerFilter(), AuthenticationFilter.class)

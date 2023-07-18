@@ -40,32 +40,40 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String header = request.getHeader("Authorization");
 
-        if(header == null || !header.startsWith(SecurityConstants.BEARER)) {
+        //if request is /users/login, then we don't need to check for token.
+        /*if(request.getServletPath().equals("/users/login")) {
             filterChain.doFilter(request, response);
             return;
+        }*/
+
+        if(header == null || !header.startsWith(SecurityConstants.BEARER) || request.getServletPath().equals("/users/refresh-token")) {
+            System.out.println("===HEADER : " + header);
+            filterChain.doFilter(request, response);
+            //return;
+        } else {
+
+            String tokenStr = header.replace(SecurityConstants.BEARER, "");
+
+            DecodedJWT jwt = JWT.require(Algorithm.HMAC512(SecurityConstants.SECRET_KEY))
+                    .build()
+                    .verify(tokenStr);
+
+            String user = jwt.getSubject();
+            List<String> roles = jwt.getClaim("roles").asList(String.class);
+
+            System.out.println("===USER : " + user);
+
+            Collection<? extends GrantedAuthority> auths = Collections.singleton(new SimpleGrantedAuthority(roles.get(0)));
+            Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, auths);//to set auth true with this constructor.
+            System.out.println("===AUTHENTICATION : " + authentication.getAuthorities().toString());
+            System.out.println("===AUTHENTICATION : " + authentication.getPrincipal());
+            System.out.println("===AUTHENTICATION : " + authentication.getCredentials());
+
+
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+
+            filterChain.doFilter(request, response); //since it is the last filter and we call doFilter, will launch the request.
         }
-
-        String tokenStr = header.replace(SecurityConstants.BEARER, "");
-
-        DecodedJWT jwt = JWT.require(Algorithm.HMAC512(SecurityConstants.SECRET_KEY))
-                .build()
-                .verify(tokenStr);
-
-        String user = jwt.getSubject();
-        List<String> roles = jwt.getClaim("roles").asList(String.class);
-
-        System.out.println("===USER : " + user);
-
-        Collection<? extends GrantedAuthority> auths = Collections.singleton(new SimpleGrantedAuthority(roles.get(0)));
-        Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, auths);//to set auth true with this constructor.
-        System.out.println("===AUTHENTICATION : " + authentication.getAuthorities().toString());
-        System.out.println("===AUTHENTICATION : " + authentication.getPrincipal());
-        System.out.println("===AUTHENTICATION : " + authentication.getCredentials());
-
-
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        filterChain.doFilter(request, response); //since it is the last filter and we call doFilter, will launch the request.
     }
 
     /*public Collection<? extends GrantedAuthority> getAuthorities(String) {

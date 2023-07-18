@@ -49,18 +49,22 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
-
-
-
         System.out.println("WOHHOHOHHOHOH, authentication successful");
 
         System.out.println("request: " + request);
         System.out.println("response: " + response);
-        String token = JWT.create()
+        String access_token = JWT.create()
                 .withSubject(authResult.getName())
                 .withArrayClaim("roles", authResult.getAuthorities().stream().map(ga -> ga.getAuthority()).toArray(String[]::new))
-                .withExpiresAt(new Date(System.currentTimeMillis() + SecurityConstants.TOKEN_EXPIRATION))
+                .withExpiresAt(new Date(System.currentTimeMillis() + SecurityConstants.ACCESS_TOKEN_EXPIRATION))
                 .sign(Algorithm.HMAC512(SecurityConstants.SECRET_KEY));
-        response.addHeader(SecurityConstants.AUTHORIZATION, SecurityConstants.BEARER + token);
+        response.addHeader(SecurityConstants.AUTHORIZATION, SecurityConstants.BEARER + access_token);
+
+        String refresh_token = JWT.create()
+                .withSubject(authResult.getName())
+                //.withArrayClaim("roles", authResult.getAuthorities().stream().map(ga -> ga.getAuthority()).toArray(String[]::new))
+                .withExpiresAt(new Date(System.currentTimeMillis() + SecurityConstants.REFRESH_TOKEN_EXPIRATION))
+                .sign(Algorithm.HMAC512(SecurityConstants.SECRET_KEY));
+        response.addHeader(SecurityConstants.REFRESH, SecurityConstants.BEARER + refresh_token);
     }
 }
