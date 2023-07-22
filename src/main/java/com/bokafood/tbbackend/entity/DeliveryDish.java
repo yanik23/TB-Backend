@@ -30,10 +30,10 @@ public class DeliveryDish {
     @JoinColumn(name = "iddish", nullable = false)
     private Dish dish;
 
-    @NonNull
+
     @Column(name = "quantityremained", nullable = false)
     private int quantityRemained;
-    @NonNull
+
     @Column(name = "quantitydelivered", nullable = false)
     private int quantityDelivered;
 

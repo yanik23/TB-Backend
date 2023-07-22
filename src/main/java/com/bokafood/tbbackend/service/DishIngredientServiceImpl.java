@@ -1,23 +1,13 @@
 package com.bokafood.tbbackend.service;
 
-import com.bokafood.tbbackend.dto.dishes.DishDTO;
 import com.bokafood.tbbackend.dto.dishesIngredientsDTO.DishIngredientDTO;
 import com.bokafood.tbbackend.dto.dishesIngredientsDTO.DishIngredientObjectDTO;
-import com.bokafood.tbbackend.dto.ingredients.IngredientDTO;
-import com.bokafood.tbbackend.entity.Dish;
 import com.bokafood.tbbackend.entity.DishIngredient;
 import com.bokafood.tbbackend.entity.DishIngredientId;
-import com.bokafood.tbbackend.entity.Ingredient;
-import com.bokafood.tbbackend.exception.EntityNotFoundException;
 import com.bokafood.tbbackend.repository.DishIngredientRepository;
 import com.bokafood.tbbackend.utils.DishIngredientMapper;
-import com.bokafood.tbbackend.utils.DishMapper;
-import com.bokafood.tbbackend.utils.IngredientMapper;
-//import jakarta.transaction.Transactional;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 

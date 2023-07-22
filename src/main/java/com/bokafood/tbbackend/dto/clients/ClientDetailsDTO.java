@@ -13,8 +13,8 @@ public class ClientDetailsDTO {
     private Long id;
     private String name;
     private String addressName;
-    private int addressNumber;
-    private int zipCode;
+    private Long addressNumber;
+    private Long zipCode;
     private String city;
 
 

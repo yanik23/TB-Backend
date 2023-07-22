@@ -2,8 +2,6 @@ package com.bokafood.tbbackend.service;
 
 import com.bokafood.tbbackend.dto.deliveries.DeliveryDTO;
 import com.bokafood.tbbackend.dto.deliveries.DeliveryWithDetailsDTO;
-import com.bokafood.tbbackend.entity.Delivery;
-
 import java.util.List;
 
 public interface DeliveryService {

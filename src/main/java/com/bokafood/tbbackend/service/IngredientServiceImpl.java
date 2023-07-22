@@ -1,11 +1,9 @@
 package com.bokafood.tbbackend.service;
 
 import com.bokafood.tbbackend.dto.ingredients.IngredientDTO;
-import com.bokafood.tbbackend.entity.Client;
 import com.bokafood.tbbackend.entity.Ingredient;
 import com.bokafood.tbbackend.exception.EntityNotFoundException;
 import com.bokafood.tbbackend.repository.IngredientRepository;
-import com.bokafood.tbbackend.utils.ClientMapper;
 import com.bokafood.tbbackend.utils.IngredientMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

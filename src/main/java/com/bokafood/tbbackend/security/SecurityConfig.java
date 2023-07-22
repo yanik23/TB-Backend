@@ -30,11 +30,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         AuthenticationFilter authenticationFilter = new AuthenticationFilter(customAuthenticationManager);
         authenticationFilter.setFilterProcessesUrl("/login");
-        System.out.println("=====================================");
-        System.out.println("=========processed til here==========");
-        System.out.println("=====================================");
         http
-                .authorizeRequests(request -> request
+                .authorizeHttpRequests(request -> request
                     //.requestMatchers(HttpMethod.GET).authenticated()
                     .requestMatchers(HttpMethod.POST).hasAuthority("ADMIN")
                     //.requestMatchers(HttpMethod.POST).authenticated()

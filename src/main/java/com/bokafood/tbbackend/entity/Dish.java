@@ -29,7 +29,6 @@ public class Dish {
     @Column(name ="id")
     private Long id;
 
-    @NonNull
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
@@ -37,21 +36,17 @@ public class Dish {
     @Column(name = "description")
     private String description;
 
-    @NonNull
     @Column(name = "currenttype", nullable = false)
     @Enumerated(EnumType.STRING)
     private DishType currentType;
 
-    @NonNull
     @Column(name = "currentsize", nullable = false)
     @Enumerated(EnumType.STRING)
     private DishSize currentSize;
 
-    @NonNull
     @Column(name = "price", nullable = false)
     private BigDecimal price;
 
-    @NonNull
     @Column(name = "isavailable", nullable = false)
     private boolean isAvailable;
 

@@ -7,8 +7,8 @@ CREATE TABLE Client(
 	id  BIGSERIAL,
 	"name" VARCHAR(50) NOT NULL UNIQUE,
 	addressName VARCHAR(50) NOT NULL,
-	addressNumber INTEGER NOT NULL,
-	zipCode INTEGER NOT NULL,
+	addressNumber BIGINT NOT NULL,
+	zipCode BIGINT NOT NULL,
 	city VARCHAR(50) NOT NULL,
 	
 	CONSTRAINT PK_Client PRIMARY KEY (id)
@@ -123,13 +123,4 @@ ALTER TABLE Dish_Ingredient ADD CONSTRAINT FK_Dish_Ingredient_idDish FOREIGN KEY
 ALTER TABLE Dish_Ingredient ADD CONSTRAINT FK_Dish_Ingredient_idIngredient FOREIGN KEY(idIngredient) REFERENCES Ingredient(id)
 	ON UPDATE CASCADE
 	ON DELETE CASCADE;
-
-
-
-
-
-
-
-
-
 

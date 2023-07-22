@@ -3,7 +3,6 @@ package com.bokafood.tbbackend.controller;
 
 import com.bokafood.tbbackend.dto.deliveries.DeliveryDTO;
 import com.bokafood.tbbackend.dto.deliveries.DeliveryWithDetailsDTO;
-import com.bokafood.tbbackend.entity.Delivery;
 import com.bokafood.tbbackend.service.DeliveryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
 
 @Controller
 @RequestMapping("/deliveries")

@@ -7,7 +7,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 import java.io.IOException;
 
 public class ExceptionHandlerFilter extends OncePerRequestFilter {
@@ -21,7 +20,9 @@ public class ExceptionHandlerFilter extends OncePerRequestFilter {
             response.getWriter().write("username or password incorrect");
             response.getWriter().flush();
         } catch (JWTVerificationException ex){
-            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            System.out.println("========== ex.getMessage() : " + ex.getMessage());
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+
             response.getWriter().write("JWT NOT VALID");
             response.getWriter().flush();
         } catch (RuntimeException ex) {

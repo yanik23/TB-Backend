@@ -1,10 +1,10 @@
 package com.bokafood.tbbackend.service;
 
 import com.bokafood.tbbackend.dto.clients.ClientDTO;
-import com.bokafood.tbbackend.entity.Client;
-
 import java.util.List;
 
+
+//@Service
 public interface ClientService {
     List<ClientDTO> getClients();
     ClientDTO getClientById(Long id);

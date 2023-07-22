@@ -2,12 +2,10 @@ package com.bokafood.tbbackend.controller;
 
 import com.bokafood.tbbackend.dto.dishesIngredientsDTO.DishIngredientDTO;
 import com.bokafood.tbbackend.dto.dishesIngredientsDTO.DishIngredientObjectDTO;
-import com.bokafood.tbbackend.entity.Dish;
 import com.bokafood.tbbackend.entity.DishIngredient;
 import com.bokafood.tbbackend.entity.DishIngredientId;
 import com.bokafood.tbbackend.service.DishIngredientService;
 import jakarta.validation.Valid;
-import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,7 +15,6 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/dishIngredients")
-@Builder
 public class DishIngredientController {
 
     @Autowired

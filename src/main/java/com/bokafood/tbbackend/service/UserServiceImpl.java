@@ -5,7 +5,6 @@ import com.bokafood.tbbackend.dto.users.UserDTO;
 import com.bokafood.tbbackend.entity.User;
 import com.bokafood.tbbackend.exception.EntityNotFoundException;
 import com.bokafood.tbbackend.repository.UserRepository;
-import com.bokafood.tbbackend.utils.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

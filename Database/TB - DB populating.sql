@@ -4,10 +4,20 @@
 INSERT INTO users (email, password, name, role) VALUES ('deluca@bokafood.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'Luigi', 'ADMIN');
 INSERT INTO users (email, password, name, role) VALUES ('yaya@mail.com', '$2a$12$mOYffKTc2oUgV4vNTcRdEOuGrFshHaze.g74w08ZSwrHaWTu0VWFS', 'Yaya', 'ADMIN');
 INSERT INTO users (email, password, name, role) VALUES ('leogobelus@mail.com', '$2a$12$.l2KuerB/ES8LO/mNiCjE.JC4cjGg/.6DpJnp.KOxyn.H395Js36m', 'Leo', 'EMPLOYEE');
+INSERT INTO users (email, password, name, role) VALUES ('jean@mail.com', '$2a$12$.l2KuerB/ES8LO/mNiCjE.JC4cjGg/.6DpJnp.KOxyn.H395Js36m', 'Jean-Charles Roger Henry-Louis', 'ADMIN');
 
 INSERT INTO CLIENT (name, addressname, addressnumber, zipcode, city) VALUES ('Boka Fitness', 'Avenue de Flon', 11, 1012, 'Lausannne');
 INSERT INTO CLIENT (name, addressname, addressnumber, zipcode, city) VALUES ('Planet Fitness', 'Avenue de Wallstreet', 12, 1013, 'Lausannne');
 INSERT INTO CLIENT (name, addressname, addressnumber, zipcode, city) VALUES ('Pompiers de Morges', 'Avenue de la Gare', 13, 1014, 'Morges');
+INSERT INTO CLIENT (name, addressname, addressnumber, zipcode, city) VALUES ('Fit Corporation', 'Avenu de la Riponne', 22, 1015, 'Lausanne');
+INSERT INTO CLIENT (name, addressname, addressnumber, zipcode, city) VALUES ('Police de Genève', 'Avenue du Cervin', 7, 1016, 'Geneva');
+INSERT INTO CLIENT (name, addressname, addressnumber, zipcode, city) VALUES ('High Tech SA', 'Rue de la place', 5, 1017, 'Zurich');
+INSERT INTO CLIENT (name, addressname, addressnumber, zipcode, city) VALUES ('Architects and Co', 'Grande place', 15, 1018, 'Bern');
+INSERT INTO CLIENT (name, addressname, addressnumber, zipcode, city) VALUES ('Hardware réparation', 'Rue du poisson', 11, 1031, 'Lausanne');
+INSERT INTO CLIENT (name, addressname, addressnumber, zipcode, city) VALUES ('Gilbert Immobilier et fils', 'Avenue des Idées', 8, 1032, 'Geneva');
+INSERT INTO CLIENT (name, addressname, addressnumber, zipcode, city) VALUES ('GameXMatch Studio', 'Rue du Bourg', 11, 1012, 'Lausanne');
+INSERT INTO CLIENT (name, addressname, addressnumber, zipcode, city) VALUES ('Marketing et Innovation SA', 'Avenue des Idées', 9, 1032, 'Geneva');
+
 
 INSERT INTO INGREDIENT (name, currenttype, description, supplier) VALUES ('Chicken', 'MEAT', 'Farming chicken', 'La ferme des 4 lacs');
 INSERT INTO INGREDIENT (name, currenttype, description, supplier) VALUES ('Beef', 'MEAT', 'Grass-fed beef', 'Local Butcher Shop');

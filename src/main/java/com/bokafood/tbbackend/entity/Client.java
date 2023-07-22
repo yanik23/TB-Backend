@@ -1,16 +1,12 @@
 package com.bokafood.tbbackend.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.format.annotation.NumberFormat;
-
 import java.util.List;
 
 @Getter
@@ -42,13 +38,13 @@ public class Client {
 
     @NonNull
     @Column(name = "addressnumber", nullable = false)
-    private int addressNumber;
+    private Long addressNumber;
 
 
     @NumberFormat(style = NumberFormat.Style.NUMBER)
     @NonNull
     @Column(name = "zipcode", nullable = false)
-    private int zipCode;
+    private Long zipCode;
 
     @NotBlank(message = "City can't be blank")
     @NonNull
