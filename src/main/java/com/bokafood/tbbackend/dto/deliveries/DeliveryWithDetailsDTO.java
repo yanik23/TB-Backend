@@ -18,7 +18,6 @@ public class DeliveryWithDetailsDTO {
     private Long id;
     private String userName;
     private String clientName;
-    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDateTime deliveryDate;
     private String details;
     private List<DishForDeliveryDTO> dishes;
