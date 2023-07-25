@@ -1,6 +1,6 @@
 package com.bokafood.tbbackend.utils;
 
-import com.bokafood.tbbackend.dto.users.UserDTO;
+import com.bokafood.tbbackend.dto.usersDTO.UserDTO;
 import com.bokafood.tbbackend.entity.User;
 
 public class UserMapper {

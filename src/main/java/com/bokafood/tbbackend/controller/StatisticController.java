@@ -1,9 +1,9 @@
 package com.bokafood.tbbackend.controller;
 
-import com.bokafood.tbbackend.dto.statistics.AvgDeliveredPerSizeDTO;
-import com.bokafood.tbbackend.dto.statistics.AvgDeliveredPerTypeDTO;
-import com.bokafood.tbbackend.dto.statistics.TotalDeliveredPerSizeDTO;
-import com.bokafood.tbbackend.dto.statistics.TotalDeliveredPerTypeDTO;
+import com.bokafood.tbbackend.dto.statisticsDTO.AvgDeliveredPerSizeDTO;
+import com.bokafood.tbbackend.dto.statisticsDTO.AvgDeliveredPerTypeDTO;
+import com.bokafood.tbbackend.dto.statisticsDTO.TotalDeliveredPerSizeDTO;
+import com.bokafood.tbbackend.dto.statisticsDTO.TotalDeliveredPerTypeDTO;
 import com.bokafood.tbbackend.service.StatisticService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
+
+
 
 @Controller
 @RequestMapping("/statistics")
@@ -41,9 +43,5 @@ public class StatisticController {
     public ResponseEntity<List<AvgDeliveredPerSizeDTO>> getAvgDeliveredPerSizes() {
         return new ResponseEntity<>(statisticService.getAvgDeliveredPerSizes(), HttpStatus.OK);
     }
-
-
-
-    //@GetMapping("/quantityDeliveredPerSize")
 
 }

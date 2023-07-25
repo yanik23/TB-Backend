@@ -1,17 +1,20 @@
 package com.bokafood.tbbackend.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.math.BigDecimal;
 import java.util.List;
 
 
-//enum DishType {MEAT, VEGETARIAN, VEGAN}
-
+/**
+ * Dish entity class representing the dish table in the database.
+ *
+ * @author Yanik Lange
+ * @date 25.07.2023
+ * @version 1.0
+ */
 @Getter
 @Setter
 @AllArgsConstructor
@@ -85,21 +88,18 @@ public class Dish {
     private BigDecimal potassium;
 
 
-    //@OneToMany(mappedBy = "dish", cascade = CascadeType.ALL)
-    //private List<DeliveryDish> deliveryDishes;
-    //@JsonIgnore
     @OneToMany(mappedBy = "dish") //fetch = FetchType.EAGER)//, cascade = CascadeType.ALL)
     @JsonManagedReference("dish-delivery")
     private List<DeliveryDish> deliveryDishes;
 
-    //@JsonIgnore
+
     @OneToMany(mappedBy = "dish", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonManagedReference("dish-ingredient")
     private List<DishIngredient> dishIngredients;
 
 
 
-    public void update(Dish dish) {
+    /*public void update(Dish dish) {
 
         this.setName(dish.getName());
         this.setDescription(dish.getDescription());
@@ -119,5 +119,5 @@ public class Dish {
         this.setIron(dish.getIron());
         this.setPotassium(dish.getPotassium());
         //return updatedDish;
-    }
+    }*/
 }

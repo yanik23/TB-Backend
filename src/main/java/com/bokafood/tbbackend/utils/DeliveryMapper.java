@@ -1,8 +1,8 @@
 package com.bokafood.tbbackend.utils;
 
-import com.bokafood.tbbackend.dto.deliveries.DeliveryDTO;
-import com.bokafood.tbbackend.dto.deliveries.DeliveryWithDetailsDTO;
-import com.bokafood.tbbackend.dto.dishes.DishForDeliveryDTO;
+import com.bokafood.tbbackend.dto.deliveriesDTO.DeliveryDTO;
+import com.bokafood.tbbackend.dto.deliveriesDTO.DeliveryWithDetailsDTO;
+import com.bokafood.tbbackend.dto.dishesDTO.DishForDeliveryDTO;
 import com.bokafood.tbbackend.entity.Delivery;
 
 import java.util.stream.Collectors;

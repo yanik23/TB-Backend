@@ -6,10 +6,16 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.io.Serializable;
 
 
+/**
+ * DeliveryDishId entity class representing the delivery_dish composed id in the database.
+ *
+ * @author Yanik Lange
+ * @date 25.07.2023
+ * @version 1.0
+ */
 @Getter
 @Setter
 @AllArgsConstructor

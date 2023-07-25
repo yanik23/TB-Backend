@@ -1,13 +1,12 @@
 package com.bokafood.tbbackend.service;
 
-import com.bokafood.tbbackend.dto.ingredients.IngredientDTO;
+import com.bokafood.tbbackend.dto.ingredientsDTO.IngredientDTO;
 import com.bokafood.tbbackend.entity.Ingredient;
 import com.bokafood.tbbackend.exception.EntityNotFoundException;
 import com.bokafood.tbbackend.repository.IngredientRepository;
 import com.bokafood.tbbackend.utils.IngredientMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -54,6 +53,12 @@ public class IngredientServiceImpl implements IngredientService {
         ingredientRepository.deleteById(id);
     }
 
+
+    /**
+     * Method to update an existing ingredient.
+     * @param updatedIngredient The Ingredient object to be updated.
+     * @param ingredientDTO The IngredientDTO object with the updated ingredient.
+     */
     private void update(Ingredient updatedIngredient, IngredientDTO ingredientDTO) {
         updatedIngredient.setName(ingredientDTO.getName());
         updatedIngredient.setCurrentType(ingredientDTO.getCurrentType());

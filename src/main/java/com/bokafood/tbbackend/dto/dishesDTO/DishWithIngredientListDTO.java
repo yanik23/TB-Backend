@@ -1,6 +1,6 @@
-package com.bokafood.tbbackend.dto.dishes;
+package com.bokafood.tbbackend.dto.dishesDTO;
 
-import com.bokafood.tbbackend.dto.ingredients.IngredientLessDTO;
+import com.bokafood.tbbackend.dto.ingredientsDTO.IngredientLessDTO;
 import com.bokafood.tbbackend.entity.Dish;
 import lombok.*;
 

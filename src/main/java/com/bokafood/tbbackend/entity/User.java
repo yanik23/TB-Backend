@@ -8,11 +8,19 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+
+/**
+ * User entity class representing the user table in the database.
+ * This class implements the UserDetails interface from Spring Security for authentication and authorization.
+ *
+ * @author Yanik Lange
+ * @date 25.07.2023
+ * @version 1.0
+ */
 @Getter
 @Setter
 @AllArgsConstructor

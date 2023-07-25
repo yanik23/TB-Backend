@@ -1,7 +1,5 @@
 package com.bokafood.tbbackend.entity;
 
-
-
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -9,6 +7,15 @@ import lombok.*;
 import org.springframework.format.annotation.NumberFormat;
 import java.util.List;
 
+
+
+/**
+ * Client entity class representing the client table in the database.
+ *
+ * @author Yanik Lange
+ * @date 25.07.2023
+ * @version 1.0
+ */
 @Getter
 @Setter
 @AllArgsConstructor
@@ -26,49 +33,35 @@ public class Client {
 
 
     @NotBlank(message = "Name can't be blank")
-    @NonNull
+    //@NonNull
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
     @NotBlank(message = "Address name can't be blank")
-    @NonNull
+    //@NonNull
     @Column(name = "addressname", nullable = false)
     private String addressName;
 
 
-    @NonNull
+    //@NonNull
     @Column(name = "addressnumber", nullable = false)
     private Long addressNumber;
 
 
     @NumberFormat(style = NumberFormat.Style.NUMBER)
-    @NonNull
+    //@NonNull
     @Column(name = "zipcode", nullable = false)
     private Long zipCode;
 
     @NotBlank(message = "City can't be blank")
-    @NonNull
+    //@NonNull
     @Column(name = "city", nullable = false)
     private String city;
 
 
-    //@JsonIgnore
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonManagedReference(value = "client-delivery")
-    //@JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    //@OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Delivery> deliveries;
 
-   /* @JsonIgnore
-    public void setDeliveries(List<Delivery> deliveries) {
-        this.deliveries = deliveries;
-    }*/
 
-    public void update(Client client) {
-        this.setName(client.getName());
-        this.setAddressName(client.getAddressName());
-        this.setAddressNumber(client.getAddressNumber());
-        this.setZipCode(client.getZipCode());
-        this.setCity(client.getCity());
-    }
 }

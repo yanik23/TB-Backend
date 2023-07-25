@@ -10,9 +10,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
+
+/**
+ * Controller class used to handle HTTP requests for the DishIngredient entity.
+ * It uses the DishIngredientService class to perform CRUD operations.
+ *
+ * @author Yanik Lange
+ * @date 25.07.2023
+ * @version 1.0
+ */
 @Controller
 @RequestMapping("/dishIngredients")
 public class DishIngredientController {

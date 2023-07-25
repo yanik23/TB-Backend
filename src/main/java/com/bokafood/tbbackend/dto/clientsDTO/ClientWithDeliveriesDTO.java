@@ -1,6 +1,6 @@
-package com.bokafood.tbbackend.dto.clients;
+package com.bokafood.tbbackend.dto.clientsDTO;
 
-import com.bokafood.tbbackend.dto.deliveries.DeliveryWithDetailsDTO;
+import com.bokafood.tbbackend.dto.deliveriesDTO.DeliveryWithDetailsDTO;
 import lombok.*;
 import java.util.List;
 

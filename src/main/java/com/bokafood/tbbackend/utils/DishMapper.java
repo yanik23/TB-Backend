@@ -1,13 +1,10 @@
 package com.bokafood.tbbackend.utils;
 
-import com.bokafood.tbbackend.dto.ingredients.IngredientLessDTO;
-import com.bokafood.tbbackend.dto.dishes.DishDTO;
-import com.bokafood.tbbackend.dto.dishes.DishLightDTO;
-import com.bokafood.tbbackend.dto.dishes.DishWithIngredientListDTO;
+import com.bokafood.tbbackend.dto.ingredientsDTO.IngredientLessDTO;
+import com.bokafood.tbbackend.dto.dishesDTO.DishDTO;
+import com.bokafood.tbbackend.dto.dishesDTO.DishLightDTO;
+import com.bokafood.tbbackend.dto.dishesDTO.DishWithIngredientListDTO;
 import com.bokafood.tbbackend.entity.Dish;
-import com.bokafood.tbbackend.entity.DishIngredient;
-import com.bokafood.tbbackend.entity.Ingredient;
-import com.bokafood.tbbackend.entity.DishIngredientId;
 
 import java.util.stream.Collectors;
 

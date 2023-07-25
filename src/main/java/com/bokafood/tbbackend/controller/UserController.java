@@ -16,6 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.*;
 
 
+/**
+ * Controller class used to handle HTTP requests for the User entity.
+ * Its purpose is to refresh the access token of the user.
+ *
+ * @author Yanik Lange
+ * @date 25.07.2023
+ * @version 1.0
+ */
 @Controller
 @RequestMapping("/users")
 public class UserController {
@@ -24,39 +32,37 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    /**
+     * Method to handle HTTP GET requests to refresh the access token of the user.
+     * Access token is sent in the Authorization header of the HTTP response.
+     *
+     * @param request The HTTP request.
+     * @param response The HTTP response.
+     */
     @GetMapping("/refresh-token")
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) {
+
+        // Get the refresh token from the Authorization header of the HTTP request.
         String header = request.getHeader("Authorization");
         if(header != null && header.startsWith(SecurityConstants.BEARER)) {
             String tokenStr = header.replace(SecurityConstants.BEARER, "");
 
+            // Verify the refresh token.
             DecodedJWT jwt = JWT.require(Algorithm.HMAC512(SecurityConstants.SECRET_KEY))
                     .build()
                     .verify(tokenStr);
 
-            //============
+            // Get the user from the database.
             User user = userService.getUserByUsername(jwt.getSubject());
 
+            // Create a new access token and send it in the Authorization header of the HTTP response.
             String access_token = JWT.create()
                     .withSubject(user.getUsername())
                     .withArrayClaim("roles", new String[]{user.getRole().name()})
                     .withExpiresAt(new Date(System.currentTimeMillis() + SecurityConstants.ACCESS_TOKEN_EXPIRATION))
                     .sign(Algorithm.HMAC512(SecurityConstants.SECRET_KEY));
             response.addHeader(SecurityConstants.AUTHORIZATION, SecurityConstants.BEARER + access_token);
-            //=============
-
-            String username = jwt.getSubject();
-            List<String> roles = jwt.getClaim("roles").asList(String.class);
-
-            //System.out.println("===USER : " + user);
-
-            //Collection<? extends GrantedAuthority> auths = Collections.singleton(new SimpleGrantedAuthority(roles.get(0)));
-        /*System.out.println("===AUTHENTICATION : " + authentication.getAuthorities().toString());
-        System.out.println("===AUTHENTICATION : " + authentication.getPrincipal());
-        System.out.println("===AUTHENTICATION : " + authentication.getCredentials());*/
-            //SecurityContextHolder.getContext().setAuthentication(authentication);
         } else {
-            //return new ResponseEntity<>(HttpStatus.FORBIDDEN);
             throw new RuntimeException("Refresh token is missing");
         }
     }

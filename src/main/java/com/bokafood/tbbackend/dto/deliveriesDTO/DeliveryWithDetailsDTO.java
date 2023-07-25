@@ -1,8 +1,6 @@
-package com.bokafood.tbbackend.dto.deliveries;
+package com.bokafood.tbbackend.dto.deliveriesDTO;
 
-import com.bokafood.tbbackend.dto.dishes.DishForDeliveryDTO;
-import com.bokafood.tbbackend.dto.dishes.DishLightDTO;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.bokafood.tbbackend.dto.dishesDTO.DishForDeliveryDTO;
 import lombok.*;
 
 import java.time.LocalDateTime;

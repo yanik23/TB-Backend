@@ -1,4 +1,4 @@
-package com.bokafood.tbbackend.dto.dishes;
+package com.bokafood.tbbackend.dto.dishesDTO;
 
 
 import com.bokafood.tbbackend.entity.Dish;

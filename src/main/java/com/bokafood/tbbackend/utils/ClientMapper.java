@@ -1,6 +1,6 @@
 package com.bokafood.tbbackend.utils;
 
-import com.bokafood.tbbackend.dto.clients.ClientDTO;
+import com.bokafood.tbbackend.dto.clientsDTO.ClientDTO;
 import com.bokafood.tbbackend.entity.Client;
 
 public class ClientMapper {

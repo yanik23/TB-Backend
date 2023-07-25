@@ -1,6 +1,6 @@
 package com.bokafood.tbbackend.service;
 
-import com.bokafood.tbbackend.dto.clients.ClientDTO;
+import com.bokafood.tbbackend.dto.clientsDTO.ClientDTO;
 import com.bokafood.tbbackend.entity.Client;
 import com.bokafood.tbbackend.exception.EntityNotFoundException;
 import com.bokafood.tbbackend.repository.ClientRepository;
@@ -53,16 +53,6 @@ public class ClientServiceImpl implements ClientService {
         }
 
 
-        /*@Override
-        public ClientWithDeliveriesDTO getClientWithDeliveries(Long id) {
-            Client client = ClientMapper.toEntity(getClientById(id));
-            ClientWithDeliveriesDTO clientWithDeliveriesDTO = ClientWithDeliveriesDTO.builder()
-                    .client(ClientMapper.toDTO(client))
-                    .deliveries(client.getDeliveries().stream().map(DeliveryMapper::toDTO).toList())
-                    .build();
-            return clientWithDeliveriesDTO;
-        }*/
-
         @Override
         public ClientDTO getClientByName(String name) {
             Optional<Client> client = clientRepository.findByName(name);
@@ -74,12 +64,17 @@ public class ClientServiceImpl implements ClientService {
         }
 
 
-        private void update(Client updatedClient, ClientDTO client) {
-            updatedClient.setName(client.getName());
-            updatedClient.setAddressName(client.getAddressName());
-            updatedClient.setAddressNumber(client.getAddressNumber());
-            updatedClient.setZipCode(client.getZipCode());
-            updatedClient.setCity(client.getCity());
+        /**
+         * Updates the client with the values from the updatedClient
+         * @param updatedClient the client to be updated
+         * @param clientDTO the client with the new values
+         */
+        private void update(Client updatedClient, ClientDTO clientDTO) {
+            updatedClient.setName(clientDTO.getName());
+            updatedClient.setAddressName(clientDTO.getAddressName());
+            updatedClient.setAddressNumber(clientDTO.getAddressNumber());
+            updatedClient.setZipCode(clientDTO.getZipCode());
+            updatedClient.setCity(clientDTO.getCity());
         }
 
 }

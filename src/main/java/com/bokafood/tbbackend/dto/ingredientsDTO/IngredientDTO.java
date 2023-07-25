@@ -1,7 +1,6 @@
-package com.bokafood.tbbackend.dto.ingredients;
+package com.bokafood.tbbackend.dto.ingredientsDTO;
 
 import com.bokafood.tbbackend.entity.Ingredient;
-import jakarta.persistence.*;
 import lombok.*;
 
 @Getter

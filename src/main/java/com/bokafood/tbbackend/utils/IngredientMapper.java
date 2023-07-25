@@ -1,7 +1,7 @@
 package com.bokafood.tbbackend.utils;
 
-import com.bokafood.tbbackend.dto.ingredients.IngredientDTO;
-import com.bokafood.tbbackend.dto.ingredients.IngredientLessDTO;
+import com.bokafood.tbbackend.dto.ingredientsDTO.IngredientDTO;
+import com.bokafood.tbbackend.dto.ingredientsDTO.IngredientLessDTO;
 import com.bokafood.tbbackend.entity.Ingredient;
 
 public class IngredientMapper {

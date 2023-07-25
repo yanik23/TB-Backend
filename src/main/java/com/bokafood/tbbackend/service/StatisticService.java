@@ -1,11 +1,10 @@
 package com.bokafood.tbbackend.service;
 
 
-import com.bokafood.tbbackend.dto.statistics.AvgDeliveredPerSizeDTO;
-import com.bokafood.tbbackend.dto.statistics.AvgDeliveredPerTypeDTO;
-import com.bokafood.tbbackend.dto.statistics.TotalDeliveredPerSizeDTO;
-import com.bokafood.tbbackend.dto.statistics.TotalDeliveredPerTypeDTO;
-
+import com.bokafood.tbbackend.dto.statisticsDTO.AvgDeliveredPerSizeDTO;
+import com.bokafood.tbbackend.dto.statisticsDTO.AvgDeliveredPerTypeDTO;
+import com.bokafood.tbbackend.dto.statisticsDTO.TotalDeliveredPerSizeDTO;
+import com.bokafood.tbbackend.dto.statisticsDTO.TotalDeliveredPerTypeDTO;
 import java.util.List;
 
 public interface StatisticService {

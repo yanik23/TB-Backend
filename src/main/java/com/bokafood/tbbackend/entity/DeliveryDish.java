@@ -5,6 +5,15 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+
+/**
+ * DeliveryDish entity class representing the delivery_dish table in the database.
+ * This class is used to represent the many-to-many relationship between the delivery and the dish tables.
+ *
+ * @author Yanik Lange
+ * @date 25.07.2023
+ * @version 1.0
+ */
 @Getter
 @Setter
 @AllArgsConstructor

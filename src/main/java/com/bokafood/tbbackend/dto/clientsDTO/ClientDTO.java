@@ -1,4 +1,4 @@
-package com.bokafood.tbbackend.dto.clients;
+package com.bokafood.tbbackend.dto.clientsDTO;
 
 import lombok.*;
 
@@ -8,7 +8,6 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
 public class ClientDTO {
     private Long id;
     private String name;

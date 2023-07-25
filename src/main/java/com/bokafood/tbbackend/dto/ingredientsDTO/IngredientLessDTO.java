@@ -1,4 +1,4 @@
-package com.bokafood.tbbackend.dto.ingredients;
+package com.bokafood.tbbackend.dto.ingredientsDTO;
 
 
 import lombok.*;

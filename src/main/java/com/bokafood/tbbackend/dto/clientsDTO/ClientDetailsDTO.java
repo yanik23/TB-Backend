@@ -1,9 +1,7 @@
-package com.bokafood.tbbackend.dto.clients;
+package com.bokafood.tbbackend.dto.clientsDTO;
 
 
-import lombok.*;
-
-@Getter
+/*@Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,4 +17,4 @@ public class ClientDetailsDTO {
 
 
 
-}
+}*/

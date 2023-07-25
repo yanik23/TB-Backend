@@ -1,4 +1,4 @@
-package com.bokafood.tbbackend.dto.statistics;
+package com.bokafood.tbbackend.dto.statisticsDTO;
 
 import com.bokafood.tbbackend.entity.Dish;
 import lombok.*;

@@ -1,4 +1,4 @@
-package com.bokafood.tbbackend.dto.users;
+package com.bokafood.tbbackend.dto.usersDTO;
 
 
 import com.bokafood.tbbackend.entity.User;

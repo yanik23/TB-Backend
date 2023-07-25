@@ -1,13 +1,13 @@
 package com.bokafood.tbbackend.service;
 
 
-import com.bokafood.tbbackend.dto.dishes.DishDTO;
-import com.bokafood.tbbackend.dto.dishes.DishLightDTO;
-import com.bokafood.tbbackend.dto.dishes.DishWithIngredientListDTO;
+import com.bokafood.tbbackend.dto.dishesDTO.DishDTO;
+import com.bokafood.tbbackend.dto.dishesDTO.DishLightDTO;
+import com.bokafood.tbbackend.dto.dishesDTO.DishWithIngredientListDTO;
 import com.bokafood.tbbackend.dto.dishesIngredientsDTO.DishIngredientDTO;
 import com.bokafood.tbbackend.dto.dishesIngredientsDTO.DishIngredientObjectDTO;
-import com.bokafood.tbbackend.dto.ingredients.IngredientDTO;
-import com.bokafood.tbbackend.dto.ingredients.IngredientLessDTO;
+import com.bokafood.tbbackend.dto.ingredientsDTO.IngredientDTO;
+import com.bokafood.tbbackend.dto.ingredientsDTO.IngredientLessDTO;
 import com.bokafood.tbbackend.entity.Dish;
 import com.bokafood.tbbackend.entity.DishIngredient;
 import com.bokafood.tbbackend.entity.DishIngredientId;
@@ -82,7 +82,6 @@ public class DishServiceImpl implements DishService {
     @Transactional
     @Override
     public void deleteDish(Long id) {
-        System.out.println("=================Deleting dish with id: " + id);
         dishRepository.deleteById(id);
     }
 
@@ -95,7 +94,6 @@ public class DishServiceImpl implements DishService {
 
 
     private void update(Dish dish, DishWithIngredientListDTO updatedDishDTO) {
-        // Update the dish properties
         dish.setName(updatedDishDTO.getName());
         dish.setDescription(updatedDishDTO.getDescription());
         dish.setCurrentType(updatedDishDTO.getCurrentType());

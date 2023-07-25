@@ -1,14 +1,13 @@
 package com.bokafood.tbbackend.utils;
 
-import com.bokafood.tbbackend.dto.deliveries.DeliveryWithDetailsDTO;
-import com.bokafood.tbbackend.dto.deliveriesDishes.DeliveryDishDTO;
-import com.bokafood.tbbackend.dto.dishes.DishForDeliveryDTO;
+import com.bokafood.tbbackend.dto.deliveriesDishesDTO.DeliveryDishDTO;
+import com.bokafood.tbbackend.dto.dishesDTO.DishForDeliveryDTO;
 import com.bokafood.tbbackend.entity.DeliveryDish;
 
 public class DeliveryDishMapper {
 
     static public DeliveryDishDTO toDTO(DeliveryDish deliveryDish) {
-        com.bokafood.tbbackend.dto.deliveriesDishes.DeliveryDishDTO dto = new com.bokafood.tbbackend.dto.deliveriesDishes.DeliveryDishDTO();
+        com.bokafood.tbbackend.dto.deliveriesDishesDTO.DeliveryDishDTO dto = new com.bokafood.tbbackend.dto.deliveriesDishesDTO.DeliveryDishDTO();
         dto.setId(deliveryDish.getId());
         dto.setDelivery(deliveryDish.getDelivery());
         dto.setDish(deliveryDish.getDish());

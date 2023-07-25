@@ -1,13 +1,9 @@
 package com.bokafood.tbbackend.service;
 
-import com.bokafood.tbbackend.dto.deliveries.DeliveryDTO;
-import com.bokafood.tbbackend.dto.deliveries.DeliveryWithDetailsDTO;
-import com.bokafood.tbbackend.dto.deliveriesDishes.DeliveryDishDTO;
-import com.bokafood.tbbackend.dto.dishes.DishDTO;
-import com.bokafood.tbbackend.dto.dishes.DishForDeliveryDTO;
-import com.bokafood.tbbackend.dto.dishes.DishWithIngredientListDTO;
-import com.bokafood.tbbackend.dto.ingredients.IngredientDTO;
-import com.bokafood.tbbackend.dto.ingredients.IngredientLessDTO;
+import com.bokafood.tbbackend.dto.deliveriesDTO.DeliveryDTO;
+import com.bokafood.tbbackend.dto.deliveriesDTO.DeliveryWithDetailsDTO;
+import com.bokafood.tbbackend.dto.dishesDTO.DishForDeliveryDTO;
+import com.bokafood.tbbackend.dto.dishesDTO.DishWithIngredientListDTO;
 import com.bokafood.tbbackend.entity.*;
 import com.bokafood.tbbackend.exception.EntityNotFoundException;
 import com.bokafood.tbbackend.repository.DeliveryRepository;
@@ -16,7 +12,6 @@ import com.bokafood.tbbackend.utils.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -70,7 +65,6 @@ public class DeliveryServiceImpl implements DeliveryService {
         if(user.isPresent()) {
         	delivery.setUser(user.get());
         } else {
-            System.out.println("================================ USER NOT FOUND ================================");
         	throw new EntityNotFoundException(deliveryWithDetailsDTO.getUserName(), User.class);
         }
 
@@ -102,11 +96,6 @@ public class DeliveryServiceImpl implements DeliveryService {
     public void deleteDelivery(Long id) {
         deliveryRepository.deleteById(id);
     }
-
-   /* @Override
-    public List<Delivery> getDeliveriesByClientId(Long id) {
-        return deliveryRepository.findAllByClientId(id);
-    }*/
 
 
     private void update(Delivery delivery, DeliveryWithDetailsDTO updatedDeliveryWithDetailsDTO) {
@@ -148,13 +137,13 @@ public class DeliveryServiceImpl implements DeliveryService {
         }
         delivery.setDeliveryDishes(deliveryDishes);
     }
-        private DeliveryDish findExistingDish(List<DeliveryDish> existingDishes, DeliveryDishId deliveryDishId) {
-            for (DeliveryDish existingDish : existingDishes) {
-                if (existingDish.getId().equals(deliveryDishId)) {
-                    return existingDish;
-                }
-            }
-            return null;
-        }
 
+    private DeliveryDish findExistingDish(List<DeliveryDish> existingDishes, DeliveryDishId deliveryDishId) {
+        for (DeliveryDish existingDish : existingDishes) {
+            if (existingDish.getId().equals(deliveryDishId)) {
+                return existingDish;
+            }
+        }
+        return null;
+    }
 }

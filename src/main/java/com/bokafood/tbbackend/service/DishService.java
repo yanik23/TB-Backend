@@ -1,8 +1,8 @@
 package com.bokafood.tbbackend.service;
 
-import com.bokafood.tbbackend.dto.dishes.DishWithIngredientListDTO;
-import com.bokafood.tbbackend.dto.dishes.DishDTO;
-import com.bokafood.tbbackend.dto.dishes.DishLightDTO;
+import com.bokafood.tbbackend.dto.dishesDTO.DishWithIngredientListDTO;
+import com.bokafood.tbbackend.dto.dishesDTO.DishDTO;
+import com.bokafood.tbbackend.dto.dishesDTO.DishLightDTO;
 import java.util.List;
 
 public interface DishService {

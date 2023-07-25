@@ -1,7 +1,7 @@
 
 
 
-INSERT INTO users (email, password, name, role) VALUES ('deluca@bokafood.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'Luigi', 'ADMIN');
+INSERT INTO users (email, password, name, role) VALUES ('deluca@bokafood.com', '$2a$12$XsDaXFVF3frK/uHfnnRjp.mvKvd/ynPF6furYtpZQRCw03ZZy6YYu', 'Luigi', 'ADMIN');
 INSERT INTO users (email, password, name, role) VALUES ('yaya@mail.com', '$2a$12$mOYffKTc2oUgV4vNTcRdEOuGrFshHaze.g74w08ZSwrHaWTu0VWFS', 'Yaya', 'ADMIN');
 INSERT INTO users (email, password, name, role) VALUES ('leogobelus@mail.com', '$2a$12$.l2KuerB/ES8LO/mNiCjE.JC4cjGg/.6DpJnp.KOxyn.H395Js36m', 'Leo', 'EMPLOYEE');
 INSERT INTO users (email, password, name, role) VALUES ('jean@mail.com', '$2a$12$.l2KuerB/ES8LO/mNiCjE.JC4cjGg/.6DpJnp.KOxyn.H395Js36m', 'Jean-Charles Roger Henry-Louis', 'ADMIN');
