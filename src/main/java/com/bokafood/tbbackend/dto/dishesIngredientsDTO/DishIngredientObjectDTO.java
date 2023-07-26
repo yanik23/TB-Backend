@@ -4,7 +4,6 @@ import com.bokafood.tbbackend.entity.Dish;
 import com.bokafood.tbbackend.entity.DishIngredientId;
 import com.bokafood.tbbackend.entity.Ingredient;
 import lombok.*;
-
 import java.math.BigDecimal;
 
 @Getter

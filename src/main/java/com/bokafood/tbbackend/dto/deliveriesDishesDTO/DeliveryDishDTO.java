@@ -6,6 +6,15 @@ import com.bokafood.tbbackend.entity.DeliveryDishId;
 import com.bokafood.tbbackend.entity.Dish;
 import lombok.*;
 
+
+/**
+ * DTO class used to transfer data from and to the DeliveryDish entity.
+ * It contains the DeliveryDishId object that is used as the primary key.
+ *
+ * @author Yanik Lange
+ * @date 25.07.2023
+ * @version 1.0
+ */
 @Getter
 @Setter
 @AllArgsConstructor

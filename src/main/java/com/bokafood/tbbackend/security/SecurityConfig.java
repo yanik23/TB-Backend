@@ -25,10 +25,13 @@ public class SecurityConfig {
         authenticationFilter.setFilterProcessesUrl("/login");
         http
                 .authorizeHttpRequests(request -> request
-                    //.requestMatchers(HttpMethod.GET).authenticated()
-                    .requestMatchers(HttpMethod.POST).hasAuthority("ADMIN")
-                    //.requestMatchers(HttpMethod.POST).authenticated()
-                    .requestMatchers(HttpMethod.PUT).hasAuthority("ADMIN")
+                    //.requestMatchers(HttpMethod.POST).hasAuthority("ADMIN")
+                    .requestMatchers(HttpMethod.POST, "/clients").hasAuthority("ADMIN")
+                    .requestMatchers(HttpMethod.POST).authenticated()
+                    .requestMatchers(HttpMethod.PUT, "clients/**").hasAuthority("ADMIN")
+                    .requestMatchers(HttpMethod.PUT).authenticated()
+                    //.requestMatchers(HttpMethod.PUT).authenticated()
+                    .requestMatchers(HttpMethod.DELETE, "/deliveries/**").authenticated()
                     .requestMatchers(HttpMethod.DELETE).hasAuthority("ADMIN")
                     .requestMatchers(HttpMethod.GET, "/users/refresh-token").permitAll()
                     .requestMatchers(HttpMethod.GET).authenticated()

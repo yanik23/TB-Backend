@@ -60,7 +60,7 @@ public class DishController {
     /**
      * Method to handle HTTP PUT requests to update an existing dish.
      * @param id The id of the dish to be updated.
-     * @param dishDTO The DishDTO object to be updated.
+     * @param dishDTO The DishDTO object used to update the existing Dish.
      * @return ResponseEntity with a DishDTO object and HTTP status code.
      */
     @PutMapping("/{id}")
