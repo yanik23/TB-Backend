@@ -20,7 +20,6 @@ public class UserServiceImpl implements UserService {
     public User getUserByUsername(String name) {
         Optional<User> user = userRepository.findByUsername(name);
         if(user.isPresent()){
-           // return UserMapper.toDTO(user.get());
               return user.get();
         } else {
             throw new EntityNotFoundException(name, User.class);

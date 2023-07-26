@@ -9,6 +9,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
+/**
+ * ExceptionHandlerFilter class used to handle exceptions.
+ * Called first on every request.
+ * Inspired from : https://www.udemy.com/course/the-complete-spring-boot-development-bootcamp/
+ *
+ * @author Yanik Lange
+ * @date 25.07.2023
+ * @version 1.0
+ */
 public class ExceptionHandlerFilter extends OncePerRequestFilter {
 
     @Override
@@ -20,7 +29,6 @@ public class ExceptionHandlerFilter extends OncePerRequestFilter {
             response.getWriter().write("username or password incorrect");
             response.getWriter().flush();
         } catch (JWTVerificationException ex){
-            System.out.println("========== ex.getMessage() : " + ex.getMessage());
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 
             response.getWriter().write("JWT NOT VALID");

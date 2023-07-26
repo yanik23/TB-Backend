@@ -32,6 +32,7 @@ public class Dish {
     @Column(name ="id")
     private Long id;
 
+
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
@@ -39,16 +40,20 @@ public class Dish {
     @Column(name = "description")
     private String description;
 
+
     @Column(name = "currenttype", nullable = false)
     @Enumerated(EnumType.STRING)
     private DishType currentType;
+
 
     @Column(name = "currentsize", nullable = false)
     @Enumerated(EnumType.STRING)
     private DishSize currentSize;
 
+
     @Column(name = "price", nullable = false)
     private BigDecimal price;
+
 
     @Column(name = "isavailable", nullable = false)
     private boolean isAvailable;
@@ -57,38 +62,48 @@ public class Dish {
     @Column(name = "calories")
     private int calories;
 
+
     @Column(name = "fats", precision = 10, scale = 2)
     private BigDecimal fats;
+
 
     @Column(name = "saturatedfats", precision = 10, scale = 2)
     private BigDecimal saturatedFats;
 
+
     @Column(name = "sodium", precision = 10, scale = 2)
     private BigDecimal sodium;
+
 
     @Column(name = "carbohydrates", precision = 10, scale = 2)
     private BigDecimal carbohydrates;
 
+
     @Column(name = "fibers", precision = 10, scale = 2)
     private BigDecimal fibers;
+
 
     @Column(name = "sugars", precision = 10, scale = 2)
     private BigDecimal sugars;
 
+
     @Column(name = "proteins", precision = 10, scale = 2)
     private BigDecimal proteins;
+
 
     @Column(name = "calcium", precision = 10, scale = 2)
     private BigDecimal calcium;
 
+
     @Column(name = "iron", precision = 10, scale = 2)
     private BigDecimal iron;
+
 
     @Column(name = "potassium", precision = 10, scale = 2)
     private BigDecimal potassium;
 
 
-    @OneToMany(mappedBy = "dish") //fetch = FetchType.EAGER)//, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "dish")
     @JsonManagedReference("dish-delivery")
     private List<DeliveryDish> deliveryDishes;
 
@@ -97,27 +112,4 @@ public class Dish {
     @JsonManagedReference("dish-ingredient")
     private List<DishIngredient> dishIngredients;
 
-
-
-    /*public void update(Dish dish) {
-
-        this.setName(dish.getName());
-        this.setDescription(dish.getDescription());
-        this.setCurrentType(dish.getCurrentType());
-        this.setCurrentSize(dish.getCurrentSize());
-        this.setPrice(dish.getPrice());
-        this.setAvailable(dish.isAvailable());
-        this.setCalories(dish.getCalories());
-        this.setFats(dish.getFats());
-        this.setSaturatedFats(dish.getSaturatedFats());
-        this.setSodium(dish.getSodium());
-        this.setCarbohydrates(dish.getCarbohydrates());
-        this.setFibers(dish.getFibers());
-        this.setSugars(dish.getSugars());
-        this.setProteins(dish.getProteins());
-        this.setCalcium(dish.getCalcium());
-        this.setIron(dish.getIron());
-        this.setPotassium(dish.getPotassium());
-        //return updatedDish;
-    }*/
 }

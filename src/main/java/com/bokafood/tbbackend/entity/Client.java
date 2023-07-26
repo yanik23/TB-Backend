@@ -33,28 +33,25 @@ public class Client {
 
 
     @NotBlank(message = "Name can't be blank")
-    //@NonNull
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
+
     @NotBlank(message = "Address name can't be blank")
-    //@NonNull
     @Column(name = "addressname", nullable = false)
     private String addressName;
 
 
-    //@NonNull
     @Column(name = "addressnumber", nullable = false)
     private Long addressNumber;
 
 
     @NumberFormat(style = NumberFormat.Style.NUMBER)
-    //@NonNull
     @Column(name = "zipcode", nullable = false)
     private Long zipCode;
 
+
     @NotBlank(message = "City can't be blank")
-    //@NonNull
     @Column(name = "city", nullable = false)
     private String city;
 
@@ -62,6 +59,5 @@ public class Client {
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonManagedReference(value = "client-delivery")
     private List<Delivery> deliveries;
-
 
 }

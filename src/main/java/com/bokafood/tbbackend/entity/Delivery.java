@@ -32,10 +32,10 @@ public class Delivery {
     private Long id;
 
 
-    //@NonNull
     @Column(name = "deliverydate", nullable = false, columnDefinition = "DATE")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private LocalDateTime deliveryDate;
+
 
     @Column(name = "details")
     private String details;

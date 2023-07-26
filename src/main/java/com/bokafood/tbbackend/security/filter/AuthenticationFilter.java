@@ -19,7 +19,17 @@ import java.io.IOException;
 import java.util.Date;
 
 
-
+/**
+ * AuthenticationFilter class used to authenticate a user.
+ * Extends the UsernamePasswordAuthenticationFilter class.
+ * Filters the request and checks if the user is authenticated.
+ * If the user is authenticated, a JWT token is created and added to the response.
+ * Autowired did not work here surprisingly, so I used a constructor.
+ *
+ * @author Yanik Lange
+ * @date 25.07.2023
+ * @version 1.0
+ */
 @AllArgsConstructor
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
@@ -37,18 +47,30 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         }
     }
 
+    /**
+     * Method to be called if the authentication was not successful.
+     * @param request the request that was made.
+     * @param response the response to send.
+     * @param failed the exception that was thrown.
+     * @throws IOException if an input or output exception occurs.
+     */
     @Override
-    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
+    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException {
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.getWriter().write(failed.getMessage());
         response.getWriter().flush();
     }
 
+    /**
+     * Method to be called if the authentication was successful.
+     * @param request the request that was made.
+     * @param response the response to send.
+     * @param chain the filter chain.
+     * @param authResult the authentication result.
+     */
     @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) {
 
-        System.out.println("request: " + request);
-        System.out.println("response: " + response);
         String access_token = JWT.create()
                 .withSubject(authResult.getName())
                 .withArrayClaim("roles", authResult.getAuthorities().stream().map(ga -> ga.getAuthority()).toArray(String[]::new))

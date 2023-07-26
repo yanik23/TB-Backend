@@ -27,6 +27,7 @@ public class DishIngredient {
     @EmbeddedId
     private DishIngredientId id;
 
+
     @ManyToOne(cascade = CascadeType.MERGE)
     @MapsId("idDish")
     @JoinColumn(name = "iddish", nullable = false)
@@ -39,6 +40,7 @@ public class DishIngredient {
     @JoinColumn(name = "idingredient", nullable = false)
     @JsonBackReference(value="ingredient-dish")
     private Ingredient ingredient;
+
 
     @Column(name = "weight")
     private BigDecimal weight;

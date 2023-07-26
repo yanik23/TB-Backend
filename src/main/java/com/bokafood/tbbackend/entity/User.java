@@ -41,12 +41,18 @@ public class User implements UserDetails {
     @Email
     @Column(name = "email", nullable = false, unique = true)
     private String email;
+
+
     @NonNull
     @Column(name = "password", nullable = false, unique = true)
     private String password;
+
+
     @NonNull
     @Column(name = "name", nullable = false, unique = true)
     private String username;
+
+
     @NonNull
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)

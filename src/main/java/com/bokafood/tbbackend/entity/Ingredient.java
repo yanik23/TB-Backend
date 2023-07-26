@@ -31,18 +31,20 @@ public class Ingredient {
     @Column(name ="id")
     private Long id;
 
+
     @NotBlank(message = "Name can't be blank")
-    //@NonNull
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    //@NonNull
+
     @Column(name = "currenttype", nullable = false)
     @Enumerated(EnumType.STRING)
     private IngredientType currentType;
 
+
     @Column(name = "description")
     private String description;
+
 
     @Column(name = "supplier")
     private String supplier;
@@ -52,10 +54,4 @@ public class Ingredient {
     @JsonBackReference(value = "ingredient-dish")
     private List<DishIngredient> dishIngredients;
 
-    /*public void update(Ingredient ingredient) {
-        this.setName(ingredient.getName());
-        this.setCurrentType(ingredient.getCurrentType());
-        this.setDescription(ingredient.getDescription());
-        this.setSupplier(ingredient.getSupplier());
-    }*/
 }

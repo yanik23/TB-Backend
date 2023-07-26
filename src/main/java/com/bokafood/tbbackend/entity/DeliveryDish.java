@@ -33,6 +33,7 @@ public class DeliveryDish {
     @JoinColumn(name = "iddelivery", nullable = false)
     private Delivery delivery;
 
+
     @ManyToOne(cascade = CascadeType.MERGE)
     @MapsId("idDish")
     @JsonBackReference(value="dish-delivery")
@@ -42,6 +43,7 @@ public class DeliveryDish {
 
     @Column(name = "quantityremained", nullable = false)
     private int quantityRemained;
+
 
     @Column(name = "quantitydelivered", nullable = false)
     private int quantityDelivered;

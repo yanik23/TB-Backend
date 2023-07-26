@@ -17,13 +17,20 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * JWTAuthorizationFilter class used to authorize a user.
+ * Called once per request after authenticated and after the ExceptionHandlerFilter.
+ * Inspired from : https://www.udemy.com/course/the-complete-spring-boot-development-bootcamp/
+ *
+ * @author Yanik Lange
+ * @date 25.07.2023
+ * @version 1.0
+ */
 @Component
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
-
 
     @Autowired
     UserService userService;
@@ -32,16 +39,9 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String header = request.getHeader("Authorization");
 
-        //if request is /users/login, then we don't need to check for token.
-        /*if(request.getServletPath().equals("/users/login")) {
-            filterChain.doFilter(request, response);
-            return;
-        }*/
-
+        //if the header is null or does not start with the bearer prefix or the request is a refresh token request, we do not filter.
         if(header == null || !header.startsWith(SecurityConstants.BEARER) || request.getServletPath().equals("/users/refresh-token")) {
-            System.out.println("===HEADER : " + header);
             filterChain.doFilter(request, response);
-            //return;
         } else {
 
             String tokenStr = header.replace(SecurityConstants.BEARER, "");
@@ -53,23 +53,14 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
             String user = jwt.getSubject();
             List<String> roles = jwt.getClaim("roles").asList(String.class);
 
-            System.out.println("===USER : " + user);
 
             Collection<? extends GrantedAuthority> auths = Collections.singleton(new SimpleGrantedAuthority(roles.get(0)));
             Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, auths);//to set auth true with this constructor.
-            System.out.println("===AUTHENTICATION : " + authentication.getAuthorities().toString());
-            System.out.println("===AUTHENTICATION : " + authentication.getPrincipal());
-            System.out.println("===AUTHENTICATION : " + authentication.getCredentials());
-
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
             filterChain.doFilter(request, response); //since it is the last filter and we call doFilter, will launch the request.
         }
     }
-
-    /*public Collection<? extends GrantedAuthority> getAuthorities(String) {
-        return Collections.singleton(new SimpleGrantedAuthority(role.name()));
-    }*/
 
 }

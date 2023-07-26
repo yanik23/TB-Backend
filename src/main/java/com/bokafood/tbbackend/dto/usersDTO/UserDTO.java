@@ -4,7 +4,7 @@ package com.bokafood.tbbackend.dto.usersDTO;
 import com.bokafood.tbbackend.entity.User;
 import lombok.*;
 
-@Getter
+/*@Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,4 +15,4 @@ public class UserDTO {
     private String email;
     private User.Role role;
 
-}
+}*/
