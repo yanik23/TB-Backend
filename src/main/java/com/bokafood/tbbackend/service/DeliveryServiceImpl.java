@@ -98,18 +98,29 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
 
+    /**
+     * Method to update a delivery.
+     * @param delivery The Delivery object to be updated.
+     * @param updatedDeliveryWithDetailsDTO The DeliveryWithDetailsDTO object with the updated delivery.
+     */
     private void update(Delivery delivery, DeliveryWithDetailsDTO updatedDeliveryWithDetailsDTO) {
+
+        // set the delivery bassic fields
         delivery.setClient(ClientMapper.toClient(clientService.getClientByName(updatedDeliveryWithDetailsDTO.getClientName())));
         delivery.setUser(userRepository.findByUsername(updatedDeliveryWithDetailsDTO.getUserName()).get());
         delivery.setDeliveryDate(updatedDeliveryWithDetailsDTO.getDeliveryDate());
 
-
+        // the updatedDishes list contains the dishes that are in the updatedDeliveryWithDetailsDTO object
         List<DishForDeliveryDTO> updatedDishes = updatedDeliveryWithDetailsDTO.getDishes();
+        // the new deliveryDish list that will be set to the delivery object
         List<DeliveryDish> deliveryDishes = new ArrayList<>();
 
+        // If the updatedDishes list is not null, check if the ingredients already exist
         if (updatedDishes != null) {
+
             List<DeliveryDish> existingDishes = deliveryDishService.findAllByDeliveryId(delivery.getId());
 
+            // update the existing dishes in the database by deleting the ones that are not in the updatedDishes list
             for (DeliveryDish existingDish : existingDishes) {
                 DeliveryDishId existingDishId = existingDish.getId();
                 boolean dishExists = updatedDishes.stream()
@@ -119,6 +130,9 @@ public class DeliveryServiceImpl implements DeliveryService {
                     deliveryDishService.deleteDeliveryDish(existingDishId);
                 }
             }
+
+            // update the existing dishes in the database by updating the ones that are in the updatedDishes list
+            // by creating a new DeliveryDish entity if the dish is new or updating the existing one
             for (DishForDeliveryDTO dish : updatedDishes) {
                 DishWithIngredientListDTO dishDTO = dishService.getDishById(dish.getId());
                 Dish dishEntity = DishMapper.toDishWithId(dishDTO);
@@ -135,9 +149,16 @@ public class DeliveryServiceImpl implements DeliveryService {
                 }
             }
         }
+        // set the new deliveryDishes list to the delivery object
         delivery.setDeliveryDishes(deliveryDishes);
     }
 
+    /**
+     * Method to find an existing dish.
+     * @param existingDishes The list of existing dishes.
+     * @param deliveryDishId The id of the deliveryDish to be found.
+     * @return The DeliveryDish object if found, null otherwise.
+     */
     private DeliveryDish findExistingDish(List<DeliveryDish> existingDishes, DeliveryDishId deliveryDishId) {
         for (DeliveryDish existingDish : existingDishes) {
             if (existingDish.getId().equals(deliveryDishId)) {

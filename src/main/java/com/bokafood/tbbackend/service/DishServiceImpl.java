@@ -93,7 +93,14 @@ public class DishServiceImpl implements DishService {
     }
 
 
+    /**
+     * Method to update a dish.
+     * @param dish The dish to be updated.
+     * @param updatedDishDTO The DishDTO object with the updated dish.
+     */
     private void update(Dish dish, DishWithIngredientListDTO updatedDishDTO) {
+
+        // set the new values
         dish.setName(updatedDishDTO.getName());
         dish.setDescription(updatedDishDTO.getDescription());
         dish.setCurrentType(updatedDishDTO.getCurrentType());
@@ -112,16 +119,20 @@ public class DishServiceImpl implements DishService {
         dish.setIron(updatedDishDTO.getIron());
         dish.setPotassium(updatedDishDTO.getPotassium());
 
+        // set the new list of ingredients
         List<IngredientLessDTO> updatedIngredients = updatedDishDTO.getIngredients();
+        // the new list of dish ingredients that will be set to the dish
         List<DishIngredient> dishIngredients = new ArrayList<>();
 
+        // If the updated list of ingredients is not null, check if the ingredients already exist
         if (updatedIngredients != null) {
-            // Retrieve the existing ingredients associated with the dish
-            List<DishIngredient> existingIngredients = dishIngredientService.findAllByDishId(dish.getId()); //dish.getDishIngredients();
-            // Iterate through the existing ingredients and delete those not present in the updated list
+
+
+            List<DishIngredient> existingIngredients = dishIngredientService.findAllByDishId(dish.getId());
+
+            // update the existing ingredients in the database by deleting the ones that are not in the updatedIngredient list
             for (DishIngredient existingIngredient : existingIngredients) {
                 DishIngredientId existingIngredientId = existingIngredient.getId();
-
                 boolean ingredientExists = updatedIngredients.stream()
                         .anyMatch(ingredient -> ingredient.getId().equals(existingIngredientId.getIdIngredient()));
 
@@ -129,7 +140,9 @@ public class DishServiceImpl implements DishService {
                     dishIngredientService.deleteDishIngredient(existingIngredientId);
                 }
             }
-            // Iterate through the updated ingredients
+
+            // update the existing ingredients in the database by updating the ones that are in the updatedIngredient list
+            // by creating a new DishIngredient entity if the ingredient is new or updating the existing one.
             for (IngredientLessDTO ingredient : updatedIngredients) {
                 IngredientDTO ingredientDTO = ingredientService.getIngredientById(ingredient.getId());
                 Ingredient ingredientEntity = IngredientMapper.toEntity(ingredientDTO);
@@ -151,6 +164,12 @@ public class DishServiceImpl implements DishService {
         dish.setDishIngredients(dishIngredients);
     }
 
+    /**
+     * Method to find an existing ingredient in a list of ingredients.
+     * @param existingIngredients The list of existing ingredients.
+     * @param dishIngredientId The id of the dishIngredient to be found.
+     * @return The DishIngredient if found, null otherwise.
+     */
     private DishIngredient findExistingIngredient(List<DishIngredient> existingIngredients, DishIngredientId dishIngredientId) {
         for (DishIngredient existingIngredient : existingIngredients) {
             if (existingIngredient.getId().equals(dishIngredientId)) {
