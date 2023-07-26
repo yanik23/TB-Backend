@@ -1,6 +1,6 @@
 package com.bokafood.tbbackend;
 
-import com.bokafood.tbbackend.entity.*;
+
 import com.bokafood.tbbackend.repository.ClientRepository;
 import com.bokafood.tbbackend.repository.DeliveryRepository;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import java.time.LocalDateTime;
 
 

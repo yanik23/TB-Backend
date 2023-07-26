@@ -5,11 +5,23 @@ import com.bokafood.tbbackend.dto.dishesDTO.DishDTO;
 import com.bokafood.tbbackend.dto.dishesDTO.DishLightDTO;
 import com.bokafood.tbbackend.dto.dishesDTO.DishWithIngredientListDTO;
 import com.bokafood.tbbackend.entity.Dish;
-
 import java.util.stream.Collectors;
 
+
+/**
+ * DishMapper class used to map a Dish to a DishDTO and vice versa.
+ *
+ * @author Yanik Lange
+ * @date 25.07.2023
+ * @version 1.0
+ */
 public class DishMapper {
 
+    /**
+     * Method to map a Dish to a DishLightDTO.
+     * @param dish The Dish to be mapped.
+     * @return The mapped DishLightDTO.
+     */
     static public DishLightDTO toLightDTO(Dish dish) {
         return DishLightDTO.builder()
                 .id(dish.getId())
@@ -22,17 +34,11 @@ public class DishMapper {
                 .build();
     }
 
-    static public Dish toDish(DishLightDTO dishLightDTO) {
-        return Dish.builder()
-                .name(dishLightDTO.getName())
-                .price(dishLightDTO.getPrice())
-                .currentSize(dishLightDTO.getCurrentSize())
-                .currentType(dishLightDTO.getCurrentType())
-                .calories(dishLightDTO.getCalories())
-                .isAvailable(dishLightDTO.isAvailable())
-                .build();
-    }
-
+    /**
+     * Method to map a Dish to a DishDTO.
+     * @param dish The Dish to be mapped.
+     * @return The mapped DishDTO.
+     */
     static public DishDTO toDTO(Dish dish) {
         return DishDTO.builder()
                 .id(dish.getId())
@@ -56,29 +62,11 @@ public class DishMapper {
                 .build();
     }
 
-    static public Dish toDish(DishDTO dishDTO) {
-        return Dish.builder()
-                .id(dishDTO.getId())
-                .name(dishDTO.getName())
-                .description(dishDTO.getDescription())
-                .price(dishDTO.getPrice())
-                .currentSize(dishDTO.getCurrentSize())
-                .currentType(dishDTO.getCurrentType())
-                .isAvailable(dishDTO.isAvailable())
-                .calories(dishDTO.getCalories())
-                .fats(dishDTO.getFats())
-                .saturatedFats(dishDTO.getSaturatedFats())
-                .sodium(dishDTO.getSodium())
-                .carbohydrates(dishDTO.getCarbohydrates())
-                .fibers(dishDTO.getFibers())
-                .sugars(dishDTO.getSugars())
-                .proteins(dishDTO.getProteins())
-                .calcium(dishDTO.getCalcium())
-                .iron(dishDTO.getIron())
-                .potassium(dishDTO.getPotassium())
-                .build();
-    }
-
+    /**
+     * Method to map a Dish to a DishWithIngredientListDTO.
+     * @param dish The Dish to be mapped.
+     * @return The mapped DishWithIngredientListDTO.
+     */
     static public DishWithIngredientListDTO toDishWithIngredientListDTO(Dish dish) {
        return DishWithIngredientListDTO.builder()
                 .id(dish.getId())
@@ -108,6 +96,11 @@ public class DishMapper {
                 .build();
     }
 
+    /**
+     * Method to map a DishWithIngredientListDTO to a Dish.
+     * @param dishDTO The DishWithIngredientListDTO to be mapped.
+     * @return The mapped Dish.
+     */
     static public Dish toDish(DishWithIngredientListDTO dishDTO) {
         return Dish.builder()
                 .name(dishDTO.getName())
@@ -129,6 +122,12 @@ public class DishMapper {
                 .potassium(dishDTO.getPotassium())
                 .build();
     }
+
+    /**
+     * Method to map a DishWithIngredientListDTO to a Dish.
+     * @param dishDTO The DishWithIngredientListDTO to be mapped.
+     * @return The mapped Dish.
+     */
     static public Dish toDishWithId(DishWithIngredientListDTO dishDTO) {
         return Dish.builder()
                 .id(dishDTO.getId())

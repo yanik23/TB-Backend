@@ -17,11 +17,6 @@ public class DishIngredientServiceImpl implements  DishIngredientService {
     @Autowired
     private DishIngredientRepository dishIngredientRepository;
 
-   /* @Autowired
-    private DishService dishService;*/
-
-    @Autowired
-    private IngredientService ingredientService;
 
     @Override
     public List<DishIngredient> getDishIngredients() {
@@ -35,7 +30,6 @@ public class DishIngredientServiceImpl implements  DishIngredientService {
             return dishIngredient.get();
         } else {
             return null;
-            //throw new EntityNotFoundException(id.getIdDish(), id.getIdIngredient(), DishIngredient.class);
         }
     }
 
@@ -44,23 +38,6 @@ public class DishIngredientServiceImpl implements  DishIngredientService {
         DishIngredient dishIngredient = DishIngredientMapper.toEntity(dishIngredientObjectDTO);
         DishIngredient savedDishIngredient = dishIngredientRepository.save(dishIngredient);
         return DishIngredientMapper.toDTO(savedDishIngredient);
-
-
-        /*DishDTO dishDTO = dishService.getDishById(dishIngredientDTO.getIdDish());
-        IngredientDTO ingredientDTO = ingredientService.getIngredientById(dishIngredientDTO.getIdIngredient());
-
-        Dish dish = DishMapper.toDish(dishDTO);
-        Ingredient ingredient = IngredientMapper.toIngredient(ingredientDTO);
-
-        DishIngredientObjectDTO dishIngredientObjectDTO = DishIngredientObjectDTO.builder()
-                .id(dishIngredientDTO.getId())
-                .dish(dish)
-                .ingredient(ingredient)
-                .weight(dishIngredientDTO.getWeight())
-                .build();
-
-        DishIngredient savedDishIngredient = dishIngredientRepository.save(DishIngredientMapper.toEntity(dishIngredientObjectDTO));*/
-
 
     }
 
@@ -78,23 +55,16 @@ public class DishIngredientServiceImpl implements  DishIngredientService {
     }
 
 
-
-    @Override
-    public void deleteAllByDishId(Long id) {
-        /*List<DishIngredient> dishIngredients = dishIngredientRepository.findAllByDishId(id);
-        for (DishIngredient dishIngredient : dishIngredients) {
-            dishIngredient.setDish(null); // Remove the association with the parent entity
-        }
-        dishIngredientRepository.deleteAll(dishIngredients);*/
-        dishIngredientRepository.deleteAllDishIngredientsByDishIdQuery(id);
-        //dishIngredientRepository.deleteAllDishIngredientsByDishId(id);
-    }
-
     @Override
     public List<DishIngredient> findAllByDishId(Long id) {
         return dishIngredientRepository.findAllByDishId(id);
     }
 
+    /**
+     * Method to update a dish ingredient.
+     * @param dishIngredient The dish ingredient to be updated.
+     * @param dishIngredientObjectDTO The DishIngredientObjectDTO object with the updated dish ingredient.
+     */
     private void update(DishIngredient dishIngredient, DishIngredientObjectDTO dishIngredientObjectDTO) {
         dishIngredient.setDish(dishIngredientObjectDTO.getDish());
         dishIngredient.setIngredient(dishIngredientObjectDTO.getIngredient());

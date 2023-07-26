@@ -46,19 +46,27 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
             String tokenStr = header.replace(SecurityConstants.BEARER, "");
 
+            //verify the token
             DecodedJWT jwt = JWT.require(Algorithm.HMAC512(SecurityConstants.SECRET_KEY))
                     .build()
                     .verify(tokenStr);
 
+            //get the username and roles from the token
             String user = jwt.getSubject();
             List<String> roles = jwt.getClaim("roles").asList(String.class);
 
 
+            // Create a collection of GrantedAuthority objects from the roles obtained from the JWT.
             Collection<? extends GrantedAuthority> auths = Collections.singleton(new SimpleGrantedAuthority(roles.get(0)));
+
+            //create an authentication object with the username and the roles
+            //It is a token based authentication, so we set the password to null.
             Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, auths);//to set auth true with this constructor.
 
+            //set the authentication in the SecurityContext
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
+            //call the next filter in the filter chain
             filterChain.doFilter(request, response); //since it is the last filter and we call doFilter, will launch the request.
         }
     }

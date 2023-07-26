@@ -17,6 +17,14 @@ import org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExc
 import jakarta.validation.ConstraintViolationException;
 
 
+/**
+ * ApplicationExceptionHandler class used to handle exceptions thrown by the application.
+ * Inspired by : https://www.udemy.com/course/the-complete-spring-boot-development-bootcamp/
+ *
+ * @author Yanik Lange
+ * @date 25.07.2023
+ * @version 1.0
+ */
 @ControllerAdvice
 public class ApplicationExceptionHandler extends ExceptionHandlerExceptionResolver {
 
